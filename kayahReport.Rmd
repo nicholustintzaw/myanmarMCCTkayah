@@ -149,7 +149,7 @@ To provide a basis for measuring and evaluating the outcomes and impact of the M
 
 The study included two primary components:
 
-## Survey of selected households, villages, and townships {#study1}
+### Survey of selected households, villages, and townships {#study1}
 
 This was composed of three surveys.
 
@@ -161,19 +161,19 @@ This was composed of three surveys.
 
 This component of the study was designed to address research question 1 (Section \@ref(research-questions)). The survey results were used to provide context to the results of the second study component (see Section \@ref(study2)).
 
-### Sampling frame
+#### Sampling frame {#sampling-frame}
 
 To assess the various outcome indicators for the assessment[^1], a two-stage cluster sample survey was implemented. The **first stage sample** was a sample of about 75 villages out of the total villages in Kayah State stratified into 1) *urban*, 2) *rural* and 3) *hard-to-reach* areas. The **second stage sample**, also called the within-community sample, was a sample of households from the selected villages with mothers with children less than 5 years old. The second stage sample was selected using the list of household with children under 5 years of age from each village as identified by township General Administrative Unit (GAD) whenever possible.
 
 A total of about 14 households with pregnant mothers and mothers with children less than 5 years were sampled in each village. If a small community was selected that was likely to have fewer than the required number of eligible respondents, all eligible households and persons in that community are sampled by moving door-to-door. If a household had more than one mother with children less than 5 years of age, mother with children less than 2 years of age was prioritized for data collection. If there were more than one mother with children less than 2 years of age, one of these mothers was selected randomly. Only the under 5 children of the index mother were included in the anthropometric measurements if there were more than one mother with under 5 children in the same household. In addition, all pregnant mothers present in the household of the respondents were measured for middle upper arm circumference (MUAC).
 
-### Sample size estimation
+#### Sample size estimation {#sample-size-1}
 
 Using childhood stunting as index indicator for sample size calculations, the sample size needed to detect a change of mean HAZ from 1.432 in Kayah State[^2] to -0.932 with a calculated standard deviation 1.14406[^2] was calculated. This is an equivalent drop in stunting prevalence of about 10%. This equates to a sample size of 137 children less than 5 years old. Assuming a design effect for a cluster survey of 2, this sample size was inflated to 274. A sample size of 274 respondents was needed for each strata (*urban*, *rural* and *hard-to-reach*) in Kayah State giving a total of 822 respondents in total. Assuming a non-response rate of 20% overall, a total of 330 respondents was the target sample for each strata in Kayah State.
 
 As described in the sampling frame above, a total of 25 villages per strata and 14 respondent mothers with children less than 5 years old were the target number of samples and a total of 350 respondents in each strata was the overall target in order to achieve at least 274. In Kayah state, a total of 1050 respondents was the overall target. This is anticipated to be more than enough sample size as per calculations above. For the selected respondents who were not present at the time of data collection, two revisits were conducted with the respondent classified as a non-responder after two unsuccessful attempts.
 
-## Quasi-experimental cohort study {#study2}
+### Quasi-experimental cohort study {#study2}
 
 As part of a longitudinal, quasi-experimental evaluation design, the baseline survey included a cohort of mothers and their children selected through specific study eligibility criteria based on eligibility and receipt of the services and benefits of the MCCT program. Once recruited, this cohort was assessed on appropriate indicators related to nutrition, IYCF and health-seeking behaviours at baseline. This same cohort will then be assessed at endline on the same set of appropriate and relevant indicators to detect any difference between those receiving benefits from the MCCT from those who are not based on a regression discontinuity analytical approach (see Section \@ref(regression-discontinuity)).
 
@@ -181,7 +181,7 @@ This component of the study provides a statistically robust comparison between t
 
 Given the universal nature of the MCCT program and the need to create effective treatment and comparison groups to detect program impact, this study component used a similar regression discontinuity (RD) design as was developed and used for the MCCT evaluation in Chin State, but with distinct changes that address limitations of the latter [@MinistryofSocialWelfareReliefandResettlement2018]. This design was made possible by the fact that there is a specific cut-off point for programme eligibility. Ultimately, the programme (treatment) effect can be detected as a discontinuity in the regression line around this cut-off which in this case is a specific date that determines eligibility. The design is *quasi-experimental*, since treatment and comparison groups were not selected at random but based on predefined characteristics.
 
-### Eligibility criteria
+#### Eligibility criteria {#eligibility}
 
 Eligibility criteria depended on three factors:
 
@@ -205,7 +205,7 @@ Following are the criteria for eligibility to the control group of the study:
 
 The criteria for eligibility to the intervention group of the study was women who were pregnant on or after 1 Oct 2018 and have been recruited into the program.
 
-### Sample size and selection
+#### Sample size and selection {#sample-size-2}
 
 The RD design effect was factored in for sample size calculations. This design effect was used to inflate standard randomized controlled trials (RCT) sample sizes in order to account for the RD design. The RD design effect was primarily influenced by the distribution of characteristics of the cut-off variable (i.e. running variable) [@Bor2014]. Previous literature advise that if the running variable is normally distributed around the cut-off, then the design effect is approximately 2.75. If the running variable is uniformly distributed around the cut-off, the design effect is 4, and if it is bimodal in distribution, then the design effect can go up to 5 [@Schochet2009].
 
@@ -214,13 +214,13 @@ Given that the running variable for this study is the start date of registration
 Using prevalence of stunting as the index indicator for calculating sample size and using mean change in height-for-age z-score (HAZ) as the specific variable to use for assessing change, the same sample size calculation as in the survey was arrived at which was 137 for controls and 137 for intervention (total of 274) for each state.
 However, given the very narrow bandwidth of inclusion into the study used (one month before and after the programme start), it is likely that the universe population from which to select the cohort is quite small and that the total sample size of 274 is likely requiring an exhaustive sampling of all children born within the specified periods above. In this case, the inflation factor to account for design effect was not considered to be relevant given that an exhaustive sample will be drawn to begin with. Hence the 274 sample size for Kayah State was set as the target sample size.
 
-### Sample recruitment
+#### Sample recruitment
 
 Sample recruitment utilised a full list or registry of births one month before and after the 1st of October 2018. As an exhaustive sample was needed, all fforts were undertaken to identify and recruit into the study including engagement with the DSW in listing out and finding these births across Kayah state.
 
 ## Data collection
 
-Data was collected using an electronic data entry system based on the **Open Data Kit (ODK)** standard that runs on the Android operating software (OS) platform for mobile devices. The study instrument (see Annex \@ref(annex1)) was encoded into the electronic data entry system platform and was served out of a secure aggregate server hosted by ONA[^3]. Each data collector was provided with a tablet running on Android OS that was configured with the ODK application that receives the electronic data form. All measurements and answers by respondents were then recorded on the tablets and transmitted to the remote server whenever there was a mobile and/or wireless internet signal. This data collection system was not reliant on internet connection as the data collection could be performed offline, with the completed e-questionnaires saved on the interviewers’ tablets. An internet connection was needed only when finalized encoded forms were ready to submit to the remote server, and this submission was done at regular intervals and timed when there was available internet connection for the data collectors. The survey teams aimed to submit forms on a daily basis.
+Data was collected using an electronic data entry system based on the **Open Data Kit (ODK)** standard that runs on the Android operating software (OS) platform for mobile devices. The study instrument (see Annex 1) was encoded into the electronic data entry system platform and was served out of a secure aggregate server hosted by ONA[^3]. Each data collector was provided with a tablet running on Android OS that was configured with the ODK application that receives the electronic data form. All measurements and answers by respondents were then recorded on the tablets and transmitted to the remote server whenever there was a mobile and/or wireless internet signal. This data collection system was not reliant on internet connection as the data collection could be performed offline, with the completed e-questionnaires saved on the interviewers’ tablets. An internet connection was needed only when finalized encoded forms were ready to submit to the remote server, and this submission was done at regular intervals and timed when there was available internet connection for the data collectors. The survey teams aimed to submit forms on a daily basis.
 
 ### Questionnaire design:
 
@@ -517,16 +517,77 @@ Mothers' report of their children's illness specifically diarrhoea, fever[^13] o
 
 Child birthweight was assessed based on either mother's report of child's birthweight or by recorded birthweight on child's health card. However, for purposes of accuracy, only the recorded birthweight on a health card was used to determine whether child was born with low birth weight. Children with birthweight of less than 2500 grams were classified as being born with low birthweight [@Woertman:1993hp; @Kelly:1997wa].
 
-#### Child nutrition
+#### Child nutrition {#cnut}
 
+The Myanmar MCCT Programme evaluation assessed the following child nutrition indicators:
 
+**Childhood undernutrition**
 
+Respective childhood undernutrition indices for childhood stunting, childhood wasting and childhood underweight were assessed. The height-for-age z-scores (HAZ), weight-for-height z-scores (WAZ) and weight-for-age z-scores of each 6-59 month old child in the sample were calculated using the using the R package **zscorer**[^15] [@zscorer2019]. Once z-score values were calculated, implausible z-score values were flagged using the WHO Growth Standards flagging criteria [@WorldHealthOrganizationWHO2006]. This was facilitated through the **nutricheckr** R package[^16] [@nutricheckr2019]. Further anthropometric data quality checks were performed using **nipnTK**[^17] [@nipnTK2019] R package which is based on an anthropometric data quality check toolkit developed and produced by the [National Information Platforms for Nutrition (NIPN)](http://www.nipn-nutrition-platforms.org) and funded by the European Union (see Annex 3 for the anthropometric data quality report).
+
+**Infant and young child feeding**
+
+Infant and young child feeding indicators were assessed based on standard WHO and UNICEF definitions [@WorldHealthOrganization:2008vw]. The following indicators were assessed:
+
+* Exclusive breastfeeding
+
+* Early initiation of breastfeeding
+
+* Minimum meal frequency
+
+* Minimum dietary diversity
+
+* Minimum acceptable diet
+
+#### Maternal health {#mhealth}
+
+A standard set of maternal health indicators covering *family planning*, *antenatal care*, *birth/delivery*, *postnatal care* and *newborn care* were assessed.
+
+#### Maternal nutrition {#mnut}
+
+The following maternal nutrition indicators were assessed:
+
+**Maternal undernutrtion**
+
+Maternal undernutrition was assessed based on MUAC. No consensus on MUAC cut-offs to determine maternal acute undernutrition have been identified and currently used cut-offs are specifically for pregnant and lactating women (PLW). Current research suggest that a cut-off of 23 cms as most appropriate for PLW [@Ververs:2013ee] instead of the commonly used 18.5 and 21 cms cutoffs in supplementation programmes for PLW. Given that the Myanmar MCCT dataset has data for women of reproductive age and not only PLW, the 18.5 and 21 cms cutoffs were used to assess levels of acute undernutrition in mothers (see Table \@ref(manthro1)).
+
+```{r manthro1, echo = FALSE, eval = TRUE}
+manthroTable <- data.frame(c("< 21", "18.5 to 21", "< 18.5"),
+                           c("Global acute undernutrition", "Moderate acute undernutrition", "Severe acute undernutrition"))
+
+knitr::kable(x = manthroTable,
+             caption = "MUAC cut-offs for maternal acute undernutrition",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = c("MUAC cut-offs", "Classification"),
+             escape = TRUE,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "striped")) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE)
+```
+
+**Minimum dietary diversity for women**
+
+Minimum dietary diversity for women or MDD-W is a dichotomous indicator of whether or not women 15–49 years of age have consumed at least five out of ten defined food groups the previous day or night. The proportion of women 15–49 years of age who reach this minimum in a population can be used as a proxy indicator for higher micronutrient adequacy, one important dimension of diet quality.
+
+The indicator is calculated as follows:
+
+$$ \text{MDD-W} = \frac{\text{Women 15-49 years of age who consumed 5 out of 10 food groups in the previous day or night}}{\text{Women 15-49 years of age}} $$
+
+The ten food groups are:
+
+1. Grains, white roots and tubers, and plantains
+2. Pulses (beans, peas and lentils)
+3. Nuts and seeds
+4. Dairy
+5. Meat, poultry and fish
+6. Eggs
+7. Dark green leafy vegetables
+8. Other vitamin A-rich fruits and vegetables
+9. Other vegetables
+10. Other fruits
 
 A fully reproducible data processing report can be reviewed [here](https://github.com/validmeasures/myanmarMCCTprocessing).
-
-
-
-
 
 ### Regression discontinuity {#regression-discontinuity}
 
@@ -546,6 +607,10 @@ This goes here. What else?
 # Annex 2: Anthropometric standardisation results {-}
 
 Standardisation results here
+
+\newpage
+
+# Annex 3: Anthropometric data quality check {-}
 
 \newpage
 
@@ -586,6 +651,11 @@ Standardisation results here
 
 [^14]: Cough is used as a proxy for an acute respiratory infection (ARI)
 
+[^15]: See https://nutriverse.io/zscorer for details on how the z-scores are calculated
+
+[^16]: See https://nutriverse.io/nutricheckr for details on how the flagging criteria is applied
+
+[^17]: See https://nutriverse.io/nipnTK for details on how anthropometric data quality check is performed using the **nipnTK** R package
 
 
 
