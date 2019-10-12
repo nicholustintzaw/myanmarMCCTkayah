@@ -153,11 +153,17 @@ Acronym & Definition\tabularnewline
 \midrule
 \endhead
 CPI & Community Partners International\tabularnewline
+CSI & Coping strategies index\tabularnewline
+CCSI & Consumption-based coping strategies index\tabularnewline
 DSW & Department of Social Welfare\tabularnewline
+FCS & Food consumption score\tabularnewline
+FCS-N & Food consumption score - nutrition\tabularnewline
 GAD & General Administration Department\tabularnewline
 GAM & Global acute malnutrition\tabularnewline
 HAZ & Height-for-age z-score\tabularnewline
+HFES & Household food expenditure share\tabularnewline
 IYCF & Infant and young child feeding\tabularnewline
+LCSI & Livelihoods-based coping strategies index\tabularnewline
 MAM & Gobal acute malnutrition\tabularnewline
 MCCT & Mother and Child Cash Transfer\tabularnewline
 MMK & Myanmar Kyatt\tabularnewline
@@ -167,11 +173,13 @@ MUAC & Middle upper arm circumference\tabularnewline
 NNC & National Nutrition Council\tabularnewline
 NSPSP & National Social Protection Strategic Plan\tabularnewline
 ODK & Open Data Kit\tabularnewline
+PPI & Poverty probability index\tabularnewline
 RCT & Randomised controlled trial\tabularnewline
 RD & Regression discontinuity\tabularnewline
 SAM & Severe acute malnutrition\tabularnewline
 SBCC & Social Behavioural Change Communication\tabularnewline
 TEM & Technical error of measurement\tabularnewline
+WASH & Water, sanitation and hygiene\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -405,7 +413,400 @@ The main motivation for using R was to achieve transparent and reproducible rese
 \hypertarget{indicator-estimation}{%
 \subsubsection{Indicator estimation}\label{indicator-estimation}}
 
-Indicators
+Data was processed and recoded based on standard and established indicator definitions whenever available. For some indicators, modifications to standard definitions were made based on information requirements by stakekholders or study-specific definitions were established in order to achieve analysis requirements. Several recode functions were developed in R through the \textbf{myanmarMCCTdata} package for this purpose. The following indicator sets were assessed:
+
+\hypertarget{ppi}{%
+\paragraph{Poverty probability index (PPI)}\label{ppi}}
+
+The \href{https://www.povertyindex.org}{Poverty Probability Index (PPI)} is a poverty measurement tool that is statistically-sound, yet simple to use. The answers to 10 country-specific questions about a household's characteristics and asset ownership are scored to compute the likelihood that the household is living below a certain poverty line or definition\citep{InnovationsforPovertyAction2019}. PPI is used to identify households who are most likely to be poor or vulnerable to poverty.
+
+The Myanmar MCCT survey collected answers to the 10 Myanmar-specific questions on household characteristics and asset ownership responses which were used to determine the household's PPI score based on the Myanmar national poverty line. The household's PPI score was then matched to poverty line/definition-specific lookup tables to determine the household's poverty probability. The matching of the PPI score to lookup tables was facilitated using the PPI lookup tables for Myanmar from the \texttt{ppitables} package \citep{Guevarra2019} for R.
+
+\hypertarget{wash}{%
+\paragraph{Water, sanitation and hygiene}\label{wash}}
+
+Recoding for indicators for water, sanitation and hygiene (WASH) were based on standard indicator definitions provided by WHO and UNICEF \citep{WHOUNICEFJointMonitoringProgrammeforWaterSupplyandSanitation:2018vr, WorldHealthOrganization:2006vv}.
+
+The following drinking water access indicators were assessed:
+
+\begin{itemize}
+\item
+  Access to improved drinking water sources (regardless of collection time\footnote{Time to collect water from reported water source was not collected in baseline survey. The access to improved drinking water sources indicator does not take time into account. This indicator can be reframed as at least limited access to improved drinking water sources taking into account the definitions for limited and basic drinking water service.})
+\item
+  Access to unimproved drinking water sources only (unprotected dug well and unprotected spring)
+\item
+  Drinking water from surface water (directly from a river, dam, lake, pond, stream, canal/irrigation canal)
+\item
+  Probably safe drinking water based on appropriate water treatment method applied to water
+\end{itemize}
+
+These drinking water access indicators have been assessed for each of the three seasons (summer, rainy and winter season) experienced in Kayin and Kayah states.
+
+In addition to drinking water access, the following drinking water use and storage behaviour was also assessed:
+
+\begin{itemize}
+\tightlist
+\item
+  Use of a water container/pot that is clean, covered and with a cup and handle
+\end{itemize}
+
+The following indicators on access to sanitation facilities were assessed:
+
+\begin{itemize}
+\item
+  Access to improved sanitation facilities that are not shared with other households\footnote{This is termed as access to \textbf{basic} sanitation facilities as per current indicator definitions.}
+\item
+  Access to improved sanitation facilities that are shared with other households\footnote{This is termed as access to \textbf{limited} sanitation facilities as per current indicator definitions.}
+\item
+  Access to unimproved sanitation facilities
+\item
+  Use of open defecation
+\end{itemize}
+
+The following indicators on access to handwashing facilities were assessed:
+
+\begin{itemize}
+\item
+  Access to handwashing facility on premises with soap and water\footnote{This is termed as access to \textbf{basic} handwashing facilities as per current indicator definitions.}
+\item
+  Access to handwashing facilities on premises without soap and water\footnote{This is termed as access to \textbf{limited} handwashing facilities as per current indicator definitions.}
+\item
+  No handwashing facilities
+\end{itemize}
+
+In addition, handwashing practices and behaviours were also assessed.
+
+\hypertarget{fcs}{%
+\paragraph{Food consumption score (FCS)}\label{fcs}}
+
+The \textbf{Food Consumption Score (FCS)} is an index developed by the World Food Programme (WFP) in 1996 \citep{VulnerabilityAssessmentandMappingWorldFoodProgramme:2008ti}. The \textbf{FCS} is a household level indicator that aggregates food group diversity and frequency over the past 7 days. These food groups are then weighted according to their relative nutritional value. This means that food groups that are nutritionally-dense such as animal products are given greater weight than those containing less nutritionally dense foods such as tubers. The weights are then added up to come up with a household score which are then used to classify households into either poor, borderline, or acceptable food consumption. The \textbf{FCS} is a measure of quantity of caloric intake.
+
+A brief questionnaire was used to ask respondents about the frequency of their households' consumption of eight different food groups over the previous seven days. The eight food groups are: main staples; pulses; vegetables; fruit; meat/fish; milk; sugar; and, oil. The frequency of consumption of these different food groups consumed by a household during the 7 days before the survey was then used to calculate a weighted diet diversity score for each household using the food group weights (Table \ref{tab:fcsWeights}) by multiplying the reported 7-day frequencies with the food group weights.
+
+\begin{longtable}[]{@{}cllr@{}}
+\caption{\label{tab:fcsWeights} FCS food groups and weights}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.07\columnwidth}\centering
+\strut
+\end{minipage} & \begin{minipage}[b]{0.47\columnwidth}\raggedright
+\textbf{Food items}\strut
+\end{minipage} & \begin{minipage}[b]{0.20\columnwidth}\raggedright
+\textbf{Food groups}\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\raggedleft
+\textbf{Weight}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.07\columnwidth}\centering
+\strut
+\end{minipage} & \begin{minipage}[b]{0.47\columnwidth}\raggedright
+\textbf{Food items}\strut
+\end{minipage} & \begin{minipage}[b]{0.20\columnwidth}\raggedright
+\textbf{Food groups}\strut
+\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\raggedleft
+\textbf{Weight}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.07\columnwidth}\centering
+1\strut
+\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
+Maize , maize porridge, rice, sorghum,
+millet pasta, bread and other cereals
+Cassava, potatoes and sweet potatoes,
+other tubers, plantains\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\raggedright
+Main staples\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedleft
+2\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\centering
+2\strut
+\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
+Beans, peas, groundnuts and cashew nuts\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\raggedright
+Pulses\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedleft
+3\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\centering
+3\strut
+\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
+Vegetables, leaves\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\raggedright
+Vegetables\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedleft
+1\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\centering
+4\strut
+\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
+Fruits\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\raggedright
+Fruits\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedleft
+1\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\centering
+5\strut
+\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
+Beef, goat, poultry, pork, eggs and
+fish\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\raggedright
+Meat and fish\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedleft
+4\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\centering
+6\strut
+\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
+Milk yoghurt and other diary\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\raggedright
+Milk\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedleft
+4\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\centering
+7\strut
+\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
+Sugar and sugar products, honey\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\raggedright
+Sugar\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedleft
+0.5\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\centering
+8\strut
+\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
+Oils, fats and butter\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\raggedright
+Oil\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedleft
+0.5\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.07\columnwidth}\centering
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
+Spices, tea, coffee, salt, fishpowder,
+small amounts of milk for tea.\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\raggedright
+Condiments\strut
+\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedleft
+0\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+All the weighted consumption frequencies were then summed up per household to arrive at the FCS for the specific household. Then, Using the appropriate thresholds (Table \ref{tab:fcsThresholds}), each household is classified accordingly based on their FCS.
+
+\begin{longtable}[]{@{}ll@{}}
+\caption{\label{tab:fcsThresholds} FCS classification thresholds}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.16\columnwidth}\raggedright
+\textbf{FCS}\strut
+\end{minipage} & \begin{minipage}[b]{0.20\columnwidth}\raggedright
+\textbf{Profiles}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.16\columnwidth}\raggedright
+\textbf{FCS}\strut
+\end{minipage} & \begin{minipage}[b]{0.20\columnwidth}\raggedright
+\textbf{Profiles}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.16\columnwidth}\raggedright
+0 - 21\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\raggedright
+Poor\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright
+21.5 - 35\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\raggedright
+Borderline\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright
+\(>\) 35\strut
+\end{minipage} & \begin{minipage}[t]{0.20\columnwidth}\raggedright
+Acceptable\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{fcsn}{%
+\paragraph{Food consumption score nutrition quality analysis}\label{fcsn}}
+
+In addition to the standard FCS, WFP has devices a set of nutritional adequacy indicators that assess the nutrition quality of the household diet using the data provided by a slightly modified FCS questionnaire that disaggregates some of the food groups into sub-food groups known to contain vitamin A, protein and heme-iron. This is called the Food Consumption Score Nutrition Quality Analysis or FCS-N \citep{WorldFoodProgramme:2015tn}. The FCS-N focuses on three nutrients - vitamin A, iron and protein - to assess the nutrition adequacy of a household's diet. The FCS-N was calcualted by first aggregating the individual food groups into nutrient-rich food groups shown in Table \ref{tab:fcs3}.
+
+\begin{table}[H]
+
+\caption{\label{tab:fcs3}Food groups classified by nutrients-of-interest for FCS-N}
+\centering
+\begin{tabular}[t]{l>{\raggedright\arraybackslash}p{8cm}}
+\toprule
+\textbf{Nutrients} & \textbf{Food Groups}\\
+\midrule
+\rowcolor{gray!6}  Vitamin A-rich foods & Dairy, organ meat, eggs, orange vegetables, green leafy vegetables and orange fruits\\
+Protein-rich foods & Pulses, dairy, flesh meat, organ meat, fish and eggs\\
+\rowcolor{gray!6}  Heme iron-rich foods & Flesh meat, organ meat, fish\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Households were then classified by their frequency of consumption of the three nutrients of interest.
+
+\begin{table}[H]
+
+\caption{\label{tab:fcs4}FCS-N categories based on nutrient-rich food groups consumption}
+\centering
+\begin{tabular}[t]{lr}
+\toprule
+\textbf{Category} & \textbf{No. of days of consumption}\\
+\midrule
+\rowcolor{gray!6}  Never & 0 days\\
+Sometimes & 1-6 days\\
+\rowcolor{gray!6}  At least daily & 7 or more days\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\hypertarget{csi}{%
+\paragraph{Coping strategy index}\label{csi}}
+
+The coping strategy index or CSI is a simple indicator that reveals how households manage or cope with shortfalls in food consumption. It is based on a list of possible behaviours that households may use as strategies for coping with conditions of having little or no food to eat \citep{Maxwell:2008vh}. The CSI combines the frequency by which a behaviour is utilised and the severity of each strategy used. There are two variations of the CSI. One assesses food consumption behaviours or strategies employed by the household in response to food insecurity (consumption-based CSI) while the other looks into the longer term, livelihoods-based strategies employed by households (livelihoods-based CSI).
+
+The consumption-based coping strategy index (CCSI) used in this study was based on the reduced CSI questionnaire in order to allow for comparability between results for states and over time. The reduced CSI is based on 5 behaviours and corresponding severity weights for each as shown below.
+
+\begin{table}[H]
+
+\caption{\label{tab:csi1}Reduced CSI strategies/behaviours and their corresponding severity weights}
+\centering
+\begin{tabular}[t]{lr}
+\toprule
+\textbf{Behaviours/Strategies} & \textbf{Severity Weights}\\
+\midrule
+\rowcolor{gray!6}  Rely on less preferred and less expensive food & 1\\
+Borrow food or rely on help from a relative or friend & 2\\
+\rowcolor{gray!6}  Limit portion size at mealtimes & 1\\
+Restrict consumption by adults in order for small children to eat & 3\\
+\rowcolor{gray!6}  Reduce number of meals eaten in a day & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The CCSI was calculated by multiplying the reported frequency of utilising a coping behaviour by the corresponding severity weight shown in Table \ref{tab:csi1} and then taking the aggregate of these weighted scores. The CCSI is a continuous variable and the mean CCSI is used to describe the level of utilisation of coping strategies by households.
+
+The livelihoods based coping strategies index or LCSI was used to better understand a household's longer term coping capacity to food insecurity. The respondent was asked to recall whether in the past 30 days their household has engaged in any of a set of 10 coping behaviours/strategies due to a lack of food or lack of money to buy food. These behaviours/categories were categorised into \emph{stress} strategies, \emph{crisis} strategies and \emph{emergency} strategies. Based on the respondent's responses, their household was classified into the most severe strategy reported.
+
+\hypertarget{hfes}{%
+\paragraph{Household food expenditure share}\label{hfes}}
+
+Taking household expenditure as a proxy of income, the proportion of this expenditure spent on food is an indicator of household food security. A household that is more food insecure spends a bigger proportion of income on food. This indicator was calculated from the various monetary values of household spending grouped into food and non-food items. The share of household expenditure on food was estimated as follows:
+
+\[ \text{Household food expenditure share} ~ = ~ \frac{\sum{\text{Household expenditure on food}}}{\sum{\text{Total household expenditure}}} ~ \times ~ 100 \]
+
+~
+
+The following (see Table \ref{tab:hfes1}) commonly used thresholds for classifying household food insecurity based on its food expenditure share were used:
+
+\begin{table}[H]
+
+\caption{\label{tab:hfes1}Commonly used HFES thresholds}
+\centering
+\begin{tabular}[t]{ll}
+\toprule
+HFES & Food insecurity classification\\
+\midrule
+\rowcolor{gray!6}  > 75\% & Very vulnerable\\
+65-75\% & High food insecurity\\
+\rowcolor{gray!6}  50-65\% & Medium food insecurity\\
+< 50\% & Low food insecurity\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\hypertarget{chealth}{%
+\paragraph{Child health}\label{chealth}}
+
+The child health indicators of the Myanmar MCCT Programme Evaluation include the following:
+
+\begin{itemize}
+\item
+  Immunisation coverage;
+\item
+  Period prevalence of childhood illnesses;
+\item
+  Treatment-seeking behaviour for childhood illnesses; and,
+\item
+  Prevalence of low birthweight
+\end{itemize}
+
+\textbf{Immunisation coverage}
+
+Coverage of the expanded programme on immunisation (EPI) in Myanmar was based on the 2016 revised routine vaccination schedule when the pneumococcal and inactivated polio vaccine injection was introduced \citep{MoHMyanmar:2016wp} (see Table \ref{tab:epi1}).
+
+\begin{table}[H]
+
+\caption{\label{tab:epi1}Myanmar EPI Schedule 2016}
+\centering
+\begin{tabular}[t]{ll}
+\toprule
+\textbf{Dose/Age} & \textbf{Vaccine}\\
+\midrule
+ & BCG\\
+\cmidrule{2-2}
+\multirow{-2}{*}{\raggedright\arraybackslash At birth} & Hepatitis B\\
+\cmidrule{1-2}
+ & BCG\\
+\cmidrule{2-2}
+ & DPT, Hepatitis B, HiB\\
+\cmidrule{2-2}
+ & Pentavalent 1\\
+\cmidrule{2-2}
+ & Pneumococcal Conjugate Vaccine 1\\
+\cmidrule{2-2}
+\multirow{-5}{*}{\raggedright\arraybackslash First Dose (2nd month)} & Oral Polio Vaccine 1\\
+\cmidrule{1-2}
+ & DPT, Hepatitis B, HiB\\
+\cmidrule{2-2}
+ & Pentavalent 2\\
+\cmidrule{2-2}
+ & Pneumococcal Conjugate Vaccine 2\\
+\cmidrule{2-2}
+ & Oral Polio Vaccine 2\\
+\cmidrule{2-2}
+\multirow{-5}{*}{\raggedright\arraybackslash Second dose (4th month)} & Inactivated Polio Vaccine\\
+\cmidrule{1-2}
+ & DPT, Hepatitis, HiB\\
+\cmidrule{2-2}
+ & Pentavalent 3\\
+\cmidrule{2-2}
+ & Pneumococcal Conjugate Vaccine 3\\
+\cmidrule{2-2}
+\multirow{-4}{*}{\raggedright\arraybackslash Third dose (6th month)} & Oral Polio Vaccine 3\\
+\cmidrule{1-2}
+Fourth dose (9th month) & Measles - Rubella\\
+\cmidrule{1-2}
+Fifth dose (18th Month) & Measles\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Period prevalence of childhood illnesses and treatment-seeking}
+
+Mothers' report of their children's illness specifically diarrhoea, fever\footnote{Fever is used as a proxy for illnesses due to an infection such as malaria} or cough\footnote{Cough is used as a proxy for an acute respiratory infection (ARI)} in the past 2 weeks provides the data for assessing the period prevalence of these childhood illnesses. Then, for those whose children has been ill, mothers' reported on whether treatment was sought, where it was sough and whether payment for treatment was required are used to assess treatment-seeking.
+
+\textbf{Child birthweight}
+
+Child birthweight was assessed based on either mother's report of child's birthweight or by recorded birthweight on child's health card. However, for purposes of accuracy, only the recorded birthweight on a health card was used to determine whether child was born with low birth weight. Children with birthweight of less than 2500 grams were classified as being born with low birthweight \citep{Woertman:1993hp, Kelly:1997wa}.
+
+\hypertarget{child-nutrition}{%
+\paragraph{Child nutrition}\label{child-nutrition}}
+
+A fully reproducible data processing report can be reviewed \href{https://github.com/validmeasures/myanmarMCCTprocessing}{here}.
 
 \hypertarget{regression-discontinuity}{%
 \subsubsection{Regression discontinuity}\label{regression-discontinuity}}

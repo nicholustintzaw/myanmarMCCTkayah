@@ -81,11 +81,17 @@ themeSettings <- theme_bw() +
 Acronym | Definition     
 :--- | :---
 CPI | Community Partners International
+CSI | Coping strategies index
+CCSI | Consumption-based coping strategies index
 DSW | Department of Social Welfare
+FCS | Food consumption score
+FCS-N | Food consumption score - nutrition
 GAD | General Administration Department
 GAM | Global acute malnutrition
 HAZ | Height-for-age z-score
+HFES | Household food expenditure share
 IYCF | Infant and young child feeding
+LCSI | Livelihoods-based coping strategies index
 MAM | Gobal acute malnutrition
 MCCT | Mother and Child Cash Transfer
 MMK | Myanmar Kyatt
@@ -95,11 +101,13 @@ MUAC | Middle upper arm circumference
 NNC | National Nutrition Council
 NSPSP | National Social Protection Strategic Plan
 ODK | Open Data Kit
+PPI | Poverty probability index
 RCT | Randomised controlled trial
 RD | Regression discontinuity
 SAM | Severe acute malnutrition
 SBCC | Social Behavioural Change Communication
 TEM | Technical error of measurement
+WASH | Water, sanitation and hygiene
 
 \newpage
 
@@ -278,7 +286,245 @@ The main motivation for using R was to achieve transparent and reproducible rese
 
 ### Indicator estimation {#indicator-estimation}
 
-Indicators 
+Data was processed and recoded based on standard and established indicator definitions whenever available. For some indicators, modifications to standard definitions were made based on information requirements by stakekholders or study-specific definitions were established in order to achieve analysis requirements. Several recode functions were developed in R through the **myanmarMCCTdata** package for this purpose. The following indicator sets were assessed:
+
+#### Poverty probability index (PPI) {#ppi}
+
+The [Poverty Probability Index (PPI)](https://www.povertyindex.org) is a poverty measurement tool that is statistically-sound, yet simple to use. The answers to 10 country-specific questions about a household’s characteristics and asset ownership are scored to compute the likelihood that the household is living below a certain poverty line or definition[@InnovationsforPovertyAction2019]. PPI is used to identify households who are most likely to be poor or vulnerable to poverty. 
+
+The Myanmar MCCT survey collected answers to the 10 Myanmar-specific questions on household characteristics and asset ownership responses which were used to determine the household's PPI score based on the Myanmar national poverty line. The household's PPI score was then matched to poverty line/definition-specific lookup tables to determine the household's poverty probability. The matching of the PPI score to lookup tables was facilitated using the PPI lookup tables for Myanmar from the `ppitables` package [@Guevarra2019] for R.
+
+#### Water, sanitation and hygiene {#wash}
+
+Recoding for indicators for water, sanitation and hygiene (WASH) were based on standard indicator definitions provided by WHO and UNICEF [@WHOUNICEFJointMonitoringProgrammeforWaterSupplyandSanitation:2018vr; @WorldHealthOrganization:2006vv].
+
+The following drinking water access indicators were assessed:
+
+* Access to improved drinking water sources (regardless of collection time[^8])
+
+* Access to unimproved drinking water sources only (unprotected dug well and unprotected spring)
+
+* Drinking water from surface water (directly from a river, dam, lake, pond, stream, canal/irrigation canal)
+
+* Probably safe drinking water based on appropriate water treatment method applied to water
+
+These drinking water access indicators have been assessed for each of the three seasons (summer, rainy and winter season) experienced in Kayin and Kayah states.
+
+In addition to drinking water access, the following drinking water use and storage behaviour was also assessed:
+
+* Use of a water container/pot that is clean, covered and with a cup and handle
+
+The following indicators on access to sanitation facilities were assessed:
+
+* Access to improved sanitation facilities that are not shared with other households[^9]
+
+* Access to improved sanitation facilities that are shared with other households[^10]
+
+* Access to unimproved sanitation facilities
+
+* Use of open defecation
+
+The following indicators on access to handwashing facilities were assessed:
+
+* Access to handwashing facility on premises with soap and water[^11]
+
+* Access to handwashing facilities on premises without soap and water[^12]
+
+* No handwashing facilities
+
+In addition, handwashing practices and behaviours were also assessed.
+
+#### Food consumption score (FCS) {#fcs}
+
+The **Food Consumption Score (FCS)** is an index developed by the World Food Programme (WFP) in 1996  [@VulnerabilityAssessmentandMappingWorldFoodProgramme:2008ti]. The **FCS** is a household level indicator that aggregates food group diversity and frequency over the past 7 days. These food groups are then weighted according to their relative nutritional value. This means that food groups that are nutritionally-dense such as animal products are given greater weight than those containing less nutritionally dense foods such as tubers. The weights are then added up to come up with a household score which are then used to classify households into either poor, borderline, or acceptable food consumption. The **FCS** is a measure of quantity of caloric intake.
+
+A brief questionnaire was used to ask respondents about the frequency of their households’ consumption of eight different food groups over the previous seven days. The eight food groups are: main staples; pulses; vegetables; fruit; meat/fish; milk; sugar; and, oil. The frequency of consumption of these different food groups consumed by a household during the 7 days before the survey was then used to calculate a weighted diet diversity score for each household using the food group weights (Table \@ref(tab:fcsWeights)) by multiplying the reported 7-day frequencies with the food group weights.
+
+Table: (\#tab:fcsWeights) FCS food groups and weights
+
++-----+----------------------------------------+-----------------+------------+
+|     | **Food items**                         | **Food groups** | **Weight** |
++:===:+========================================+=================+===========:+
+| 1   | Maize , maize porridge, rice, sorghum, | Main staples    | 2          | 
+|     | millet pasta, bread and other cereals  |                 |            |
+|     | Cassava, potatoes and sweet potatoes,  |                 |            |
+|     | other tubers, plantains                |                 |            |
++-----+----------------------------------------+-----------------+------------+
+| 2   | Beans, peas, groundnuts and cashew nuts| Pulses          | 3          |
++-----+----------------------------------------+-----------------+------------+
+| 3   | Vegetables, leaves                     | Vegetables      | 1          |
++-----+----------------------------------------+-----------------+------------+
+| 4   | Fruits                                 | Fruits          | 1          |
++-----+----------------------------------------+-----------------+------------+
+| 5   | Beef, goat, poultry, pork, eggs and    | Meat and fish   | 4          |
+|     | fish                                   |                 |            |
++-----+----------------------------------------+-----------------+------------+
+| 6   | Milk yoghurt and other diary           | Milk            | 4          |
++-----+----------------------------------------+-----------------+------------+
+| 7   | Sugar and sugar products, honey        | Sugar           | 0.5        |
++-----+----------------------------------------+-----------------+------------+
+| 8   | Oils, fats and butter                  | Oil             | 0.5        |
++-----+----------------------------------------+-----------------+------------+
+| 9   | Spices, tea, coffee, salt, fishpowder, | Condiments      | 0          |
+|     | small amounts of milk for tea.         |                 |            |
++-----+----------------------------------------+-----------------+------------+
+
+All the weighted consumption frequencies were then summed up per household to arrive at the FCS for the specific household. Then, Using the appropriate thresholds (Table \@ref(tab:fcsThresholds)), each household is classified accordingly based on their FCS.
+
+Table: (\#tab:fcsThresholds) FCS classification thresholds
+
++-----------+--------------+
+| **FCS**   | **Profiles** |
++===========+==============+
+| 0 - 21    | Poor         |
++-----------+--------------+
+| 21.5 - 35 | Borderline   |
++-----------+--------------+
+| $>$ 35    | Acceptable   |
++-----------+--------------+
+
+#### Food consumption score nutrition quality analysis {#fcsn}
+
+In addition to the standard FCS, WFP has devices a set of nutritional adequacy indicators that assess the nutrition quality of the household diet using the data provided by a slightly modified FCS questionnaire that disaggregates some of the food groups into sub-food groups known to contain vitamin A, protein and heme-iron. This is called the Food Consumption Score Nutrition Quality Analysis or FCS-N [@WorldFoodProgramme:2015tn]. The FCS-N focuses on three nutrients - vitamin A, iron and protein - to assess the nutrition adequacy of a household's diet. The FCS-N was calcualted by first aggregating the individual food groups into nutrient-rich food groups shown in Table \@ref(tab:fcs3).
+
+```{r fcs3, echo = FALSE, eval = TRUE}
+fcsnTable <- data.frame(c("Vitamin A-rich foods", "Protein-rich foods", "Heme iron-rich foods"),
+                        c("Dairy, organ meat, eggs, orange vegetables, green leafy vegetables and orange fruits",
+                          "Pulses, dairy, flesh meat, organ meat, fish and eggs",
+                          "Flesh meat, organ meat, fish"))
+
+knitr::kable(x = fcsnTable,
+             caption = "Food groups classified by nutrients-of-interest for FCS-N",
+             booktabs = TRUE,
+             col.names = c("Nutrients", "Food Groups"),
+             row.names = FALSE,
+             escape = TRUE,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "striped")) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 2, width = "8cm")
+```
+
+Households were then classified by their frequency of consumption of the three nutrients of interest.
+
+```{r fcs4, echo = FALSE, eval = TRUE}
+fcsnCategories <- data.frame(c("Never", "Sometimes", "At least daily"),
+                             c("0 days", "1-6 days", "7 or more days"))
+
+knitr::kable(x = fcsnCategories,
+             caption = "FCS-N categories based on nutrient-rich food groups consumption",
+             booktabs = TRUE,
+             col.names = c("Category", "No. of days of consumption"),
+             row.names = FALSE,
+             align = c("l", "r"),
+             escape = TRUE,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "striped")) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE)
+```
+
+#### Coping strategy index {#csi}
+
+The coping strategy index or CSI is a simple indicator that reveals how households manage or cope with shortfalls in food consumption. It is based on a list of possible behaviours that households may use as strategies for coping with conditions of having little or no food to eat [@Maxwell:2008vh]. The CSI combines the frequency by which a behaviour is utilised and the severity of each strategy used. There are two variations of the CSI. One assesses food consumption behaviours or strategies employed by the household in response to food insecurity (consumption-based CSI) while the other looks into the longer term, livelihoods-based strategies employed by households (livelihoods-based CSI).
+
+The consumption-based coping strategy index (CCSI) used in this study was based on the reduced CSI questionnaire in order to allow for comparability between results for states and over time. The reduced CSI is based on 5 behaviours and corresponding severity weights for each as shown below.
+
+```{r csi1, echo = FALSE, eval = TRUE}
+csiTable <- data.frame(c("Rely on less preferred and less expensive food",
+                         "Borrow food or rely on help from a relative or friend",
+                         "Limit portion size at mealtimes",
+                         "Restrict consumption by adults in order for small children to eat",
+                         "Reduce number of meals eaten in a day"),
+                       c(1, 2, 1, 3, 1))
+
+knitr::kable(x = csiTable,
+             caption = "Reduced CSI strategies/behaviours and their corresponding severity weights",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = c("Behaviours/Strategies", "Severity Weights"),
+             escape = TRUE,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "striped")) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE)
+```
+
+The CCSI was calculated by multiplying the reported frequency of utilising a coping behaviour by the corresponding severity weight shown in Table \@ref(tab:csi1) and then taking the aggregate of these weighted scores. The CCSI is a continuous variable and the mean CCSI is used to describe the level of utilisation of coping strategies by households.
+
+The livelihoods based coping strategies index or LCSI was used to better understand a household's longer term coping capacity to food insecurity. The respondent was asked to recall whether in the past 30 days their household has engaged in any of a set of 10 coping behaviours/strategies due to a lack of food or lack of money to buy food. These behaviours/categories were categorised into *stress* strategies, *crisis* strategies and *emergency* strategies. Based on the respondent's responses, their household was classified into the most severe strategy reported.
+
+#### Household food expenditure share {#hfes}
+
+Taking household expenditure as a proxy of income, the proportion of this expenditure spent on food is an indicator of household food security. A household that is more food insecure spends a bigger proportion of income on food. This indicator was calculated from the various monetary values of household spending grouped into food and non-food items. The share of household expenditure on food was estimated as follows:
+
+$$ \text{Household food expenditure share} ~ = ~ \frac{\sum{\text{Household expenditure on food}}}{\sum{\text{Total household expenditure}}} ~ \times ~ 100 $$
+
+&nbsp;
+
+The following (see Table \@ref(tab:hfes1)) commonly used thresholds for classifying household food insecurity based on its food expenditure share were used:
+
+```{r hfes1, echo = FALSE, eval = TRUE}
+hfesTable <- data.frame(c("> 75%", "65-75%", "50-65%", "< 50%"),
+                        c("Very vulnerable", "High food insecurity",
+                          "Medium food insecurity", "Low food insecurity"))
+
+knitr::kable(x = hfesTable,
+             caption = "Commonly used HFES thresholds",
+             booktab = TRUE,
+             row.names = FALSE,
+             col.names = c("HFES", "Food insecurity classification"),
+             escape = TRUE,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "striped"))
+```
+
+#### Child health {#chealth}
+
+The child health indicators of the Myanmar MCCT Programme Evaluation include the following:
+
+* Immunisation coverage;
+
+* Period prevalence of childhood illnesses;
+
+* Treatment-seeking behaviour for childhood illnesses; and,
+
+* Prevalence of low birthweight
+
+**Immunisation coverage**
+
+Coverage of the expanded programme on immunisation (EPI) in Myanmar was based on the 2016 revised routine vaccination schedule when the pneumococcal and inactivated polio vaccine injection was introduced [@MoHMyanmar:2016wp] (see Table \@ref(tab:epi1)).
+
+```{r epi1, echo = FALSE, eval = TRUE}
+epiSchedule <- data.frame(c(rep("At birth", 2), rep("First Dose (2nd month)", 5), rep("Second dose (4th month)", 5), rep("Third dose (6th month)", 4), "Fourth dose (9th month)", "Fifth dose (18th Month)"),
+                          c("BCG", "Hepatitis B", "BCG", "DPT, Hepatitis B, HiB", "Pentavalent 1", "Pneumococcal Conjugate Vaccine 1", "Oral Polio Vaccine 1", "DPT, Hepatitis B, HiB", "Pentavalent 2", "Pneumococcal Conjugate Vaccine 2", "Oral Polio Vaccine 2", "Inactivated Polio Vaccine", "DPT, Hepatitis, HiB", "Pentavalent 3", "Pneumococcal Conjugate Vaccine 3", "Oral Polio Vaccine 3", "Measles - Rubella", "Measles"))
+
+knitr::kable(x = epiSchedule,
+             caption = "Myanmar EPI Schedule 2016",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = c("Dose/Age", "Vaccine"),
+             escape = TRUE,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position")) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1)
+```
+
+**Period prevalence of childhood illnesses and treatment-seeking**
+
+Mothers' report of their children's illness specifically diarrhoea, fever[^13] or cough[^14] in the past 2 weeks provides the data for assessing the period prevalence of these childhood illnesses. Then, for those whose children has been ill, mothers' reported on whether treatment was sought, where it was sough and whether payment for treatment was required are used to assess treatment-seeking.
+
+**Child birthweight**
+
+Child birthweight was assessed based on either mother's report of child's birthweight or by recorded birthweight on child's health card. However, for purposes of accuracy, only the recorded birthweight on a health card was used to determine whether child was born with low birth weight. Children with birthweight of less than 2500 grams were classified as being born with low birthweight [@Woertman:1993hp; @Kelly:1997wa].
+
+#### Child nutrition
+
+
+
+
+A fully reproducible data processing report can be reviewed [here](https://github.com/validmeasures/myanmarMCCTprocessing).
+
+
 
 
 
@@ -325,6 +571,20 @@ Standardisation results here
 [^6]: See https://validmeasures.org/myanmarMCCTdata to learn more about the **myanmarMCCTdata** package and how data is handled and processed using this package.
 
 [^7]: For a full list of other R packages that **myanmarMCCTdata** depends on, see https://validmeasures.org/myanmarMCCTdata
+
+[^8]: Time to collect water from reported water source was not collected in baseline survey. The access to improved drinking water sources indicator does not take time into account. This indicator can be reframed as at least limited access to improved drinking water sources taking into account the definitions for limited and basic drinking water service.
+
+[^9]: This is termed as access to **basic** sanitation facilities as per current indicator definitions.
+
+[^10]: This is termed as access to **limited** sanitation facilities as per current indicator definitions.
+
+[^11]: This is termed as access to **basic** handwashing facilities as per current indicator definitions.
+
+[^12]: This is termed as access to **limited** handwashing facilities as per current indicator definitions.
+
+[^13]: Fever is used as a proxy for illnesses due to an infection such as malaria
+
+[^14]: Cough is used as a proxy for an acute respiratory infection (ARI)
 
 
 
