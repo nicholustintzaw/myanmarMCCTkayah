@@ -180,6 +180,7 @@ SAM & Severe acute malnutrition\tabularnewline
 SBCC & Social Behavioural Change Communication\tabularnewline
 TEM & Technical error of measurement\tabularnewline
 WASH & Water, sanitation and hygiene\tabularnewline
+WFP & World Food Programme\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -841,7 +842,7 @@ The following maternal nutrition indicators were assessed:
 
 \textbf{Maternal undernutrtion}
 
-Maternal undernutrition was assessed based on MUAC. No consensus on MUAC cut-offs to determine maternal acute undernutrition have been identified and currently used cut-offs are specifically for pregnant and lactating women (PLW). Current research suggest that a cut-off of 23 cms as most appropriate for PLW \citep{Ververs:2013ee} instead of the commonly used 18.5 and 21 cms cutoffs in supplementation programmes for PLW. Given that the Myanmar MCCT dataset has data for women of reproductive age and not only PLW, the 18.5 and 21 cms cutoffs were used to assess levels of acute undernutrition in mothers (see Table \ref{manthro1}).
+Maternal undernutrition was assessed based on MUAC. No consensus on MUAC cut-offs to determine maternal acute undernutrition have been identified and currently used cut-offs are specifically for pregnant and lactating women (PLW). Current research suggest that a cut-off of 23 cms as most appropriate for PLW \citep{Ververs:2013ee} instead of the commonly used 18.5 and 21 cms cutoffs in supplementation programmes for PLW. Given that the Myanmar MCCT dataset has data for women of reproductive age and not only PLW, the 18.5 and 21 cms cutoffs were used to assess levels of acute undernutrition in mothers (see Table \ref{tab:manthro1}).
 
 \begin{table}[H]
 
@@ -895,13 +896,1251 @@ The ten food groups are:
 
 A fully reproducible data processing report can be reviewed \href{https://github.com/validmeasures/myanmarMCCTprocessing}{here}.
 
+Using the the recoded data for indicators, population-level estimates with 95\% confidence limits of these indicators were calculated using standard classical estimation techniques. Proportion-type indicators were estimated by getting the proportion of those having the indicator of interest out of the total sample. The 95\% confidence limits for a proportiont-type indicator was estimated using the following formula:
+
+\[
+\begin{aligned}
+\text{95\% confidence limits} & ~ = ~ p ~ \pm ~ 1.96 ~ \times ~ \sqrt{\frac{p ~ \times ~ (1 ~ - ~ p)}{n ^ 2}} \\
+\\
+where: & \\
+\\
+p & ~ = ~ \text{proportion estimate} \\
+n & ~ = ~ \text{sample size}
+\end{aligned}
+\]
+
+Indicators requiring the calculation of the population mean were estimated by calculating the mean of the sample for the indicator of interest. The 95\% confidence limits for a population mean indicator was estimated using the following formula:
+
+\[
+\begin{aligned}
+\text{95\% confidence limits} & ~ = ~ \sigma ~ \pm ~ 1.96 ~ \times ~ \frac{SD}{\sqrt{n}} \\
+\\
+where: & \\
+\\
+\sigma & ~ = ~ \text{sample mean} \\
+SD & ~ = ~ \text{standard deviation} \\
+n & ~ = ~ \text{sample size}
+\end{aligned}
+\]
+
+Indicator estimation was performed on the dataset for respondents for the population-based survey component of the study.
+
 \hypertarget{regression-discontinuity}{%
 \subsubsection{Regression discontinuity}\label{regression-discontinuity}}
+
+Using data from respondents who quality for eligibility to the second component of the study, outcome nutrition indicators for chlidren and mothers were plotted by date of birth of the index child to demonstrate whether a regression discontinuity on the indicators of interest were demonstrable between those who are not benefitting from the MCCT programme (on the basis of being born up to a month before the start of the programme) and those who are (born up to a month after start of the programme). Discontinuity was detected visually through the plot and statistically by testing any difference between the regression line of those in the control group to the regression line of those in the treatment group.
 
 \newpage
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
+
+\hypertarget{study1-results}{%
+\subsection{Population-representative survey}\label{study1-results}}
+
+\hypertarget{ppi-results}{%
+\subsubsection{Poverty Probability Index}\label{ppi-results}}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/ppiTable-1} 
+
+}
+
+\caption{Poverty probability index by location type}\label{fig:ppiTable}
+\end{figure}
+
+\hypertarget{fcs-results}{%
+\subsubsection{Food consumption score}\label{fcs-results}}
+
+\begin{table}[H]
+
+\caption{\label{tab:fcs1table}Food consumption score}
+\centering
+\fontsize{12}{14}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+ &  & \makecell[c]{Mean\\food\\consumption\\score} & \makecell[c]{Poor\\(\%)} & \makecell[c]{Borderline\\(\%)} & \makecell[c]{Acceptable\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 60.0 & 1.4 & 5.2 & 93.4\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Urban & 66.9 & 1.6 & 1.8 & 96.5\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 45.9 & 6.6 & 30.2 & 63.2\\
+\cmidrule{2-6}
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 69.0 & 0.5 & 1.0 & 98.6\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Wealthy & 66.0 & 0.0 & 2.2 & 97.8\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Medium & 59.5 & 1.8 & 8.8 & 89.4\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Poor & 55.2 & 3.2 & 14.9 & 81.9\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Poorest & 42.2 & 7.2 & 32.7 & 60.1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fcs1plot-1} 
+
+}
+
+\caption{Food consumption score classification by location type}\label{fig:fcs1plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fcs2plot-1} 
+
+}
+
+\caption{Food consumption score classification by wealth quintiles}\label{fig:fcs2plot}
+\end{figure}
+
+\hypertarget{fcsn-results}{%
+\subsubsection{Food consumption score - nutrition}\label{fcsn-results}}
+
+\begin{landscape}\begin{table}[H]
+
+\caption{\label{tab:fcsn1table}Food consumption score - nutrition}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+\multicolumn{2}{c}{ } & \multicolumn{3}{c}{Vitamin A-rich foods} & \multicolumn{3}{c}{Protein-rich foods} & \multicolumn{3}{c}{Heme iron-rich foods} \\
+\cmidrule(l{3pt}r{3pt}){3-5} \cmidrule(l{3pt}r{3pt}){6-8} \cmidrule(l{3pt}r{3pt}){9-11}
+ &  & \makecell[c]{Never\\(\%)} & \makecell[c]{Sometimes\\(\%)} & \makecell[c]{At\\least\\daily\\(\%)} & \makecell[c]{Never\\(\%)} & \makecell[c]{Sometimes\\(\%)} & \makecell[c]{At\\least\\daily\\(\%)} & \makecell[c]{Never\\(\%)} & \makecell[c]{Sometimes\\(\%)} & \makecell[c]{At\\least\\daily\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 4.6 & 21.9 & 73.5 & 1.4 & 20.2 & 78.4 & 5.2 & 46.4 & 48.4\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Urban & 1.8 & 16.4 & 81.8 & 1.8 & 8.8 & 89.4 & 2.3 & 44.6 & 53.1\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 10.0 & 31.6 & 58.4 & 9.7 & 47.9 & 42.5 & 16.8 & 63.2 & 19.9\\
+\cmidrule{2-11}
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 1.0 & 14.4 & 84.7 & 1.0 & 7.2 & 91.9 & 1.0 & 40.2 & 58.9\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Wealthy & 0.0 & 17.7 & 82.3 & 0.0 & 13.0 & 87.0 & 0.4 & 50.6 & 48.9\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Medium & 2.3 & 23.5 & 74.2 & 1.8 & 23.0 & 75.1 & 4.1 & 55.8 & 40.1\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Poor & 5.0 & 24.0 & 71.0 & 3.6 & 28.5 & 67.9 & 10.4 & 52.9 & 36.7\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Poorest & 15.2 & 36.3 & 48.4 & 11.7 & 52.9 & 35.4 & 20.2 & 58.3 & 21.5\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fcsn1plot-1} 
+
+}
+
+\caption{Vitamin A food consumption score classification by location type}\label{fig:fcsn1plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fcsn2plot-1} 
+
+}
+
+\caption{Vitamin A food consumption score classification by wealth quintiles}\label{fig:fcsn2plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fcsn3plot-1} 
+
+}
+
+\caption{Protein food consumption score classification by location type}\label{fig:fcsn3plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fcsn4plot-1} 
+
+}
+
+\caption{Protein food consumption score classification by wealth quintiles}\label{fig:fcsn4plot}
+\end{figure}
+
+\hypertarget{csi-results}{%
+\subsubsection{Coping strategies index}\label{csi-results}}
+
+\hypertarget{ccsi-results}{%
+\paragraph{Consumption-based coping strategies index}\label{ccsi-results}}
+
+\begin{table}[H]
+
+\caption{\label{tab:ccsi1table}Consumption-based Coping Strategies Index}
+\centering
+\fontsize{12}{14}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r}
+\toprule
+ &  & Mean CSI\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 3.0\\
+\cmidrule{2-3}
+\hspace{1em}\hspace{1em} & Urban & 2.8\\
+\cmidrule{2-3}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 3.2\\
+\cmidrule{2-3}
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 2.0\\
+\cmidrule{2-3}
+\hspace{1em}\hspace{1em} & Wealthy & 2.1\\
+\cmidrule{2-3}
+\hspace{1em}\hspace{1em} & Medium & 2.7\\
+\cmidrule{2-3}
+\hspace{1em}\hspace{1em} & Poor & 3.3\\
+\cmidrule{2-3}
+\hspace{1em}\hspace{1em} & Poorest & 5.2\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/ccsi1plot-1} 
+
+}
+
+\caption{Consumption-based coping strategies index by location type}\label{fig:ccsi1plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/ccsi2plot-1} 
+
+}
+
+\caption{Consumption-based coping strategies index by wealth quintiles}\label{fig:ccsi2plot}
+\end{figure}
+
+\hypertarget{lcsi-results}{%
+\paragraph{Livelihood-based coping strategies index}\label{lcsi-results}}
+
+\begin{table}[H]
+
+\caption{\label{tab:lcsi1table}Livelihoods-based coping strategies index}
+\centering
+\fontsize{12}{14}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+ &  & \makecell[c]{Secure\\(\%)} & \makecell[c]{Stress\\(\%)} & \makecell[c]{Crisis\\(\%)} & \makecell[c]{Emergency\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 46.7 & 39.8 & 11.5 & 2.0\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Urban & 39.7 & 44.6 & 14.8 & 0.9\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 60.4 & 32.2 & 5.4 & 2.0\\
+\cmidrule{2-6}
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 46.9 & 43.5 & 8.6 & 1.0\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Wealthy & 40.7 & 45.0 & 13.4 & 0.9\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Medium & 47.0 & 38.2 & 13.8 & 0.9\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Poor & 49.3 & 37.1 & 10.9 & 2.7\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Poorest & 55.6 & 33.6 & 8.1 & 2.7\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/lcsi1plot-1} 
+
+}
+
+\caption{Livelihoods-based coping strategies index by location type}\label{fig:lcsi1plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/lcsi2plot-1} 
+
+}
+
+\caption{Livelihoods-based coping strategies index by wealth quintiles}\label{fig:lcsi2plot}
+\end{figure}
+
+\hypertarget{hfes-results}{%
+\subsubsection{Household food expenditure share}\label{hfes-results}}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/hfesScatterPlot1-1} 
+
+}
+
+\caption{Household food expenditure share by location type}\label{fig:hfesScatterPlot1}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/hfesScatterPlot2-1} 
+
+}
+
+\caption{Household food expenditure share by wealth quintiles}\label{fig:hfesScatterPlot2}
+\end{figure}
+
+\begin{table}[H]
+
+\caption{\label{tab:hfes2table}Household food expenditure share}
+\centering
+\fontsize{12}{14}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+\multicolumn{2}{c}{ } & \multicolumn{4}{c}{Food Insecurity by HFES} \\
+\cmidrule(l{3pt}r{3pt}){3-6}
+ &  & \makecell[c]{Vulnerable\\(\%)} & \makecell[c]{High\\(\%)} & \makecell[c]{Medium\\(\%)} & \makecell[c]{Low\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 1.2 & 0.3 & 0.0 & 98.6\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Urban & 0.2 & 0.2 & 0.0 & 99.5\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 1.1 & 1.7 & 1.4 & 95.7\\
+\cmidrule{2-6}
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 0.0 & 0.0 & 0.0 & 100.0\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Wealthy & 0.0 & 0.0 & 0.0 & 100.0\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Medium & 1.4 & 1.4 & 0.0 & 97.2\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Poor & 1.4 & 0.5 & 0.5 & 97.7\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Poorest & 1.3 & 1.8 & 1.8 & 95.1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/hfes1plot-1} 
+
+}
+
+\caption{Household food expenditure share by location type}\label{fig:hfes1plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/hfes2plot-1} 
+
+}
+
+\caption{Household food expenditure share by wealth quintiles}\label{fig:hfes2plot}
+\end{figure}
+
+\hypertarget{wash-results}{%
+\subsubsection{Water, sanitation and hygiene}\label{wash-results}}
+
+\hypertarget{water-results}{%
+\paragraph{Water services ladder}\label{water-results}}
+
+\begin{landscape}\begin{table}[H]
+
+\caption{\label{tab:wash1table}Water service ladders}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+\multicolumn{2}{c}{\textbf{ }} & \multicolumn{3}{c}{\textbf{Summer Season}} & \multicolumn{3}{c}{\textbf{Rainy Season}} & \multicolumn{3}{c}{\textbf{Winter Season}} \\
+\cmidrule(l{3pt}r{3pt}){3-5} \cmidrule(l{3pt}r{3pt}){6-8} \cmidrule(l{3pt}r{3pt}){9-11}
+ &  & \makecell[c]{At least\\limited\\(\%)} & \makecell[c]{Unimproved\\(\%)} & \makecell[c]{Surface\\water\\(\%)} & \makecell[c]{At least\\limited\\(\%)} & \makecell[c]{Unimproved\\(\%)} & \makecell[c]{Surface\\water\\(\%)} & \makecell[c]{At least\\limited\\(\%)} & \makecell[c]{Unimproved\\(\%)} & \makecell[c]{Surface\\water\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 90.8 & 5.2 & 4.0 & 91.0 & 5.8 & 3.2 & 91.0 & 5.2 & 3.8\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Urban & 95.8 & 3.5 & 0.7 & 96.3 & 3.5 & 0.2 & 96.0 & 3.5 & 0.5\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 57.5 & 17.9 & 24.5 & 65.0 & 15.1 & 19.9 & 59.8 & 16.8 & 23.4\\
+\cmidrule{2-11}
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 97.6 & 1.9 & 0.5 & 98.6 & 1.4 & 0.0 & 97.1 & 2.4 & 0.5\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Wealthy & 91.3 & 4.3 & 4.3 & 93.5 & 4.3 & 2.2 & 91.8 & 3.9 & 4.3\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Medium & 77.0 & 11.1 & 12.0 & 80.2 & 9.2 & 10.6 & 77.9 & 10.6 & 11.5\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Poor & 71.5 & 14.9 & 13.6 & 76.0 & 13.1 & 10.9 & 72.9 & 14.5 & 12.7\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Poorest & 72.6 & 11.2 & 16.1 & 74.9 & 11.7 & 13.5 & 74.9 & 10.3 & 14.8\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/wash1plot-1} 
+
+}
+
+\caption{Water services ladder by location type}\label{fig:wash1plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/wash2plot-1} 
+
+}
+
+\caption{Water services ladder by wealth quintiles}\label{fig:wash2plot}
+\end{figure}
+
+\hypertarget{sanitation-services-ladder}{%
+\paragraph{Sanitation services ladder}\label{sanitation-services-ladder}}
+
+\begin{table}[H]
+
+\caption{\label{tab:san1table}Sanitation service ladders}
+\centering
+\fontsize{12}{14}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+ &  & \makecell[c]{Basic\\(\%)} & \makecell[c]{Limited\\(\%)} & \makecell[c]{Unimproved\\(\%)} & \makecell[c]{Open\\Defecation\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 12.4 & 49.1 & 25.4 & 11.6\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Urban & 14.8 & 63.2 & 20.4 & 0.2\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 16.8 & 32.5 & 14.8 & 35.9\\
+\cmidrule{2-6}
+\addlinespace[0.3em]
+\multicolumn{6}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 14.4 & 77.5 & 7.7 & 0.0\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Wealthy & 14.3 & 63.2 & 19.0 & 2.6\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Medium & 17.5 & 42.4 & 29.0 & 10.1\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Poor & 12.2 & 37.1 & 26.7 & 22.6\\
+\cmidrule{2-6}
+\hspace{1em}\hspace{1em} & Poorest & 14.3 & 25.1 & 19.3 & 39.9\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/san1plot-1} 
+
+}
+
+\caption{Sanitation services ladder by location type}\label{fig:san1plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/san2plot-1} 
+
+}
+
+\caption{Water services ladder by wealth quintiles}\label{fig:san2plot}
+\end{figure}
+
+\hypertarget{handwashing-service-ladders}{%
+\paragraph{Handwashing service ladders}\label{handwashing-service-ladders}}
+
+\begin{table}[H]
+
+\caption{\label{tab:handwashing1table}Handwashing service ladders}
+\centering
+\fontsize{12}{14}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+ &  & \makecell[c]{Basic\\(\%)} & \makecell[c]{Limited\\(\%)} & \makecell[c]{No\\Facility\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 87.9 & 0.3 & 3.5\\
+\cmidrule{2-5}
+\hspace{1em}\hspace{1em} & Urban & 93.8 & 0.0 & 2.1\\
+\cmidrule{2-5}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 45.9 & 2.3 & 6.8\\
+\cmidrule{2-5}
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 96.2 & 0.0 & 0.5\\
+\cmidrule{2-5}
+\hspace{1em}\hspace{1em} & Wealthy & 88.7 & 0.0 & 3.5\\
+\cmidrule{2-5}
+\hspace{1em}\hspace{1em} & Medium & 79.3 & 0.5 & 4.6\\
+\cmidrule{2-5}
+\hspace{1em}\hspace{1em} & Poor & 67.4 & 0.9 & 6.8\\
+\cmidrule{2-5}
+\hspace{1em}\hspace{1em} & Poorest & 54.7 & 2.7 & 4.9\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/handwashing1plot-1} 
+
+}
+
+\caption{Handwashing services ladder by location type}\label{fig:handwashing1plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/handwashing2plot-1} 
+
+}
+
+\caption{Handwashing services ladder by wealth quintiles}\label{fig:handwashing2plot}
+\end{figure}
+
+\hypertarget{chealth-results}{%
+\subsubsection{Child health}\label{chealth-results}}
+
+\hypertarget{epi-results}{%
+\paragraph{Immunisation coverage}\label{epi-results}}
+
+\begin{landscape}\begin{table}[H]
+
+\caption{\label{tab:epi1table}Immunisation coverage}
+\centering
+\fontsize{9}{11}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+ &  & \makecell[c]{Ever\\vaccinated\\(\%)} & \makecell[c]{Vaccination\\card\\retention\\rate\\(\%)} & \makecell[c]{Immunisation\\access\\(\%)} & \makecell[c]{Immunisation\\utilisation\\(\%)} & \makecell[c]{Full\\immunisation\\coverage\\(\%)} & \makecell[c]{Hepatitis B\\immunisation\\given\\within\\first\\24\\hours\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{8}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{8}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 100.0 & 80.4 & 93.2 & 72.8 & 24.3 & 40.7\\
+\cmidrule{2-8}
+\hspace{1em}\hspace{1em} & Urban & 98.3 & 82.2 & 92.6 & 76.0 & 25.6 & 55.5\\
+\cmidrule{2-8}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 85.5 & 75.4 & 81.6 & 50.0 & 19.7 & 25.0\\
+\cmidrule{2-8}
+\addlinespace[0.3em]
+\multicolumn{8}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 100.0 & 90.7 & 94.5 & 83.6 & 21.8 & 57.5\\
+\cmidrule{2-8}
+\hspace{1em}\hspace{1em} & Wealthy & 100.0 & 76.1 & 94.4 & 67.6 & 26.8 & 51.9\\
+\cmidrule{2-8}
+\hspace{1em}\hspace{1em} & Medium & 96.9 & 85.7 & 93.8 & 78.5 & 20.0 & 41.0\\
+\cmidrule{2-8}
+\hspace{1em}\hspace{1em} & Poor & 94.2 & 81.6 & 81.1 & 62.3 & 30.2 & 36.4\\
+\cmidrule{2-8}
+\hspace{1em}\hspace{1em} & Poorest & 86.3 & 63.6 & 84.3 & 47.1 & 19.6 & 18.7\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/epi1plot-1} 
+
+}
+
+\caption{Immunisation coverage by location type}\label{fig:epi1plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/epi2plot-1} 
+
+}
+
+\caption{Immunisation coverage by wealth quintiles}\label{fig:epi2plot}
+\end{figure}
+
+\begin{landscape}\begin{table}[H]
+
+\caption{\label{tab:epi2table}Immunisation coverage per vaccine type}
+\centering
+\fontsize{9}{11}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+ &  & \makecell[c]{BCG\\(\%)} & \makecell[c]{Hepatitis B\\(\%)} & \makecell[c]{Penta 1\\(\%)} & \makecell[c]{Penta 2\\(\%)} & \makecell[c]{Penta 3\\(\%)} & \makecell[c]{OPV 1\\(\%)} & \makecell[c]{OPV 2\\(\%)} & \makecell[c]{OPV 3\\(\%)} & \makecell[c]{IPV\\(\%)} & \makecell[c]{Measles 1\\(\%)} & \makecell[c]{Measles 2\\(\%)} & \makecell[c]{Rubella\\(\%)} & \makecell[c]{Pneumococcal\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{15}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{15}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 21.1 & 13.4 & 17.8 & 17.4 & 16.5 & 17.6 & 17.6 & 17.0 & 14.5 & 17.0 & 11.5 & 13.0 & 10.6\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Urban & 21.5 & 14.8 & 18.7 & 18.7 & 17.7 & 18.5 & 17.9 & 17.3 & 16.5 & 16.5 & 8.5 & 11.3 & 10.6\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 15.2 & 11.2 & 11.5 & 10.5 & 9.3 & 11.5 & 10.3 & 9.0 & 10.0 & 8.8 & 6.6 & 7.3 & 6.6\\
+\cmidrule{2-15}
+\addlinespace[0.3em]
+\multicolumn{15}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 19.8 & 14.5 & 18.7 & 18.3 & 17.6 & 18.7 & 17.9 & 17.2 & 17.2 & 16.0 & 7.6 & 9.5 & 8.8\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Wealthy & 23.0 & 15.1 & 18.2 & 18.2 & 16.5 & 17.9 & 17.5 & 16.8 & 16.5 & 16.5 & 10.0 & 11.7 & 10.7\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Medium & 21.2 & 14.9 & 18.8 & 18.8 & 17.7 & 18.8 & 18.4 & 17.0 & 14.9 & 17.4 & 9.4 & 10.8 & 10.1\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Poor & 16.7 & 12.0 & 15.1 & 14.0 & 12.8 & 14.7 & 13.2 & 12.8 & 12.0 & 13.6 & 11.2 & 12.0 & 9.7\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Poorest & 16.5 & 9.6 & 10.3 & 9.6 & 9.2 & 10.3 & 10.3 & 9.6 & 8.8 & 8.4 & 6.1 & 9.2 & 7.7\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/epi3plot-1} 
+
+}
+
+\caption{Immunisation coverage per vaccine by location type}\label{fig:epi3plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/epi4plot-1} 
+
+}
+
+\caption{Immunisation coverage per vaccine by wealth quintiles}\label{fig:epi4plot}
+\end{figure}
+
+\begin{table}[H]
+
+\caption{\label{tab:epi3table}Coverage of immunisation-associated services}
+\centering
+\fontsize{12}{14}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r}
+\toprule
+ &  & \makecell[c]{Vitamin\\A\\supplementation\\(\%)} & \makecell[c]{Deworming\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{4}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{4}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 56.5 & 24.9\\
+\cmidrule{2-4}
+\hspace{1em}\hspace{1em} & Urban & 35.8 & 10.9\\
+\cmidrule{2-4}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 26.5 & 13.8\\
+\cmidrule{2-4}
+\addlinespace[0.3em]
+\multicolumn{4}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 33.6 & 11.5\\
+\cmidrule{2-4}
+\hspace{1em}\hspace{1em} & Wealthy & 40.3 & 15.5\\
+\cmidrule{2-4}
+\hspace{1em}\hspace{1em} & Medium & 40.2 & 15.6\\
+\cmidrule{2-4}
+\hspace{1em}\hspace{1em} & Poor & 41.1 & 15.9\\
+\cmidrule{2-4}
+\hspace{1em}\hspace{1em} & Poorest & 36.6 & 22.0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/epi5plot-1} 
+
+}
+
+\caption{Immunisation-associated services coverage by location type}\label{fig:epi5plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/epi6plot-1} 
+
+}
+
+\caption{Immunisation-associated services coverage by wealth quintiles}\label{fig:epi6plot}
+\end{figure}
+
+\hypertarget{illness}{%
+\subsubsection{Period prevalence of childhood illnesses}\label{illness}}
+
+\begin{table}[H]
+
+\caption{\label{tab:ill1table}Period prevalence of childhood illnesses}
+\centering
+\fontsize{12}{14}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+ &  & \makecell[c]{Diarrhoea\\(\%)} & \makecell[c]{ARI\\(\%)} & \makecell[c]{Fever\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 3.2 & 9.0 & 28.5\\
+\cmidrule{2-5}
+\hspace{1em}\hspace{1em} & Urban & 1.6 & 8.1 & 25.8\\
+\cmidrule{2-5}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 2.9 & 11.3 & 18.0\\
+\cmidrule{2-5}
+\addlinespace[0.3em]
+\multicolumn{5}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 2.0 & 8.9 & 27.1\\
+\cmidrule{2-5}
+\hspace{1em}\hspace{1em} & Wealthy & 1.1 & 7.9 & 27.1\\
+\cmidrule{2-5}
+\hspace{1em}\hspace{1em} & Medium & 2.3 & 8.9 & 27.1\\
+\cmidrule{2-5}
+\hspace{1em}\hspace{1em} & Poor & 2.7 & 10.8 & 18.8\\
+\cmidrule{2-5}
+\hspace{1em}\hspace{1em} & Poorest & 4.7 & 9.9 & 20.6\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/ill1plot-1} 
+
+}
+
+\caption{Period prevalence of childhood illnesses by location type}\label{fig:ill1plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/ill2plot-1} 
+
+}
+
+\caption{Period prevalence of childhood illnesses by wealth quintiles}\label{fig:ill2plot}
+\end{figure}
+
+\hypertarget{ctreatment}{%
+\subsubsection{Treatment-seeking behaviour}\label{ctreatment}}
+
+\hypertarget{diarrhoea}{%
+\paragraph{Diarrhoea}\label{diarrhoea}}
+
+\begin{landscape}\begin{table}[H]
+
+\caption{\label{tab:diarrhoea1table}Treatment-seeking for diarrhoea}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+\multicolumn{4}{c}{\textbf{ }} & \multicolumn{7}{c}{\textbf{Reasons for not seeking treatment}} \\
+\cmidrule(l{3pt}r{3pt}){5-11}
+ &  & \makecell[c]{Sought\\treatment\\(\%)} & \makecell[c]{Time to\\treatment\\(days)} & \makecell[c]{No\\facility\\(\%)} & \makecell[c]{Facility\\inaccessible\\(\%)} & \makecell[c]{Expensive\\(\%)} & \makecell[c]{Not\\necessary\\(\%)} & \makecell[c]{Advised\\not to\\(\%)} & \makecell[c]{Alternative\\treatment\\(\%)} & \makecell[c]{Do not know\\treamtent\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 76.9 & 1.2 & 0 & 14.3 & 0.0 & 0.0 & 0 & 42.9 & 0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Urban & 87.5 & 1.1 & 0 & 0.0 & 33.3 & 33.3 & 0 & 0.0 & 0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 80.0 & 1.3 & 0 & 0.0 & 50.0 & 0.0 & 0 & 0.0 & 0\\
+\cmidrule{2-11}
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 80.0 & 1.0 & 0 & 0.0 & 50.0 & 0.0 & 0 & 0.0 & 0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Wealthy & 100.0 & 1.3 & NaN & NaN & NaN & NaN & NaN & NaN & NaN\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Medium & 100.0 & 1.2 & 0 & 0.0 & 0.0 & 0.0 & 0 & 0.0 & 0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Poor & 100.0 & 1.3 & 0 & 0.0 & 0.0 & 0.0 & 0 & 100.0 & 0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Poorest & 54.5 & 1.3 & 0 & 10.0 & 30.0 & 10.0 & 0 & 10.0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/diarrhoea1plot-1} 
+
+}
+
+\caption{Treatment-seeking for diarrhoea by location type}\label{fig:diarrhoea1plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/diarrhoea2plot-1} 
+
+}
+
+\caption{Treatment-seeking for diarrhoea by wealth quintiles}\label{fig:diarrhoea2plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/diarrhoea4plot-1} 
+
+}
+
+\caption{Reasons for not seeking treatment by location type}\label{fig:diarrhoea4plot}
+\end{figure}
+
+\begin{landscape}\begin{table}[H]
+
+\caption{\label{tab:diarrhoea2table}Where/who treatment is sought from}
+\centering
+\fontsize{9}{11}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+\multicolumn{2}{c}{\textbf{ }} & \multicolumn{13}{c}{\textbf{Where/who treatment is sought from}} \\
+\cmidrule(l{3pt}r{3pt}){3-15}
+ &  & \makecell[c]{Township\\hospital\\(\%)} & \makecell[c]{Station\\hospital\\(\%)} & \makecell[c]{RHC/\\health\\assistant\\(\%)} & \makecell[c]{SRHC/\\midwife\\(\%)} & \makecell[c]{Private\\clinic/\\doctor\\(\%)} & \makecell[c]{Community\\health\\worker\\(\%)} & \makecell[c]{Traditional\\healer\\(\%)} & \makecell[c]{Untrained\\health\\worker\\(\%)} & \makecell[c]{Drug\\from\\shop\\(\%)} & \makecell[c]{EHO\\clinic/\\volunteer\\(\%)} & \makecell[c]{Family\\member\\(\%)} & \makecell[c]{NGOs/\\clinic\\(\%)} & \makecell[c]{Auxilliary\\midwife\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{15}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{15}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 11.1 & 5.6 & 22.2 & 22.2 & 0.0 & 5.6 & 0.0 & 0.0 & 11.1 & 0.0 & 0.0 & 0 & 11.1\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Urban & 9.1 & 0.0 & 0.0 & 9.1 & 81.8 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0 & 0.0\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 0.0 & 13.0 & 4.3 & 8.7 & 4.3 & 8.7 & 4.3 & 4.3 & 21.7 & 21.7 & 8.7 & 0 & 0.0\\
+\cmidrule{2-15}
+\addlinespace[0.3em]
+\multicolumn{15}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 0.0 & 0.0 & 0.0 & 14.3 & 85.7 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0 & 0.0\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Wealthy & 0.0 & 16.7 & 16.7 & 0.0 & 33.3 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 16.7 & 0 & 0.0\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Medium & 8.3 & 0.0 & 0.0 & 33.3 & 0.0 & 8.3 & 0.0 & 8.3 & 25.0 & 0.0 & 8.3 & 0 & 0.0\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Poor & 7.7 & 15.4 & 23.1 & 7.7 & 7.7 & 0.0 & 7.7 & 0.0 & 7.7 & 15.4 & 0.0 & 0 & 7.7\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Poorest & 0.0 & 7.7 & 7.7 & 7.7 & 7.7 & 15.4 & 0.0 & 0.0 & 23.1 & 23.1 & 0.0 & 0 & 7.7\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/diarrhoea6plot-1} 
+
+}
+
+\caption{Where/who treatment is sought from by location type}\label{fig:diarrhoea6plot}
+\end{figure}
+
+\begin{landscape}\begin{table}[H]
+
+\caption{\label{tab:diarrhoea3table}Payment for treatment}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+\multicolumn{3}{c}{\textbf{ }} & \multicolumn{6}{c}{\textbf{Payment for}} & \multicolumn{1}{c}{\textbf{ }} \\
+\cmidrule(l{3pt}r{3pt}){4-9}
+ &  & \makecell[c]{Payment\\for\\service\\(MMK)} & \makecell[c]{Transportation\\(\%)} & \makecell[c]{Registration\\(\%)} & \makecell[c]{Medicine\\(\%)} & \makecell[c]{Laboratory\\fees\\(\%)} & \makecell[c]{Provider\\fees\\(\%)} & \makecell[c]{Gifts\\(\%)} & \makecell[c]{Took\\loan\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{10}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{10}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 12258.4 & 0.0 & 0 & 100.0 & 0 & 0 & 0 & 18.8\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Urban & 7681.8 & 0.0 & 0 & 100.0 & 0 & 0 & 0 & 20.0\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 6869.6 & 6.7 & 0 & 86.7 & 0 & 0 & 0 & 15.8\\
+\cmidrule{2-10}
+\addlinespace[0.3em]
+\multicolumn{10}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 8214.3 & 0.0 & 0 & 100.0 & 0 & 0 & 0 & 16.7\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Wealthy & 8333.3 & 0.0 & 0 & 100.0 & 0 & 0 & 0 & 20.0\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Medium & 7333.2 & 0.0 & 0 & 100.0 & 0 & 0 & 0 & 27.3\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Poor & 2457.8 & 0.0 & 0 & 100.0 & 0 & 0 & 0 & 18.2\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Poorest & 17207.7 & 11.1 & 0 & 77.8 & 0 & 0 & 0 & 9.1\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/diarrhoea8plot-1} 
+
+}
+
+\caption{Costs incurred for treatment}\label{fig:diarrhoea8plot}
+\end{figure}
+
+\hypertarget{ari}{%
+\paragraph{Acute respiratory infection}\label{ari}}
+
+\begin{landscape}\begin{table}[H]
+
+\caption{\label{tab:ari1table}Treatment-seeking for acute respiratory infection}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+\multicolumn{4}{c}{\textbf{ }} & \multicolumn{7}{c}{\textbf{Reasons for not seeking treatment}} \\
+\cmidrule(l{3pt}r{3pt}){5-11}
+ &  & \makecell[c]{Sought\\treatment\\(\%)} & \makecell[c]{Time to\\treatment\\(days)} & \makecell[c]{No\\facility\\(\%)} & \makecell[c]{Facility\\inaccessible\\(\%)} & \makecell[c]{Expensive\\(\%)} & \makecell[c]{Not\\necessary\\(\%)} & \makecell[c]{Advised\\not to\\(\%)} & \makecell[c]{Alternative\\treatment\\(\%)} & \makecell[c]{Do not know\\treamtent\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 89.2 & 1.4 & 0.0 & 11.1 & 0.0 & 0.0 & 0 & 11.1 & 0.0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Urban & 85.0 & 1.3 & 0.0 & 0.0 & 0.0 & 30.0 & 0 & 30.0 & 0.0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 74.4 & 1.4 & 7.1 & 7.1 & 7.1 & 0.0 & 0 & 0.0 & 21.4\\
+\cmidrule{2-11}
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 90.9 & 1.3 & 0.0 & 0.0 & 0.0 & 0.0 & 0 & 50.0 & 0.0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Wealthy & 95.2 & 1.3 & 0.0 & 0.0 & 0.0 & 50.0 & 0 & 0.0 & 0.0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Medium & 82.6 & 1.2 & 0.0 & 40.0 & 0.0 & 0.0 & 0 & 0.0 & 20.0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Poor & 75.0 & 1.3 & 10.0 & 0.0 & 0.0 & 0.0 & 0 & 10.0 & 10.0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Poorest & 73.9 & 1.8 & 0.0 & 0.0 & 9.1 & 18.2 & 0 & 0.0 & 9.1\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/ari1plot-1} 
+
+}
+
+\caption{Treatment-seeking for acute respiratory infection by location type}\label{fig:ari1plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/ari2plot-1} 
+
+}
+
+\caption{Treatment-seeking for acute respiratory infection by wealth quintiles}\label{fig:ari2plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/ari4plot-1} 
+
+}
+
+\caption{Reasons for not seeking treatment by location type}\label{fig:ari4plot}
+\end{figure}
+
+\begin{landscape}\begin{table}[H]
+
+\caption{\label{tab:ari2table}Where/who treatment is sought from}
+\centering
+\fontsize{9}{11}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+\multicolumn{2}{c}{\textbf{ }} & \multicolumn{13}{c}{\textbf{Where/who treatment is sought from}} \\
+\cmidrule(l{3pt}r{3pt}){3-15}
+ &  & \makecell[c]{Township\\hospital\\(\%)} & \makecell[c]{Station\\hospital\\(\%)} & \makecell[c]{RHC/\\health\\assistant\\(\%)} & \makecell[c]{SRHC/\\midwife\\(\%)} & \makecell[c]{Private\\clinic/\\doctor\\(\%)} & \makecell[c]{Community\\health\\worker\\(\%)} & \makecell[c]{Traditional\\healer\\(\%)} & \makecell[c]{Untrained\\health\\worker\\(\%)} & \makecell[c]{Drug\\from\\shop\\(\%)} & \makecell[c]{EHO\\clinic/\\volunteer\\(\%)} & \makecell[c]{Family\\member\\(\%)} & \makecell[c]{NGOs/\\clinic\\(\%)} & \makecell[c]{Auxilliary\\midwife\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{15}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{15}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 1.7 & 8.3 & 18.3 & 18.3 & 21.7 & 5.0 & 0.0 & 0 & 18.3 & 0.0 & 0.0 & 0 & 5.0\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Urban & 3.8 & 0.0 & 1.9 & 0.0 & 73.1 & 0.0 & 0.0 & 0 & 1.9 & 1.9 & 0.0 & 0 & 0.0\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 1.3 & 8.0 & 0.0 & 2.7 & 10.7 & 10.7 & 2.7 & 0 & 25.3 & 26.7 & 2.7 & 0 & 1.3\\
+\cmidrule{2-15}
+\addlinespace[0.3em]
+\multicolumn{15}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 3.6 & 0.0 & 3.6 & 0.0 & 57.1 & 0.0 & 0.0 & 0 & 3.6 & 3.6 & 0.0 & 0 & 0.0\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Wealthy & 2.4 & 9.5 & 9.5 & 2.4 & 42.9 & 2.4 & 2.4 & 0 & 7.1 & 2.4 & 4.8 & 0 & 2.4\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Medium & 0.0 & 7.3 & 7.3 & 9.8 & 31.7 & 9.8 & 0.0 & 0 & 17.1 & 9.8 & 0.0 & 0 & 0.0\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Poor & 2.4 & 4.9 & 7.3 & 9.8 & 9.8 & 9.8 & 0.0 & 0 & 34.1 & 12.2 & 0.0 & 0 & 7.3\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Poorest & 3.0 & 6.1 & 3.0 & 12.1 & 18.2 & 6.1 & 3.0 & 0 & 18.2 & 30.3 & 0.0 & 0 & 0.0\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/ari6plot-1} 
+
+}
+
+\caption{Where/who treatment is sought from by location type}\label{fig:ari6plot}
+\end{figure}
+
+\begin{landscape}\begin{table}[H]
+
+\caption{\label{tab:ari3table}Payment for treatment}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+\multicolumn{3}{c}{\textbf{ }} & \multicolumn{6}{c}{\textbf{Payment for}} & \multicolumn{1}{c}{\textbf{ }} \\
+\cmidrule(l{3pt}r{3pt}){4-9}
+ &  & \makecell[c]{Payment\\for\\service\\(MMK)} & \makecell[c]{Transportation\\(\%)} & \makecell[c]{Registration\\(\%)} & \makecell[c]{Medicine\\(\%)} & \makecell[c]{Laboratory\\fees\\(\%)} & \makecell[c]{Provider\\fees\\(\%)} & \makecell[c]{Gifts\\(\%)} & \makecell[c]{Took\\loan\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{10}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{10}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 7076.7 & 0.0 & 0.0 & 100.0 & 0 & 0 & 0 & 3.8\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Urban & 12028.8 & 0.0 & 0.0 & 100.0 & 0 & 0 & 0 & 6.0\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 5360.0 & 2.6 & 2.6 & 92.3 & 0 & 0 & 0 & 11.1\\
+\cmidrule{2-10}
+\addlinespace[0.3em]
+\multicolumn{10}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 13196.4 & 0.0 & 0.0 & 100.0 & 0 & 0 & 0 & 3.8\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Wealthy & 9154.8 & 0.0 & 0.0 & 100.0 & 0 & 0 & 0 & 2.5\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Medium & 8739.0 & 0.0 & 0.0 & 95.7 & 0 & 0 & 0 & 5.9\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Poor & 3982.9 & 0.0 & 0.0 & 100.0 & 0 & 0 & 0 & 14.7\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Poorest & 4590.9 & 6.7 & 6.7 & 86.7 & 0 & 0 & 0 & 9.5\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/ari8plot-1} 
+
+}
+
+\caption{Costs incurred for treatment by location type}\label{fig:ari8plot}
+\end{figure}
+
+\hypertarget{fever}{%
+\paragraph{Fever}\label{fever}}
+
+\begin{landscape}\begin{table}[H]
+
+\caption{\label{tab:fever1table}Treatment-seeking for fever}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+\multicolumn{4}{c}{\textbf{ }} & \multicolumn{7}{c}{\textbf{Reasons for not seeking treatment}} \\
+\cmidrule(l{3pt}r{3pt}){5-11}
+ &  & \makecell[c]{Sought\\treatment\\(\%)} & \makecell[c]{Time to\\treatment\\(days)} & \makecell[c]{No\\facility\\(\%)} & \makecell[c]{Facility\\inaccessible\\(\%)} & \makecell[c]{Expensive\\(\%)} & \makecell[c]{Not\\necessary\\(\%)} & \makecell[c]{Advised\\not to\\(\%)} & \makecell[c]{Alternative\\treatment\\(\%)} & \makecell[c]{Do not know\\treamtent\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 94.0 & 1.1 & 0.0 & 0.0 & 8.3 & 8.3 & 0 & 25.0 & 0.0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Urban & 91.3 & 1.2 & 0.0 & 0.0 & 0.0 & 18.8 & 0 & 18.8 & 0.0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 79.0 & 1.4 & 5.0 & 10.0 & 5.0 & 5.0 & 0 & 0.0 & 5.0\\
+\cmidrule{2-11}
+\addlinespace[0.3em]
+\multicolumn{11}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 91.0 & 1.1 & 0.0 & 0.0 & 0.0 & 0.0 & 0 & 22.2 & 0.0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Wealthy & 90.3 & 1.3 & 0.0 & 0.0 & 11.1 & 11.1 & 0 & 11.1 & 0.0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Medium & 92.9 & 1.1 & 0.0 & 0.0 & 0.0 & 14.3 & 0 & 14.3 & 0.0\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Poor & 92.9 & 1.2 & 0.0 & 0.0 & 0.0 & 0.0 & 0 & 28.6 & 14.3\\
+\cmidrule{2-11}
+\hspace{1em}\hspace{1em} & Poorest & 79.2 & 1.5 & 6.2 & 12.5 & 6.2 & 18.8 & 0 & 0.0 & 0.0\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fever1plot-1} 
+
+}
+
+\caption{Treatment-seeking for fever by location type}\label{fig:fever1plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fever2plot-1} 
+
+}
+
+\caption{Treatment-seeking for fever by wealth quintiles}\label{fig:fever2plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fever4plot-1} 
+
+}
+
+\caption{Reasons for not seeking treatment by location type}\label{fig:fever4plot}
+\end{figure}
+
+\begin{landscape}\begin{table}[H]
+
+\caption{\label{tab:fever2table}Where/who treatment is sought from}
+\centering
+\fontsize{9}{11}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+\multicolumn{2}{c}{\textbf{ }} & \multicolumn{13}{c}{\textbf{Where/who treatment is sought from}} \\
+\cmidrule(l{3pt}r{3pt}){3-15}
+ &  & \makecell[c]{Township\\hospital\\(\%)} & \makecell[c]{Station\\hospital\\(\%)} & \makecell[c]{RHC/\\health\\assistant\\(\%)} & \makecell[c]{SRHC/\\midwife\\(\%)} & \makecell[c]{Private\\clinic/\\doctor\\(\%)} & \makecell[c]{Community\\health\\worker\\(\%)} & \makecell[c]{Traditional\\healer\\(\%)} & \makecell[c]{Untrained\\health\\worker\\(\%)} & \makecell[c]{Drug\\from\\shop\\(\%)} & \makecell[c]{EHO\\clinic/\\volunteer\\(\%)} & \makecell[c]{Family\\member\\(\%)} & \makecell[c]{NGOs/\\clinic\\(\%)} & \makecell[c]{Auxilliary\\midwife\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{15}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{15}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 3.5 & 5.6 & 17.5 & 25.2 & 17.5 & 2.1 & 0.7 & 2.8 & 12.6 & 0.0 & 2.8 & 0 & 3.5\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Urban & 3.6 & 0.7 & 1.5 & 0.0 & 82.5 & 0.7 & 0.0 & 0.0 & 4.4 & 0.0 & 0.0 & 0 & 0.0\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 2.0 & 7.0 & 1.0 & 7.0 & 11.0 & 9.0 & 1.0 & 1.0 & 22.0 & 29.0 & 2.0 & 0 & 3.0\\
+\cmidrule{2-15}
+\addlinespace[0.3em]
+\multicolumn{15}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 2.8 & 2.8 & 2.8 & 0.0 & 77.5 & 0.0 & 0.0 & 0.0 & 4.2 & 0.0 & 0.0 & 0 & 0.0\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Wealthy & 3.4 & 5.7 & 6.9 & 8.0 & 54.0 & 1.1 & 0.0 & 1.1 & 5.7 & 3.4 & 3.4 & 0 & 0.0\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Medium & 2.2 & 5.5 & 7.7 & 17.6 & 22.0 & 7.7 & 0.0 & 4.4 & 11.0 & 11.0 & 2.2 & 0 & 2.2\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Poor & 4.5 & 6.1 & 16.7 & 18.2 & 16.7 & 4.5 & 1.5 & 0.0 & 15.2 & 9.1 & 0.0 & 0 & 3.0\\
+\cmidrule{2-15}
+\hspace{1em}\hspace{1em} & Poorest & 0.0 & 0.0 & 3.5 & 14.0 & 19.3 & 3.5 & 1.8 & 0.0 & 31.6 & 17.5 & 0.0 & 0 & 7.0\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fever6plot-1} 
+
+}
+
+\caption{Where/who treatment is sought from by location type}\label{fig:fever6plot}
+\end{figure}
+
+\begin{landscape}\begin{table}[H]
+
+\caption{\label{tab:fever3table}Payment for treatment}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
+\toprule
+\multicolumn{3}{c}{\textbf{ }} & \multicolumn{6}{c}{\textbf{Payment for}} & \multicolumn{1}{c}{\textbf{ }} \\
+\cmidrule(l{3pt}r{3pt}){4-9}
+ &  & \makecell[c]{Payment\\for\\service\\(MMK)} & \makecell[c]{Transportation\\(\%)} & \makecell[c]{Registration\\(\%)} & \makecell[c]{Medicine\\(\%)} & \makecell[c]{Laboratory\\fees\\(\%)} & \makecell[c]{Provider\\fees\\(\%)} & \makecell[c]{Gifts\\(\%)} & \makecell[c]{Took\\loan\\(\%)}\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{10}{l}{\textbf{Kayah}}\\
+\addlinespace[0.3em]
+\multicolumn{10}{l}{\textit{\textbf{Geographic}}}\\
+\hspace{1em}\hspace{1em} & Rural & 13020.5 & 1.2 & 0 & 97.5 & 0 & 0 & 0 & 9.9\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Urban & 13923.4 & 0.0 & 0 & 100.0 & 0 & 0 & 0 & 12.8\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Hard-to-reach & 8271.0 & 5.5 & 0 & 94.5 & 0 & 0 & 0 & 8.5\\
+\cmidrule{2-10}
+\addlinespace[0.3em]
+\multicolumn{10}{l}{\textit{\textbf{Wealth}}}\\
+\hspace{1em}\hspace{1em} & Wealthiest & 17457.7 & 0.0 & 0 & 100.0 & 0 & 0 & 0 & 5.7\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Wealthy & 11106.9 & 2.6 & 0 & 94.7 & 0 & 0 & 0 & 6.2\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Medium & 6945.5 & 0.0 & 0 & 100.0 & 0 & 0 & 0 & 10.5\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Poor & 18649.8 & 4.9 & 0 & 95.1 & 0 & 0 & 0 & 19.0\\
+\cmidrule{2-10}
+\hspace{1em}\hspace{1em} & Poorest & 5154.4 & 3.1 & 0 & 96.9 & 0 & 0 & 0 & 13.6\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{landscape}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fever8plot-1} 
+
+}
+
+\caption{Costs incurred for treatment in Kayah state}\label{fig:fever8plot}
+\end{figure}
+
+\hypertarget{study2-results}{%
+\subsection{Cohort study}\label{study2-results}}
 
 \newpage
 
