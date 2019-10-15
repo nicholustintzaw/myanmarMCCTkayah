@@ -733,14 +733,18 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") 
 
 ### Food consumption score - nutrition {#fcsn-results}
 
-```{r fcsn1table, echo = FALSE, eval = TRUE}
+```{r fcsnTable, echo = FALSE, eval = TRUE}
 tab <- recode_fcs_nutrition(df = hh) %>%
   create_unweighted_table(vars = c("vita1", "vita2", "vita3",
                                    "protein1", "protein2", "protein3",
                                    "iron1", "iron2", "iron3"))
 
 tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+```
 
+Household consumption of vitamin A-, protein- and heme iron-rich foods indicate the quality of the household diet. In Kayah State, frequency of consumption of these nutrient-rich foods is generally high with vitamin A- and protein-rich foods consumed more frequently than heme iron-rich foods. In addition, frequency of household consumption of these nutrients is influenced by geographic location and wealth. Vitamin A-rich foods are consumed at least daily by `r paste(round(tab[tab$state == "Kayah" & tab$strata == "Urban", "vita3"], digits = 1), "%", sep = "")` and `r paste(round(tab[tab$state == "Kayah" & tab$strata == "Rural", "vita3"], digits = 1), "%", sep = "")` of households in urban and rural areas respectively and then drops to as low as `r paste(round(tab[tab$state == "Kayah" & tab$strata == "Hard-to-reach", "vita3"], digits = 1), "%", sep = "")` in hard-to-reach areas (see Figure \@ref(fig:fcsn1plot)). The same decreasing pattern of frequency of vitamin A-rich foods consumption is noted when households are grouped by wealth quintiles with majority of the wealthiest and the wealthy consuming vitamin A-rich foods at least daily while poor and poorest households consumed vitamin A-rich foods at least daily only `r paste(round(tab[tab$state == "Kayah" & tab$strata == "Poor", "vita3"], digits = 1), "%", sep = "")` and `r paste(round(tab[tab$state == "Kayah" & tab$strata == "Poorest", "vita3"], digits = 1), "%", sep = "")` of the times respectively (see Figure \@ref(fig:fcsn2plot)). This same trend is noted with frequency of household consumption of protein-rich foods (see Figure \@ref(fig:fcsn3plot) and Figure \@ref(fig:fcsn4plot)) and frequency of household consumption of heme iron-rich foods (see Figure \@ref(fig:fcsn5plot) and \@ref(fig:fcsn6plot)) but to a lesser magnitude.
+
+```{r fcsn1table, echo = FALSE, eval = TRUE}
 knitr::kable(x = tab[tab$state == "Kayah", ],
              caption = "Food consumption score - nutrition",
              booktabs = TRUE,
@@ -761,7 +765,7 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
              digits = 1,
              format = "latex") %>%
   kableExtra::kable_styling(latex_options = c("HOLD_position"),
-                            font_size = 10) %>%
+                            font_size = 9) %>%
   kableExtra::add_header_above(header = c(" " = 2, 
                                           "Vitamin A-rich foods" = 3, 
                                           "Protein-rich foods" = 3, 
@@ -771,11 +775,11 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
   kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
   kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
-                        italic = TRUE) %>%
-  landscape()
+                        italic = TRUE) #%>%
+  #landscape()
 ```
 
-```{r fcsn1plot, echo = FALSE, eval = TRUE, fig.cap = "Vitamin A food consumption score classification by location type", fig.width = 12, fig.height = 9, fig.align = "center", fig.pos = "H"}
+```{r fcsn1plot, echo = FALSE, eval = TRUE, fig.cap = "Vitamin A food consumption score classification by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tabLong <- tidyr::pivot_longer(data = tab,
                                cols = vita1:vita3,
                                names_to = "indicators", values_to = "estimate")
@@ -798,7 +802,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
   themeSettings
 ```
 
-```{r fcsn2plot, echo = FALSE, eval = TRUE, fig.cap = "Vitamin A food consumption score classification by wealth quintiles", fig.width = 12, fig.height = 9, fig.align = "center", fig.pos = "H"}
+```{r fcsn2plot, echo = FALSE, eval = TRUE, fig.cap = "Vitamin A food consumption score classification by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate, fill = indicators)) +
   geom_col(width = 0.5) +
@@ -811,7 +815,7 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") 
   themeSettings
 ```
 
-```{r fcsn3plot, echo = FALSE, eval = TRUE, fig.cap = "Protein food consumption score classification by location type", fig.width = 12, fig.height = 9, fig.align = "center", fig.pos = "H"}
+```{r fcsn3plot, echo = FALSE, eval = TRUE, fig.cap = "Protein food consumption score classification by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tabLong <- tidyr::pivot_longer(data = tab,
                                cols = protein1:protein3,
                                names_to = "indicators", values_to = "estimate")
@@ -830,11 +834,11 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
   #facet_grid(. ~ state) +
   #scale_y_continuous(limits = c(0, 100)) +
   scale_fill_manual(values = rev(brewer.pal(n = 3, name = "RdYlGn"))) +
-  labs(x = "", y = "%", fill = "FCS vitamin A classification") +
+  labs(x = "", y = "%", fill = "FCS protein classification") +
   themeSettings
 ```
 
-```{r fcsn4plot, echo = FALSE, eval = TRUE, fig.cap = "Protein food consumption score classification by wealth quintiles", fig.width = 12, fig.height = 9, fig.align = "center", fig.pos = "H"}
+```{r fcsn4plot, echo = FALSE, eval = TRUE, fig.cap = "Protein food consumption score classification by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate, fill = indicators)) +
   geom_col(width = 0.5) +
@@ -843,7 +847,43 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") 
   #facet_grid(. ~ state) +
   #scale_y_continuous(limits = c(0, 100)) +
   scale_fill_manual(values = rev(brewer.pal(n = 3, name = "RdYlGn"))) +
-  labs(x = "", y = "%", fill = "FCS vitamin A classification") +
+  labs(x = "", y = "%", fill = "FCS protein classification") +
+  themeSettings
+```
+
+```{r fcsn5plot, echo = FALSE, eval = TRUE, fig.cap = "Heme iron-rich food consumption score classification by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab,
+                               cols = iron1:iron3,
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(tabLong$indicators, 
+                             levels = c("iron3", "iron2", "iron1"),
+                             labels = c("At least daily", "Sometimes", "Never"))
+tabLong$strata <- factor(tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+tabLong$state <- factor(tabLong$state, levels = c("Kayin", "Kayah"))
+
+ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate, fill = indicators)) +
+  geom_col(width = 0.5) +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(. ~ state) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 3, name = "RdYlGn"))) +
+  labs(x = "", y = "%", fill = "FCS heme iron classification") +
+  themeSettings
+```
+
+```{r fcsn6plot, echo = FALSE, eval = TRUE, fig.cap = "Protein food consumption score classification by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate, fill = indicators)) +
+  geom_col(width = 0.5) +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(. ~ state) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 3, name = "RdYlGn"))) +
+  labs(x = "", y = "%", fill = "FCS heme iron classification") +
   themeSettings
 ```
 
@@ -873,6 +913,10 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
                         italic = TRUE)
 ```
 
+Households in Kayah state are employing very few consumption-based coping strategies (see Table \@ref(tab:ccsi1table)). Use of consumption-based coping strategies is higher in households in hard-to-reach areas (`r round(tab[tab$state == "Kayah" & tab$strata == "Hard-to-reach", "bTotalWeighted"], digits = 1)`) compared to households in urban and rural areas (`r round(tab[tab$state == "Kayah" & tab$strata == "Urban", "bTotalWeighted"], digits = 1)` and `r round(tab[tab$state == "Kayah" & tab$strata == "Rural", "bTotalWeighted"], digits = 1)` respectively) as shown in Figure \@ref(fig:ccsi1plot) and Figure \@ref(fig:ccsi2plot).
+
+\newpage
+
 ```{r ccsi1plot, echo = FALSE, eval = TRUE, fig.cap = "Consumption-based coping strategies index by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tab$strata <- factor(tab$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
 tab$state <- factor(tab$state, labels = c("Kayin", "Kayah"))
@@ -888,9 +932,6 @@ ggplot(data = tab[tab$strata %in% c("Urban", "Rural", "Hard-to-reach") & tab$sta
 ```
 
 ```{r ccsi2plot, echo = FALSE, eval = TRUE, fig.cap = "Consumption-based coping strategies index by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
-tab$strata <- factor(tab$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
-tab$state <- factor(tab$state, labels = c("Kayin", "Kayah"))
-
 ggplot(data = tab[!tab$strata %in% c("Urban", "Rural", "Hard-to-reach") & tab$state == "Kayah", ], 
        mapping = aes(x = strata, y = bTotalWeighted)) +
   geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
@@ -902,6 +943,8 @@ ggplot(data = tab[!tab$strata %in% c("Urban", "Rural", "Hard-to-reach") & tab$st
 ```
 
 #### Livelihood-based coping strategies index {#lcsi-results}
+
+The use of a few consumption-based coping strategies by households in Kayah state can be partly explained by close to 50% of households being relatively food secuire in that they are not requiring longer-term livelihoods-based coping strategies. However, up to 40% of households across Kayah state utilise stress type of livelihoods coping strategies in the longer term. There is not as clear a geographical or wealth gradient for livelihoods-based coping strategies. Houeholds in rural areas employ the most crisis and emergency type of livelihood coping strategies although households hard-to-reach areas use more emergency type of strategies (see Figure \@ref(fig:lcsi1plot)). Poor and poorest households employ the most emergency type livelihoods coping strategies although households who are wealthy or medium have the highest combined usage of crisi and emergency type livelihoods strategies (see Figure \@ref(fig:lcsi2plot)).
 
 ```{r lcsi1table, echo = FALSE, eval = TRUE}
 tab <- recode_csi_livelihoods(df = hh) %>%
@@ -928,7 +971,9 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
                         italic = TRUE)
 ```
 
-```{r lcsi1plot, echo = FALSE, eval = TRUE, fig.cap = "Livelihoods-based coping strategies index by location type", fig.width = 12, fig.height = 9, fig.align = "center", fig.pos = "H"}
+\newpage
+
+```{r lcsi1plot, echo = FALSE, eval = TRUE, fig.cap = "Livelihoods-based coping strategies index by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tabLong <- tidyr::pivot_longer(data = tab,
                                cols = secure:emergency,
                                names_to = "indicators", values_to = "estimate")
@@ -950,7 +995,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
   themeSettings
 ```
 
-```{r lcsi2plot, echo = FALSE, eval = TRUE, fig.cap = "Livelihoods-based coping strategies index by wealth quintiles", fig.width = 12, fig.height = 9, fig.align = "center", fig.pos = "H"}
+```{r lcsi2plot, echo = FALSE, eval = TRUE, fig.cap = "Livelihoods-based coping strategies index by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate, fill = indicators)) +
   geom_col(width = 0.5) +
