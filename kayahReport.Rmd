@@ -653,6 +653,10 @@ ggplot(data = ppiDF[ppiDF$sample_component == 1 & ppiDF$geo_state == "Kayah", ],
   themeSettings
 ```
 
+Poverty probability of households across different locations in Kayah state show high variability ranging from as low as 1.4% to as high as a little over 95%. This distribution of poverty is roughly similar across urban, rural and hard-to-reach areas as seen in Figure \@ref(fig:ppiTable) above.
+
+The poverty probabilities was primarily used to classify households into wealth quintiles which was subsequently used for wealth stratification of indicator results.
+
 ### Food consumption score {#fcs-results}
 
 ```{r fcs1table, echo = FALSE, eval = TRUE}
@@ -685,7 +689,11 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
                         italic = TRUE)
 ```
 
-```{r fcs1plot, echo = FALSE, eval = TRUE, fig.cap = "Food consumption score classification by location type", fig.width = 12, fig.height = 9, fig.align = "center", fig.pos = "H"}
+Table \@ref(tab:fcs1table) presents FCS results by geographic location and by wealth quintiles. There is a clear geographic and wealth gradient with FCS as shown in Figure \@ref(fig:fcs1plot) and Figure \@ref(fig:fcs3plot). Poor FCS is at `r paste(tab[tab$state == "Kayah" & tab$strata == "Hard-to-reach", "poor"], "%", sep = "")` in hard-to-reach areas whilst it is only `r paste(tab[tab$state == "Kayah" & tab$strata == "Urban", "poor"], "%", sep = "")` and `r paste(tab[tab$state == "Kayah" & tab$strata == "Rural", "poor"], "%", sep = "")` in urban and rural areas respectively. In the poor and poorest households, poor FCS is at `r paste(tab[tab$state == "Kayah" & tab$strata == "Poor", "poor"], "%", sep = "")` and `r paste(tab[tab$state == "Kayah" & tab$strata == "Poorest", "poor"], "%", sep = "")` respectively compared to no households with poor FCS in medium, wealthy and wealthiest households.
+
+\newpage
+
+```{r fcs1plot, echo = FALSE, eval = TRUE, fig.cap = "Food consumption score classification by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tabLong <- tidyr::pivot_longer(data = tab,
                                cols = poor:acceptable,
                                names_to = "indicators", values_to = "estimate")
@@ -708,7 +716,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
   themeSettings
 ```
 
-```{r fcs2plot, echo = FALSE, eval = TRUE, fig.cap = "Food consumption score classification by wealth quintiles", fig.width = 12, fig.height = 9, fig.align = "center", fig.pos = "H"}
+```{r fcs2plot, echo = FALSE, eval = TRUE, fig.cap = "Food consumption score classification by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate, fill = indicators)) +
   geom_col(width = 0.5) +
@@ -720,6 +728,8 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") 
   labs(x = "", y = "%", fill = "FCS classification") +
   themeSettings
 ```
+
+\newpage
 
 ### Food consumption score - nutrition {#fcsn-results}
 
@@ -1808,7 +1818,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -1844,7 +1854,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -1911,7 +1921,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -1940,7 +1950,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -2031,7 +2041,7 @@ ggplot(data = tabLong[tabLong$state == "Kayin" &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -2047,7 +2057,7 @@ ggplot(data = tabLong[tabLong$state == "Kayah" &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -2126,7 +2136,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -2162,7 +2172,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -2228,7 +2238,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -2242,7 +2252,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -2333,7 +2343,7 @@ ggplot(data = tabLong[tabLong$state == "Kayin" &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -2349,7 +2359,7 @@ ggplot(data = tabLong[tabLong$state == "Kayah" &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -2428,7 +2438,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -2464,7 +2474,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -2530,7 +2540,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -2544,7 +2554,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   scale_x_reordered() +
-  facet_grid(state ~ strata, scales = "free_x") +
+  facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -2554,38 +2564,138 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
 
 #### Prevalence of childhood stunting {#stunting}
 
-```{r stunt1table, echo = FALSE, eval = TRUE}
-tab <- recode_anthro(df = create_canthro(df = childAnthro, x = anthroDF))
+<<<<<<< HEAD
+```{r stunt1table, echo = FALSE, eval = TRUE, results = FALSE}
+tab <- recode_anthro(df = create_canthro(df = childAnthro, x = anthroDF)) %>%
+  create_anthro_table(vars = c("haz", "global.haz", "moderate.haz", "severe.haz"))
 
-tab$dob[is.na(tab$dob)] <- lubridate::ymd_hms(tab$enumDate)[is.na(tab$dob)] - tab$age[is.na(tab$dob)]
+tab[  , 4:ncol(tab)] <- tab[  , 4:ncol(tab)] * 100
+```
 
-sample_component <- ifelse(lubridate::ymd_hms(tab$dob) %within% interval(start = lubridate::ymd("2018/09/01"), 
-                                                                         end = lubridate::ymd("2018/10/31")), 2, 1)
+```{r stunt2table, echo = FALSE, eval = TRUE}
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Child stunting/stuntedness",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Height-for-age\nz-score",
+                                     "Global\nstunting/\nstuntedness\n(\\%)",
+                                     "Moderate\nstutning/\nstuntedness\n(\\%)",
+                                     "Severe\nstunting/\nstuntedness\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 10) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3),
+                        italic = TRUE)
+```
 
-tab$sample_component <- sample_component
 
-tab <- tab[tab$sample_component == 2, ]
+#### Prevalence of childhood underweight {#underweight}
 
-ggplot(data = tab[tab$geo_state == "MMR002", ], 
-       mapping = aes(x = lubridate::ymd(dob), y = haz)) +
-  geom_point(pch = 21, fill = "#247BA0", alpha = 0.5) +
-  geom_vline(xintercept = as.Date("2018-10-01"), stroke = 2, colour = "red") +
-  themeSettings
+```{r underweight1table, echo = FALSE, eval = TRUE, results = FALSE}
+tab <- recode_anthro(df = create_canthro(df = childAnthro, x = anthroDF)) %>%
+  create_anthro_table(vars = c("waz", "global.waz", "moderate.waz", "severe.waz"))
+
+tab[  , 4:ncol(tab)] <- tab[  , 4:ncol(tab)] * 100
+```
+
+```{r underweight2table, echo = FALSE, eval = TRUE}
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Child underweight",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Weight-for-age\nz-score",
+                                     "Global\nunderweight\n(\\%)",
+                                     "Moderate\nunderweight\n(\\%)",
+                                     "Severe\nunderweight\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 10) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3),
+                        italic = TRUE)
+```
 
 
-ggplot(data = tab[tab$geo_state == "MMR002", ], 
-       mapping = aes(x = lubridate::ymd(dob), y = whz)) +
-  geom_point(pch = 21, fill = "#247BA0", alpha = 0.5) +
-  geom_vline(xintercept = as.Date("2018-10-01"), stroke = 2, colour = "red") +
-  themeSettings
+#### Prevalence of childhood wasting by weight-for-height z-score {#whz}
+
+```{r whz1table, echo = FALSE, eval = TRUE, results = FALSE}
+tab <- recode_anthro(df = create_canthro(df = childAnthro, x = anthroDF)) %>%
+  create_anthro_table(vars = c("whz", "gam.whz", "mam.whz", "sam.whz"))
+
+tab[  , 4:ncol(tab)] <- tab[  , 4:ncol(tab)] * 100
+```
+
+```{r whz2table, echo = FALSE, eval = TRUE}
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Child wasting by weight-for-height z-score",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Weight-for-height\nz-score",
+                                     "Global\nacute\nmalnutrition\n(\\%)",
+                                     "Moderate\nacute\nmalnutrition\n(\\%)",
+                                     "Severe\nacute\nmalnutrition\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 10) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3),
+                        italic = TRUE)
+```
+
+#### Prevalence of childhood wasting by MUAC {#muac}
+
+```{r muac1table, echo = FALSE, eval = TRUE, results = FALSE}
+tab <- recode_anthro(df = create_canthro(df = childAnthro, x = anthroDF)) %>%
+  create_anthro_table(vars = c("muac", "gam.muac", "mam.muac", "sam.muac"))
+
+tab[  , 4:ncol(tab)] <- tab[  , 4:ncol(tab)] * 100
+```
 
 
-ggplot(data = tab[tab$geo_state == "MMR002", ], 
-       mapping = aes(x = lubridate::ymd(dob), y = muac)) +
-  geom_point(pch = 21, fill = "#247BA0", alpha = 0.5) +
-  geom_vline(xintercept = as.Date("2018-10-01"), stroke = 2, colour = "red") +
-  themeSettings
-
+```{r muac2table, echo = FALSE, eval = TRUE}
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Child wasting by MUAC",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "MUAC\n(cm)",
+                                     "Global\nacute\nmalnutrition\n(\\%)",
+                                     "Moderate\nacute\nmalnutrition\n(\\%)",
+                                     "Severe\nacute\nmalnutrition\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 10) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3),
+                        italic = TRUE)
 ```
 
 
@@ -2643,7 +2753,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
   geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
-  facet_grid(indicators ~ state, scales = "free_x") +
+  facet_grid(indicators ~ ., scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings
 ```
@@ -2655,15 +2765,945 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") 
   geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
   geom_text(aes(label = round(estimate, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
-  facet_grid(indicators ~ state, scales = "free_x") +
+  facet_grid(indicators ~ ., scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings
 ```
 
+### Maternal health {#mhealth-results}
+
+#### Family planning {#fplan-results}
+
+```{r fplan1table, echo = FALSE, eval = TRUE}
+tab <- recode_fplan(df = hh) %>%
+  create_unweighted_table(vars = c("fp1", "fp2", "fp3"))
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Months to wait until next pregnancy",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Time\nto\nwait\nfor\nnext\nchild\n(months)",
+                                     "Time\nto\nwait\nfor\nnext\nchild\nfor\ncurrently\npregnant\n(months)",
+                                     "Time\nto\nwait\nfor\nnext\nchild\naccording\nto\nhusband\n(months)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 12) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE)
+```
+
+```{r fplan2table, echo = FALSE, eval = TRUE}
+tab <- recode_fplan(df = hh) %>%
+  create_unweighted_table(vars = c("fp4", "fp5", "fp6a", "fp6b", "fp6c", "fp6d",
+                                   "fp6e", "fp6f", "fp6g", "fp6h", "fp6i", "fp6j",
+                                   "fp6k", "fp6l", "fp6m", "fp6n"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Use of contraceptive methods",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Using\ncontraceptives\nnow\n(\\%)", 
+                                     "Used\ncontraceptives\nbefore\n(\\%)",
+                                     "Female\nsterilisation\n(\\%)",
+                                     "Male\nsterilisation\n(\\%)",
+                                     "IUD\n(\\%)",
+                                     "Implant\n(\\%)",
+                                     "Injectable\n(\\%)",
+                                     "Pills\n(\\%)",
+                                     "Male\ncondom\n(\\%)",
+                                     "Female\ncondom\n(\\%)",
+                                     "Lactational\namenorrhea\n(\\%)",
+                                     "Rhythm\nmethod\n(\\%)",
+                                     "Withdrawal\n(\\%)",
+                                     "Emergency\ncontraception\n(\\%)",
+                                     "Diaphragm\n(\\%)",
+                                     "Foam/jelly\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 6) %>%
+  kableExtra::add_header_above(header = c(" " = 4, "Contraceptive methods" = 14)) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE) %>%
+  landscape()
+```
+
+```{r fplan3table, echo = FALSE, eval = TRUE}
+tab <- recode_fplan(df = hh) %>%
+  create_unweighted_table(vars = c("fp7a", "fp7b", "fp7c", "fp7d", "fp7e", 
+                                   "fp7f", "fp7g", "fp7h", "fp7i", "fp7j",
+                                   "fp7k"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Where contraception services received",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Government\nhospital\n(\\%)",
+                                     "Government\nhealth\ncentre\n(\\%)",
+                                     "Government\nvillage\nhealth\nworker\n(\\%)",
+                                     "UHC/MCH\ncentre\n(\\%)",
+                                     "Private\nhospital\n(\\%)",
+                                     "Private\ndoctor\n(\\%)",
+                                     "Pharmacy\n(\\%)",
+                                     "NGO\n(\\%)",
+                                     "EHO\nclinic\n(\\%)",
+                                     "Auxilliary\nmidwife\n(\\%)",
+                                     "Midwife\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 10) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE) %>%
+  landscape()
+```
+
+```{r fplan4table, echo = FALSE, eval = TRUE}
+tab <- recode_fplan(df = hh) %>%
+  create_unweighted_table(vars = c("fp8", 
+                                   "fp9a", "fp9b", "fp9c", "fp9d", "fp9e", 
+                                   "fp9f", "fp9g", "fp9h", "fp9i", "fp9j",
+                                   "fp9k", "fp10"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Information on family planning/contraception",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Received\nfamily\nplanning\ninformation\n(\\%)",
+                                     "Government\nhospital\n(\\%)",
+                                     "Government\nhealth\ncentre\n(\\%)",
+                                     "Government\nvillage\nhealth\nworker\n(\\%)",
+                                     "UHC/MCH\ncentre\n(\\%)",
+                                     "Private\nhospital\n(\\%)",
+                                     "Private\ndoctor\n(\\%)",
+                                     "Pharmacy\n(\\%)",
+                                     "NGO\n(\\%)",
+                                     "EHO\nclinic\n(\\%)",
+                                     "Auxilliary\nmidwife\n(\\%)",
+                                     "Midwife\n(\\%)",
+                                     "Appropriate\nfamily\nplanning\nknowledge\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 9) %>%
+  kableExtra::add_header_above(header = c(" " = 3, "Source of family planning information" = 11, " " = 1)) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE) %>%
+  landscape()
+```
+
+### Antenatal care {#anc}
+
+#### Antenatal care coverage {#ancCoverage}
+
+```{r anc1table, echo = FALSE, eval = TRUE}
+tab <- recode_anc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past"), 
+                  status = "past") %>%
+  create_unweighted_table(vars = c("anc1", "anc4", "incurCost", "amountCost", 
+                                   "transportCost", "registrationCost",
+                                   "medicineCost", "labCost", "providerCost", 
+                                   "giftCost", "borrow"))
+
+tab[ , c(3:5, 7:ncol(tab))] <- tab[ , c(3:5, 7:ncol(tab))] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Antenatal care coverage",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "One\nANC\nvisit\n(\\%)",
+                                     "Four\nANC\nvisits\n(\\%)",
+                                     "Incur\ncost\nfor\nANC?\n(\\%)",
+                                     "Cost\namount\n(MMK)",
+                                     "Transport\n(\\%)",
+                                     "Registration\n(\\%)",
+                                     "Medicine\n(\\%)",
+                                     "Laboratory\n(\\%)",
+                                     "Provider\n(\\%)",
+                                     "Gifts\n(\\%)",
+                                     "Took\na\nloan?\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 9) %>%
+  kableExtra::add_header_above(header = c(" " = 6, "Costs incurred for ANC services" = 6, " ")) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE) %>%
+  landscape()
+```
+
+```{r anc1plot, echo = FALSE, eval = TRUE, fig.cap = "Antenatal care coverage by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = c(anc1, anc4),
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(x = tabLong$indicators,
+                             levels = c("anc1", "anc4"),
+                             labels = c("At least one\nANC visit with\nskilled health worker",
+                                        "At least four\nANC visit with\nany service provider"))
+
+tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
+tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+
+ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  facet_grid(indicators ~ .) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+```{r anc2plot, echo = FALSE, eval = TRUE, fig.cap = "Antenatal care coverage by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  facet_grid(indicators ~ ., scales = "free_x") +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+#### Antenatal care counselling {#ancCounselling}
+
+```{r anc2table, echo = FALSE, eval = TRUE}
+tab <- recode_anc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past"),
+                  status = "past") %>%
+  create_unweighted_table(vars = c("counsel", "restrict", "restrictVeg", 
+                                   "restrictFruits", "restrictGrains", 
+                                   "restrictMeat", "restrictFish", 
+                                   "restrictDairy"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Antenatal care counselling",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Attended\nANC\ncounselling\n(\\%)",
+                                     "Restricted\neating\ncertain\nfoods?\n(\\%)",
+                                     "Vegetables\n(\\%)",
+                                     "Fruits\n(\\%)",
+                                     "Grains\n(\\%)",
+                                     "Meat\n(\\%)",
+                                     "Fish\n(\\%)",
+                                     "Dairy\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 9) %>%
+  kableExtra::add_header_above(header = c(" " = 4, "Restricted eating..." = 6)) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE) %>%
+  landscape()
+```
+
+#### Antenatal care supplementation {#ancSupplementation}
+
+```{r anc3table, echo = FALSE, eval = TRUE}
+tab <- recode_anc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past"),
+                  status = "past") %>%
+  create_unweighted_table(vars = c("b1", "ifa1", "ifa2", "ifa3", 
+                                   "ifa4a", "ifa4b", "ifa4c", "ifa4d", "ifa4e"))
+
+tab[ , c(3:4, 7:ncol(tab))] <- tab[ , c(3:4, 7:ncol(tab))] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Antenatal care supplementation",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Vitamin\nB1\n(\\%)",
+                                     "Iron\nfolic\nacid\n(\\%)",
+                                     "No.\nof\ndays\nIFA\ntaken\n(days)",
+                                     "Cost\nof\nIFA\n(MMK)",
+                                     "Government\nhospital\n(\\%)",
+                                     "EHO\nclinic\n(\\%)",
+                                     "Private\ndoctor/\nclinic\n(\\%)",
+                                     "SRHC/\nRHC\n(\\%)",
+                                     "Routine\nANC\nlocation\nin\nvillage/ward\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 9) %>%
+  kableExtra::add_header_above(header = c(" " = 6, "Source of iron-folic acid tablets" = 5)) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE) %>%
+  landscape()
+```
+
+#### Antenatal care testing {#ancTesting}
+
+```{r anc4table, echo = FALSE, eval = TRUE}
+tab <- recode_anc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past"),
+                  status = "past") %>%
+  create_unweighted_table(vars = c("test1", "test2a", "test2b", "test2c", "test2d", 
+                                   "test3a", "test3b", "test3c", "test3d", "test3e",
+                                   "test4", "test5"))
+
+tab[ , 3:(ncol(tab) - 1)] <- tab[ , 3:(ncol(tab) - 1)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Antenatal care testing",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Tests\ndone?\n(\\%)",
+                                     "Hepatitis\nB\n(\\%)",
+                                     "Hepatitis\nC\n(\\%)",
+                                     "HIV/AIDS\n(\\%)",
+                                     "Syphillis\n(\\%)",
+                                     "Government\nhospital\n(\\%)",
+                                     "EHO\nclinic\n(\\%)",
+                                     "Private\ndoctor/\nclinic\n(\\%)",
+                                     "SRHC/\nRHC\n(\\%)",
+                                     "Routine\nANC\nlocation\nin\nvillage/ward\n(\\%)",
+                                     "Incur\ncosts?\n(\\%)",
+                                     "Cost\namount\n(MMK)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 9) %>%
+  kableExtra::add_header_above(header = c(" " = 3, "Type of test" = 4, "Location test was done" = 5, " " = 2)) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE) %>%
+  landscape()
+```
+
+### Birth/delivery {#birth}
+
+```{r gestAgetable, echo = FALSE, eval = TRUE}
+tab <- recode_birth(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
+  create_unweighted_table(vars = "gestage")
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Gestational age at birth (weeks)",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", "Gestational\nage\n(weeks)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 12) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE)
+```
+
+```{r birth1table, echo = FALSE, eval = TRUE}
+tab <- recode_birth(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
+  create_unweighted_table(vars = c("birth1a", "birth1b", "birth1c", "birth1d", "birth1e", "birth1f"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+  
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Location of birth/delivery",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Home\n(\\%)",
+                                     "Government\nhospital\n(\\%)",
+                                     "Private\ndoctor/\nclinic\n(\\%)",
+                                     "SRHC/RHC\n(\\%)",
+                                     "Routine\nANC\nlocation\nin\nvillage\n(\\%)",
+                                     "EHO\nclinic\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 12) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE)
+```
+
+```{r birth2table, echo = FALSE, eval = TRUE}
+tab <- recode_birth(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
+  create_unweighted_table(vars = c("birth2a", "birth2b", "birth2c", "birth2d", "birth2e"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+  
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Reason for choosing birth/delivery location",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Convenience\n(\\%)",
+                                     "Tradition\n(\\%)",
+                                     "Close\ndistance\n(\\%)",
+                                     "Safety\nfor\nmother/baby\n(\\%)",
+                                     "Affordable\ncost\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 12) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE)
+```
+
+```{r birth3table, echo = FALSE, eval = TRUE}
+tab <- recode_birth(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
+  create_unweighted_table(vars = c("birth3a", "birth3b", "birth3c", "birth3d", 
+                                   "birth3e", "birth3f", "birth3g", "birth3h", 
+                                   "birth3i"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Who assisted in birth/delivery",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Doctor\n(\\%)",
+                                     "Nurse\n(\\%)",
+                                     "Lady\nhealth\nvisitor\n(\\%)",
+                                     "Midwife\n(\\%)",
+                                     "Auxilliary\nmidwife\n(\\%)",
+                                     "Traditional\nbirth\nattendant\n(\\%)",
+                                     "On\nmy\nown\n(\\%)",
+                                     "Relatives\n(\\%)",
+                                     "EHO\ncadres\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 10) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE) %>%
+  landscape()
+```
+
+```{r birth4table, echo = FALSE, eval = TRUE}
+tab <- recode_birth(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
+  create_unweighted_table(vars = c("birth4a", "birth4b", "birth4c", "birth4d"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Birth/delivery method",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Normal\n(\\%)",
+                                     "Caesarian\n(\\%)",
+                                     "Vacuum\n(\\%)",
+                                     "Forceps\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 12) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE)
+```
+
+```{r birth5table, echo = FALSE, eval = TRUE}
+tab <- recode_birth(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
+  create_unweighted_table(vars = c("birth5", "birth6", "birth7"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+  
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Costs incurred for birth/delivery",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Incurred\ncosts?\n(\\%)",
+                                     "Delivery\ncost\n(MMK)",
+                                     "Took\na\nloan?\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 12) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE)
+```
+
+### Postnatal care {#pnc}
+
+```{r pnc1table, echo = FALSE, eval = TRUE}
+tab <- recode_pnc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
+  create_unweighted_table(vars = c("pnc1", "pnc2", 
+                                   "pnc3a", "pnc3b", "pnc3c", "pnc3d", "pnc3e", 
+                                   "pnc3f", "pnc3g", "pnc3h"))
+
+tab[ , c(3, 5:ncol(tab))] <- tab[ , c(3, 5:ncol(tab))] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Postnatal care coverage",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Received\npostnatal\ncare\n(\\%)",
+                                     "Time\nto\ncare\n(days)",
+                                     "Doctor\n(\\%)",
+                                     "Nurse\n(\\%)",
+                                     "Lady\nhealth\nvisitor\n(\\%)",
+                                     "Midwife\n(\\%)",
+                                     "Auxilliary\nmidwife\n(\\%)",
+                                     "Traditional\nbirth\nattendant\n(\\%)",
+                                     "Relatives\n(\\%)",
+                                     "EHO\ncadres\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 10) %>%
+  kableExtra::add_header_above(header = c(" " = 4, "Provider of postnatal care" = 8)) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE) %>%
+  landscape()
+```
+
+```{r pnc2table, echo = FALSE, eval = TRUE}
+tab <- recode_pnc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
+  create_unweighted_table(vars = "pnc5")
+
+tab[ , 3] <- tab[ , 3] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Vitamin B1 supplementation",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Vitamin\nB1\nsupplementation\nduration\n(weeks)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 12) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE)
+```
+
+```{r pnc3table, echo = FALSE, eval = TRUE}
+tab <- recode_pnc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
+  create_unweighted_table(vars = c("pnc6", 
+                                   "pnc7a", "pnc7b", "pnc7c", 
+                                   "pnc7d", "pnc7e", "pnc7f"))
+
+tab[ , 5:ncol(tab)] <- tab[ , 5:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Costs of postnatal care",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Costs\nincurred?\n(\\%)",
+                                     "Transportation\n(\\%)",
+                                     "Registration\n(\\%)",
+                                     "Medicine\n(\\%)", 
+                                     "Laboratory\nfees\n(\\%)",
+                                     "Provider\nfees\n(\\%)", 
+                                     "Gifts\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 10) %>%
+  kableExtra::add_header_above(header = c(" " = 3, "Reason for costs" = 6)) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE) %>%
+  landscape()
+```
+
+### Newborn care {#nbc}
+
+```{r nbc1table, echo = FALSE, eval = TRUE}
+tab <- recode_nbc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
+  create_unweighted_table(vars = c("nbc1", "nbc2",
+                                   "nbc3a", "nbc3b", "nbc3c", "nbc3d", 
+                                   "nbc3e", "nbc3f", "nbc3g", "nbc3h"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Newborn care coverage",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Newborn\ncare\nwithin\n24 hours\n(\\%)",
+                                     "Newborn\ncare\nwithin\n48 hours\n(\\%)",
+                                     "Doctor\n(\\%)",
+                                     "Nurse\n(\\%)",
+                                     "Lady\nhealth\nvisitor\n(\\%)",
+                                     "Midwife\n(\\%)",
+                                     "Auxilliary\nmidwife\n(\\%)",
+                                     "Traditional\nbirth\nattendant\n(\\%)",
+                                     "Relatives\n(\\%)",
+                                     "EHO\ncadres\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 9) %>%
+  kableExtra::add_header_above(header = c(" " = 4, "Provider of newborn care" = 7)) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE) %>%
+  landscape()
+```
+
+```{r nbc2table, echo = FALSE, eval = TRUE}
+tab <- recode_nbc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
+  create_unweighted_table(vars = c("nbc5", "nbc6",
+                                   "nbc7a", "nbc7b", "nbc7c", "nbc7d", 
+                                   "nbc7e", "nbc7f", "nbc8"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Costs of newborn care",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Costs\nincurred?\n(\\%)",
+                                     "Cost\namount\n(MMK)",
+                                     "Transportation\n(\\%)",
+                                     "Registration\n(\\%)",
+                                     "Medicine\n(\\%)", 
+                                     "Laboratory\nfees\n(\\%)",
+                                     "Provider\nfees\n(\\%)", 
+                                     "Gifts\n(\\%)",
+                                     "Took\na\nloan?\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 10) %>%
+  kableExtra::add_header_above(header = c(" " = 4, "Reason for costs" = 6, " ")) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE) %>%
+  landscape()
+```
+
+```{r nbc3table, echo = FALSE, eval = TRUE}
+tab <- recode_nbc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
+  create_unweighted_table(vars = "nbc9")
+
+tab[ , 3] <- tab[ , 3] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Fed colostrum to newborn",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Fed\ncolostrum\nto\nnewboarn\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 12) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE)
+```
+
+```{r nbc4table, echo = FALSE, eval = TRUE}
+tab <- recode_nbc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
+  create_unweighted_table(vars = c("nbc10a", "nbc10b", "nbc10c", "nbc10d", "nbc10e",
+                                   "nbc10f", "nbc10g", "nbc11"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Knowledge of danger signs",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Feeding\nless\n(\\%)",
+                                     "Convulsion\n(\\%)",
+                                     "High/low\ntemperature\n(\\%)",
+                                     "Local\ninfection\n(\\%)",
+                                     "No\nless\nmovement\n(\\%)",
+                                     "Fast/\ndifficulty\nbreathing\n(\\%)",
+                                     "Yellow\nskin\n(\\%)",
+                                     "Does\nnot\nknow\nany\ndanger\nsigns\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 9) %>%
+  kableExtra::add_header_above(header = c(" " = 2, "Danger signs" = 7, " ")) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE) %>%
+  landscape()
+```
+
+```{r nbc5table, echo = FALSE, eval = TRUE}
+tab <- recode_nbc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
+  create_unweighted_table(vars = c("nbc13", "nbc15"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Care of cord and delivery wound",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Inappropriate\ncord\ncare\n(\\%)",
+                                     "Inappropriate\ndelivery\nwound\ncare\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 12) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE)
+```
+
+\newpage
+
+## Maternal nutrition
+
+### Minimum dietary diversity for women
+
+```{r mddw1table, echo = FALSE, eval = TRUE}
+tab <- recode_mddw(df = hh) %>%
+  create_unweighted_table(vars = c("mddw"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Minimum dietary diversity for women",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Minimum\ndietary\ndiversity\nfor\nwomen\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 12) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE)
+```
 
 ## Cohort study {#study2-results}
 
+### Child anthropometric indicators
 
+```{r rd1, echo = FALSE, eval = TRUE, results = FALSE}
+tab <- recode_anthro(df = create_canthro(df = childAnthro, x = anthroDF))
+
+tab <- tab[tab$sample_component == 2, ]
+```
+
+```{r rd2, echo = FALSE, eval = TRUE, fig.cap = "Weight-for-age z-score regression discontinuity", fig.width = 8, fig.height = 6, fig.align = "center", fig.pos = "H"}
+ggplot(data = tab[tab$geo_state == "MMR002", ],
+       mapping = aes(x = lubridate::ymd(dob), y = waz)) +
+  geom_point(pch = 21, fill = "#247BA0", alpha = 0.5) +
+  geom_vline(xintercept = lubridate::ymd("2018-10-01"), colour = "darkred") +
+  geom_smooth(data = tab[tab$dob %within% 
+                           interval(start = lubridate::ymd("2018/09/01"),
+                                    end = lubridate::ymd("2018/09/30")), ],
+              linetype = "dashed", colour = "darkblue", 
+              fill = "#247BA0", alpha = 0.3) +
+  geom_smooth(data = tab[tab$dob %within% 
+                           interval(start = lubridate::ymd("2018/10/01"),
+                                    end = lubridate::ymd("2018/10/31")), ],
+              linetype = "dashed", colour = "darkgreen",
+              fill = "#70C1B3", alpha = 0.3) +
+  labs(x = "", y = "Weight-for-age z-score (WAZ)") +
+  themeSettings
+```
+
+```{r rd3, echo = FALSE, eval = TRUE, fig.cap = "Height-for-age z-score regression discontinuity", fig.width = 8, fig.height = 6, fig.align = "center", fig.pos = "H"}
+ggplot(data = tab[tab$geo_state == "MMR002", ],
+       mapping = aes(x = lubridate::ymd(dob), y = haz)) +
+  geom_point(pch = 21, fill = "#247BA0", alpha = 0.5) +
+  geom_vline(xintercept = lubridate::ymd("2018-10-01"), colour = "darkred") +
+  geom_smooth(data = tab[tab$dob %within% 
+                           interval(start = lubridate::ymd("2018/09/01"),
+                                    end = lubridate::ymd("2018/09/30")), ],
+              linetype = "dashed", colour = "darkblue", 
+              fill = "#247BA0", alpha = 0.3) +
+  geom_smooth(data = tab[tab$dob %within% 
+                           interval(start = lubridate::ymd("2018/10/01"),
+                                    end = lubridate::ymd("2018/10/31")), ],
+              linetype = "dashed", colour = "darkgreen",
+              fill = "#70C1B3", alpha = 0.3) +
+  labs(x = "", y = "Height-for-age z-score (HAZ)") +
+  themeSettings
+```
+
+```{r rd4, echo = FALSE, eval = TRUE, fig.cap = "Weight-for-height z-score regression discontinuity", fig.width = 8, fig.height = 6, fig.align = "center", fig.pos = "H"}
+ggplot(data = tab[tab$geo_state == "MMR002", ],
+       mapping = aes(x = lubridate::ymd(dob), y = whz)) +
+  geom_point(pch = 21, fill = "#247BA0", alpha = 0.5) +
+  geom_vline(xintercept = lubridate::ymd("2018-10-01"), colour = "darkred") +
+  geom_smooth(data = tab[tab$dob %within% 
+                           interval(start = lubridate::ymd("2018/09/01"),
+                                    end = lubridate::ymd("2018/09/30")), ],
+              linetype = "dashed", colour = "darkblue", 
+              fill = "#247BA0", alpha = 0.3) +
+  geom_smooth(data = tab[tab$dob %within% 
+                           interval(start = lubridate::ymd("2018/10/01"),
+                                    end = lubridate::ymd("2018/10/31")), ],
+              linetype = "dashed", colour = "darkgreen",
+              fill = "#70C1B3", alpha = 0.3) +
+  labs(x = "", y = "Weight-for-height z-score (HAZ)") +
+  themeSettings
+```
+
+```{r rd5, echo = FALSE, eval = TRUE, fig.cap = "MUAC regression discontinuity", fig.width = 8, fig.height = 6, fig.align = "center", fig.pos = "H"}
+ggplot(data = tab[tab$geo_state == "MMR002", ],
+       mapping = aes(x = lubridate::ymd(dob), y = muac)) +
+  geom_point(pch = 21, fill = "#247BA0", alpha = 0.5) +
+  geom_vline(xintercept = lubridate::ymd("2018-10-01"), colour = "darkred") +
+  geom_smooth(data = tab[tab$dob %within% 
+                           interval(start = lubridate::ymd("2018/09/01"),
+                                    end = lubridate::ymd("2018/09/30")), ],
+              linetype = "dashed", colour = "darkblue", 
+              fill = "#247BA0", alpha = 0.3) +
+  geom_smooth(data = tab[tab$dob %within% 
+                           interval(start = lubridate::ymd("2018/10/01"),
+                                    end = lubridate::ymd("2018/10/31")), ],
+              linetype = "dashed", colour = "darkgreen",
+              fill = "#70C1B3", alpha = 0.3) +
+  labs(x = "", y = "MUAC (cm)") +
+  themeSettings
+```
 
 \newpage
 
