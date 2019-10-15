@@ -63,17 +63,14 @@ themeSettings <- theme_bw() +
                                         fill = "gray70"),
         strip.text = element_text(colour = "white", size = 16),
         legend.text = element_text(size = 16),
-        legend.key = element_rect(linetype = 0, size = 3),
+        legend.key = element_rect(linetype = 0),
+        legend.key.size = unit(0.5, "cm"),
         legend.position = "top",
         axis.title = element_text(size = 16),
         axis.text.x = element_text(size = 14),
         axis.text.y = element_text(size = 14),
         axis.ticks = element_line(colour = "gray50", size = 0.5))
 ```
-
-\newpage
-
-# Acknowledgements {-}
 
 \newpage
 
@@ -222,7 +219,7 @@ Sample recruitment utilised a full list or registry of births one month before a
 
 ## Data collection
 
-Data was collected using an electronic data entry system based on the **Open Data Kit (ODK)** standard that runs on the Android operating software (OS) platform for mobile devices. The study instrument (see Annex 1) was encoded into the electronic data entry system platform and was served out of a secure aggregate server hosted by ONA[^3]. Each data collector was provided with a tablet running on Android OS that was configured with the ODK application that receives the electronic data form. All measurements and answers by respondents were then recorded on the tablets and transmitted to the remote server whenever there was a mobile and/or wireless internet signal. This data collection system was not reliant on internet connection as the data collection could be performed offline, with the completed e-questionnaires saved on the interviewers’ tablets. An internet connection was needed only when finalized encoded forms were ready to submit to the remote server, and this submission was done at regular intervals and timed when there was available internet connection for the data collectors. The survey teams aimed to submit forms on a daily basis.
+Data was collected using an electronic data entry system based on the **Open Data Kit (ODK)** standard that runs on the Android operating software (OS) platform for mobile devices. The study instrument was encoded into the electronic data entry system platform and was served out of a secure aggregate server hosted by ONA[^3]. Each data collector was provided with a tablet running on Android OS that was configured with the ODK application that receives the electronic data form. All measurements and answers by respondents were then recorded on the tablets and transmitted to the remote server whenever there was a mobile and/or wireless internet signal. This data collection system was not reliant on internet connection as the data collection could be performed offline, with the completed e-questionnaires saved on the interviewers’ tablets. An internet connection was needed only when finalized encoded forms were ready to submit to the remote server, and this submission was done at regular intervals and timed when there was available internet connection for the data collectors. The survey teams aimed to submit forms on a daily basis.
 
 ### Questionnaire design:
 
@@ -525,7 +522,7 @@ The Myanmar MCCT Programme evaluation assessed the following child nutrition ind
 
 **Childhood undernutrition**
 
-Respective childhood undernutrition indices for childhood stunting, childhood wasting and childhood underweight were assessed. The height-for-age z-scores (HAZ), weight-for-height z-scores (WAZ) and weight-for-age z-scores of each 6-59 month old child in the sample were calculated using the using the R package **zscorer**[^15] [@zscorer2019]. Once z-score values were calculated, implausible z-score values were flagged using the WHO Growth Standards flagging criteria [@WorldHealthOrganizationWHO2006]. This was facilitated through the **nutricheckr** R package[^16] [@nutricheckr2019]. Further anthropometric data quality checks were performed using **nipnTK**[^17] [@nipnTK2019] R package which is based on an anthropometric data quality check toolkit developed and produced by the [National Information Platforms for Nutrition (NIPN)](http://www.nipn-nutrition-platforms.org) and funded by the European Union (see Annex 3 for the anthropometric data quality report).
+Respective childhood undernutrition indices for childhood stunting, childhood wasting and childhood underweight were assessed. The height-for-age z-scores (HAZ), weight-for-height z-scores (WAZ) and weight-for-age z-scores of each 6-59 month old child in the sample were calculated using the using the R package **zscorer**[^15] [@zscorer2019]. Once z-score values were calculated, implausible z-score values were flagged using the WHO Growth Standards flagging criteria [@WorldHealthOrganizationWHO2006]. This was facilitated through the **nutricheckr** R package[^16] [@nutricheckr2019]. Further anthropometric data quality checks were performed using **nipnTK**[^17] [@nipnTK2019] R package which is based on an anthropometric data quality check toolkit developed and produced by the [National Information Platforms for Nutrition (NIPN)](http://www.nipn-nutrition-platforms.org) and funded by the European Union.
 
 **Infant and young child feeding**
 
@@ -944,7 +941,7 @@ ggplot(data = tab[!tab$strata %in% c("Urban", "Rural", "Hard-to-reach") & tab$st
 
 #### Livelihood-based coping strategies index {#lcsi-results}
 
-The use of a few consumption-based coping strategies by households in Kayah state can be partly explained by close to 50% of households being relatively food secuire in that they are not requiring longer-term livelihoods-based coping strategies. However, up to 40% of households across Kayah state utilise stress type of livelihoods coping strategies in the longer term. There is not as clear a geographical or wealth gradient for livelihoods-based coping strategies. Houeholds in rural areas employ the most crisis and emergency type of livelihood coping strategies although households hard-to-reach areas use more emergency type of strategies (see Figure \@ref(fig:lcsi1plot)). Poor and poorest households employ the most emergency type livelihoods coping strategies although households who are wealthy or medium have the highest combined usage of crisi and emergency type livelihoods strategies (see Figure \@ref(fig:lcsi2plot)).
+The use of a few consumption-based coping strategies by households in Kayah state can be partly explained by close to 50% of households being relatively food secuire in that they are not requiring longer-term livelihoods-based coping strategies. However, up to 40% of households across Kayah state utilise stress type of livelihoods coping strategies in the longer term. There is not as clear a geographical or wealth gradient for livelihoods-based coping strategies. Houeholds in rural areas employ the most crisis and emergency type of livelihood coping strategies although households hard-to-reach areas use more emergency type of strategies (see Figure \@ref(fig:lcsi1plot)). Poor and poorest households employ the most emergency type livelihoods coping strategies although households who are wealthy or medium have the highest combined usage of crisis and emergency type livelihoods strategies (see Figure \@ref(fig:lcsi2plot)).
 
 ```{r lcsi1table, echo = FALSE, eval = TRUE}
 tab <- recode_csi_livelihoods(df = hh) %>%
@@ -1010,6 +1007,35 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") 
 
 ### Household food expenditure share {#hfes-results}
 
+Majority of households accress Kayah state have low food insecurity (see Table \@ref(tab:hfes2table)). However, there are pockets of households in mostly hard-to-reach areas and households who are poor and poorest that are highly food insecure or vulnerable (see Figure \@ref(fig:hfesScatterPlot1) and Figure \@ref(fig:hfesScatterPlot2)).
+
+```{r hfes2table, echo = FALSE, eval = TRUE}
+tab <- recode_hfes(df = hh) %>%
+  create_unweighted_table(vars = c("vulnerable", "high", "medium", "low"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Household food expenditure share",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", c("Vulnerable\n(\\%)", "High\n(\\%)", "Medium\n(\\%)", "Low\n(\\%)")),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 12) %>%
+  kableExtra::add_header_above(header = c(" " = 2, "Food Insecurity by HFES" = 4), align = "c") %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE)
+```
+
+\newpage
 
 ```{r hfesScatterPlot1, echo = FALSE, eval = TRUE, fig.cap = "Household food expenditure share by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tab <- recode_hfes(df = hh)
@@ -1047,7 +1073,7 @@ ggplot(data = tab[tab$sample_component == 1 & tab$geo_state == "Kayah", ],
   facet_grid(. ~ geo_rural) + 
   scale_x_continuous(breaks = seq(from = 0, to = 300, by = 50)) +
   scale_y_continuous(breaks = seq(from = 0, to = 100, by = 20)) +
-  labs(x = "Food expenditure (1,000 MMK)", y = "HFES (%)") +
+  labs(x = "Food expenditure (1,000 MMK)", y = "HFES (%)", fill = "HFES Classification") +
   themeSettings
 ```
 
@@ -1109,77 +1135,15 @@ ggplot(data = tab[tab$sample_component == 1 & tab$geo_state == "Kayah", ],
   facet_grid(. ~ wealthQuintile) + 
   scale_x_continuous(breaks = seq(from = 0, to = 300, by = 50)) +
   scale_y_continuous(breaks = seq(from = 0, to = 100, by = 20)) +
-  labs(x = "Food expenditure (1,000 MMK)", y = "HFES (%)") +
-  themeSettings
-```
-
-```{r hfes2table, echo = FALSE, eval = TRUE}
-tab <- recode_hfes(df = hh) %>%
-  create_unweighted_table(vars = c("vulnerable", "high", "medium", "low"))
-
-tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
-
-knitr::kable(x = tab[tab$state == "Kayah", ],
-             caption = "Household food expenditure share",
-             booktabs = TRUE,
-             row.names = FALSE,
-             col.names = linebreak(c("", "", c("Vulnerable\n(\\%)", "High\n(\\%)", "Medium\n(\\%)", "Low\n(\\%)")),
-                                   align = "c"),
-             escape = FALSE,
-             digits = 1,
-             format = "latex") %>%
-  kableExtra::kable_styling(latex_options = c("HOLD_position"),
-                            font_size = 12) %>%
-  kableExtra::add_header_above(header = c(" " = 2, "Food Insecurity by HFES" = 4), align = "c") %>%
-  kableExtra::row_spec(row = 0, bold = TRUE) %>%
-  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
-  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
-  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
-  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
-                        italic = TRUE)
-```
-
-```{r hfes1plot, echo = FALSE, eval = TRUE, fig.cap = "Household food expenditure share by location type", fig.width = 12, fig.height = 9, fig.align = "center", fig.pos = "H"}
-tabLong <- tidyr::pivot_longer(data = tab,
-                               cols = vulnerable:low,
-                               names_to = "indicators", values_to = "estimate")
-
-tabLong$indicators <- factor(tabLong$indicators, 
-                             levels = c("low", "medium", "high", "vulnerable"),
-                             labels = c("Low", "Medium", "High", "Vulnerable"))
-tabLong$strata <- factor(tabLong$strata, 
-                         levels = c("Urban", "Rural", "Hard-to-reach", 
-                                    "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
-tabLong$state <- factor(tabLong$state, levels = c("Kayin", "Kayah"))
-
-ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
-       aes(x = strata, y = estimate, fill = indicators)) +
-  geom_col(width = 0.5) +
-  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
-            position = position_stack(vjust = 0.5), size = 3) +
-  #facet_grid(. ~ state) +
-  #scale_y_continuous(limits = c(0, 100)) +
-  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
-  labs(x = "", y = "%", fill = "HFES classification") +
-  themeSettings
-```
-
-```{r hfes2plot, echo = FALSE, eval = TRUE, fig.cap = "Household food expenditure share by wealth quintiles", fig.width = 12, fig.height = 9, fig.align = "center", fig.pos = "H"}
-ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
-       aes(x = strata, y = estimate, fill = indicators)) +
-  geom_col(width = 0.5) +
-  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
-            position = position_stack(vjust = 0.5), size = 3) +
-  #facet_grid(. ~ state) +
-  #scale_y_continuous(limits = c(0, 100)) +
-  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
-  labs(x = "", y = "%", fill = "") +
+  labs(x = "Food expenditure (1,000 MMK)", y = "HFES (%)", fill = "HFES Classification") +
   themeSettings
 ```
 
 ### Water, sanitation and hygiene {#wash-results}
 
 #### Water services ladder {#water-results}
+
+There is minimal seasonal variation in households' access to drinking water with majority of households able to get water from improved sources of drinking water whole year round (see \@ref(tab:wash1table)). However, up to 17% of households in hard-to-reach areas use surface water as their drinking water source (see Figure \@ref(fig:wash1plot)). Interestingly, in urban areas, up to 5% still access driking water from surface water. Figure \@ref(fig:wash2ploy) show that the poorer the houshold gets, the higher the probability that the household is accessing drinking water from surface water.
 
 ```{r wash1table, echo = FALSE, eval = TRUE}
 tab <- recode_wash(df = hh) %>%
@@ -1188,6 +1152,8 @@ tab <- recode_wash(df = hh) %>%
                                    "winter1", "winter6", "winter5"))
 
 tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+
+tab$strata <- factor(x = tab$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
 
 knitr::kable(x = tab[tab$state == "Kayah", ],
              caption = "Water service ladders",
@@ -1199,7 +1165,7 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
              escape = FALSE,
              format = "latex") %>%
   kableExtra::kable_styling(latex_options = c("HOLD_position"),
-                            font_size = 10) %>%
+                            font_size = 8) %>%
   kableExtra::add_header_above(header = c(" " = 2, 
                                           "Summer Season" = 3, 
                                           "Rainy Season" = 3, 
@@ -1210,9 +1176,11 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
   kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
   kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
-                        italic = TRUE) %>%
-  landscape
+                        italic = TRUE) #%>%
+  #landscape
 ```
+
+\newpage
 
 ```{r wash1plot, echo = FALSE, eval = TRUE, fig.cap = "Water services ladder by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tabLong <- tidyr::pivot_longer(data = tab,
@@ -1264,12 +1232,16 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") 
 
 #### Sanitation services ladder
 
-```{r san1table, echo = FALSE, eval = TRUE}
+```{r sanTable, echo = FALSE, eval = TRUE, results = FALSE}
 tab <- recode_wash(df = hh) %>%
   create_unweighted_table(vars = c("san3", "san4", "san5", "san6"))
 
 tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+```
 
+Up to 50% of households in Kayah state have at least a limited (improved toilet facility but shared with other households) or basic (improved sanitation facility and not shared with other households) sanitation facilities (see Table \@ref(tab:san1table)). On the other hand, unimproved sanitation facilities and open defection are used by more households in hard-to-reach areas (see \@ref(fig:san1plot)) and increasingly used as households get poorer (see Figure \@ref(fig:san2plot)). Up to `r paste(round(tab[tab$state == "Kayah" & tab$strata == "Wealthiest", "san5"], digits = 1), "%", sep = "")` of wealthiest households and `r paste(round(tab[tab$state == "Kayah" & tab$strata == "Wealthy", "san5"], digits = 1), "%", sep = "")` of wealthy households have unimproved sanitation facialities.
+
+```{r san1table, echo = FALSE, eval = TRUE}
 knitr::kable(x = tab[tab$state == "Kayah", ],
              caption = "Sanitation service ladders",
              booktabs = TRUE,
@@ -1288,6 +1260,8 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
                         italic = TRUE)
 ```
+
+\newpage
 
 ```{r san1plot, echo = FALSE, eval = TRUE, fig.cap = "Sanitation services ladder by location type", fig.width = 12, fig.height = 9, fig.align = "center", fig.pos = "H"}
 tabLong <- tidyr::pivot_longer(data = tab,
@@ -1325,6 +1299,15 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") 
 
 #### Handwashing service ladders
 
+```{r handwashingTable, echo = FALSE, eval = TRUE}
+tab <- recode_wash(df = hh) %>%
+  create_unweighted_table(vars = c("hw14", "hw15", "hw16"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+```
+
+Access to basic (handwashing facilities with water and soap) handwashing facilities is as high as `r paste(round(tab[tab$state == "Kayah" & tab$strata == "Urban", "hw14"], digits = 1), "%", sep = "")` in urban areas and `r paste(round(tab[tab$state == "Kayah" & tab$strata == "Rural", "hw14"], digits = 1), "%", sep = "")` in rural areas. Hard-to-reach areas on the other hand have much lower access to basic facilities and with the highest proportion of households with no facilities at all (see Figure \@ref(fig:handwashing1plot)). The same trend exists as households get poorer with the poorest households having low levels of access to basic handwashing facilities and highest levels of no handwashing facilities (see Figure \@ref(fig:handwashing2plot)).
+
 ```{r handwashing1table, echo = FALSE, eval = TRUE}
 tab <- recode_wash(df = hh) %>%
   create_unweighted_table(vars = c("hw14", "hw15", "hw16"))
@@ -1350,7 +1333,9 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
                         italic = TRUE)
 ```
 
-```{r handwashing1plot, echo = FALSE, eval = TRUE, fig.cap = "Handwashing services ladder by location type", fig.width = 12, fig.height = 9, fig.align = "center", fig.pos = "H"}
+\newpage
+
+```{r handwashing1plot, echo = FALSE, eval = TRUE, fig.cap = "Handwashing services ladder by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tabLong <- tidyr::pivot_longer(data = tab,
                                cols = hw14:hw16,
                                names_to = "indicators", values_to = "estimate")
@@ -1371,7 +1356,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
   themeSettings
 ```
 
-```{r handwashing2plot, echo = FALSE, eval = TRUE, fig.cap = "Handwashing services ladder by wealth quintiles", fig.width = 12, fig.height = 9, fig.align = "center", fig.pos = "H"}
+```{r handwashing2plot, echo = FALSE, eval = TRUE, fig.cap = "Handwashing services ladder by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate, fill = indicators)) +
   geom_col(width = 0.5) +
@@ -1387,6 +1372,12 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") 
 ### Child health {#chealth-results}
 
 #### Immunisation coverage {#epi-results}
+
+Immunisation coverage in Kayah state tells a story of good initial access to immunisation services with hight rates of BCG vaccination. However, utilisation of immunisation services (as proxied by children getting all required pentavalent vaccinations) begins to drop particularly in hard-to-reach areas and then full immunisation coverage drops significantly in all areas but more significantly in hard-to-reach areas (see Figure \@ref(fig:epi1plot)).
+
+Per vaccination type coverage is significantly low across the whole of Kayah state (see Table \@ref(tab:epi2table)) with households in hard-to-reach areas and poor and poorest households with the lowest per vaccine type coverage (see Figure \@ref(fig:epi3plot) and Figure \@ref(fig:epi4plot)).
+
+Coverage of vitamin A supplementation, a service that is usually delivered together with immunisation, is relatively higher going up to about 70% in urban and rural areas but much lower in hard-to-reach areas (see Figure \@ref(fig:epi5plot)) and and lower in poor and poorest households (see Figure \@ref(fig:epi6plot)). Deworming coverage is low at only up to 30% in urban and rural areas and considerably lower in hard-to-reach areas (see Figure \@ref(fig:epi5plot)) and poor and poorest households (see Figure \@ref(fig:epi6plot)).
 
 ```{r epi1table, echo = FALSE, eval = TRUE}
 tab <- recode_chealth(df = create_chealth(df = childHealth, x = hh, y = hhMembers)) %>%
@@ -1419,6 +1410,8 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
                         italic = TRUE) %>%
   landscape()
 ```
+
+\newpage
 
 ```{r epi1plot, echo = FALSE, eval = TRUE, fig.cap = "Immunisation coverage by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tab <- subset(tab, select = c(-vac2, -vac6))
@@ -1503,7 +1496,7 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   landscape()
 ```
 
-```{r epi3plot, echo = FALSE, eval = TRUE, fig.cap = "Immunisation coverage per vaccine by location type", fig.width = 8, fig.height = 17, fig.align = "center", fig.pos = "H"}
+```{r epi3plot, echo = FALSE, eval = TRUE, fig.cap = "Immunisation coverage per vaccine by location type", fig.width = 8, fig.height = 15, fig.align = "center", fig.pos = "H"}
 tabLong <- tidyr::pivot_longer(data = tab,
                                cols = c("bcg", "hepb", "penta1", "penta2", 
                                         "penta3", "polio1", "polio2", "polio3", 
@@ -1546,7 +1539,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
   themeSettings
 ```
 
-```{r epi4plot, echo = FALSE, eval = TRUE, fig.cap = "Immunisation coverage per vaccine by wealth quintiles", fig.width = 12, fig.height = 17, fig.align = "center", fig.pos = "H"}
+```{r epi4plot, echo = FALSE, eval = TRUE, fig.cap = "Immunisation coverage per vaccine by wealth quintiles", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
   geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
@@ -1626,6 +1619,12 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") 
 
 ### Period prevalence of childhood illnesses {#illness}
 
+Fever is the most self-reported illness in children 6-59 months old with 22% of mothers reporting fever in their children in the past 2 weeks in urban areas and by 15% of mothers in rural and hard-to-reach areas (see Figure \@ref(fig:ill1plot)). The wealtheir households also report fever the most at 17.8% for wealthiest and 22.6 for wealthy households compared to 13.6% for poor and 15.3 for poorest households (see Figure \@ref(fig:ill2plot)).
+
+Diarrhoea is the next most self-reported illness in children 6-59 months old with 16.6% of mothers in rural areas and 15.6% in hard-to-reach areas reporting diarrhoea in their children in the past 2 weeks (see Figure \@ref(fig:ill1plot). The poorer the household, the more mothers report dirrhoea in their children (see Figure \@ref(fig:ill2plot)).
+
+ARI is the least self-reported illness in children 6-59 months old with 2% and 1.5% of mothers in urban and rural areas reporting cough in their children in the past 2 weeks. Those in hard-to-reach areas report ARI the most at 6.5% (see Figure \@ref(fig:ill1plot). The poorest households reported the most ARI in children at 9.2% (see Figure \@ref(fig:ill2plot)).
+
 ```{r ill1table, echo = FALSE, eval = TRUE}
 tab <- recode_chealth(df = create_chealth(df = childHealth, x = hh, y = hhMembers)) %>%
   create_unweighted_table(vars = c("dia1", "ari1", "fev1"))
@@ -1650,6 +1649,8 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
                         italic = TRUE)
 ```
+
+\newpage
 
 ```{r ill1plot, echo = FALSE, eval = TRUE, fig.cap = "Period prevalence of childhood illnesses by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tabLong <- tidyr::pivot_longer(data = tab, 
@@ -1684,6 +1685,10 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") 
 ### Treatment-seeking behaviour {#ctreatment}
 
 #### Diarrhoea {#diarrhoea}
+
+Treatment-seeking for diarrhoea in Kayah state can be characterised by households in rural areas seeking treatment the most (100%) whilst those in urban and hard-to-reach areas seeking treatment significantly much less (see Figure \@ref(fig:diarrhoea1plot)). When asked why treatment was not sought for diarrhoea, those from the urban areas were advised not to seek treatment whilst those in hard-to-reach areas reported not having a facility as the reason for not seeking treatment (see Figure \@ref(fig:diarrhoea2plot)). Comparing these reasons, those from the urban areas seem to not seek care by choice (chose not to) rather than by circumstance (no choice as there is no facility from which to seek treatment). Time to treatment is usually longer for those in hard-to-reach areas compared to those in rural and urban areas and those who are poor and poorest compared to the wealthy and wealthiest (see Table \@ref(tab:diarrhoea1table)).
+
+Those from urban areas tended to either self-medicate (bought drug from shop) or went to a private doctor whilst those from rural and hard-to-reach areas predominantly went to their SRHC/midwife (see Figure \@ref(fig:diarrhoea5plot)). Costs incurred for treatment were all for medications (see Table \@ref(tab:diarrhoea3table)).
 
 ```{r diarrhoea1table, echo = FALSE, eval = TRUE}
 tab <- recode_chealth(df = create_chealth(df = childHealth, x = hh, y = hhMembers)) %>%
@@ -1870,28 +1875,6 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
 ```
 
 ```{r diarrhoea6plot, echo = FALSE, eval = TRUE, fig.cap = "Where/who treatment is sought from by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
-tabLong <- tidyr::pivot_longer(data = tab, 
-                               cols = dia5a:dia5m,
-                               names_to = "indicators", values_to = "estimate")
-
-tabLong$indicators <- factor(x = tabLong$indicators, 
-                             labels = c("Township hospital",
-                                        "Station hospital",
-                                        "RHC/health assistant", 
-                                        "SRHC/midwife",
-                                        "Private clinic/doctor", 
-                                        "Community health worker", 
-                                        "Traditional healer", 
-                                        "Untrained health worker",
-                                        "Drug from shop",
-                                        "EHO clinic/volunteer",
-                                        "Family member",
-                                        "NGOs/clinic",
-                                        "Auxilliary midwife"))
-
-tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
-tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
-
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
                      y= estimate)) +
@@ -1904,7 +1887,6 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 ```
-
 
 ```{r diarrhoea3table, echo = FALSE, eval = TRUE}
 tab <- recode_chealth(df = create_chealth(df = childHealth, x = hh, y = hhMembers)) %>%
@@ -2002,6 +1984,10 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
 ```
 
 #### Acute respiratory infection {#ari}
+
+Treatment-seeking for ARI in Kayah state can be characterised by households in rural areas seeking treatment the most (88.9%) whilst those in urban and hard-to-reach areas seeking treatment less (see Figure \@ref(fig:ari1plot)). When asked why treatment was not sought for ARI, those from the urban areas were advised not to seek treatment and could not access the health facility whilst those in hard-to-reach areas reported not having a facility and not having access to facility as the reasons for not seeking treatment (see Figure \@ref(fig:ari2plot)). Comparing these reasons, those from the urban areas seem to not seek care by choice (chose not to) rather than by circumstance (no choice as there is no facility from which to seek treatment). Time to treatment is usually longer for those in hard-to-reach areas compared to those in rural and urban areas and those who are poor and poorest compared to the wealthy and wealthiest (see Table \@ref(tab:ari1table)).
+
+Those from urban areas tended to see a private doctor whilst those from rural and hard-to-reach areas predominantly went to their SRHC/midwife (see Figure \@ref(fig:ari5plot)). Costs incurred for treatment were majority for medications (see Table \@ref(tab:ari3table)).
 
 ```{r ari1table, echo = FALSE, eval = TRUE}
 tab <- recode_chealth(df = create_chealth(df = childHealth, x = hh, y = hhMembers)) %>%
@@ -2290,6 +2276,21 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
 ```
 
 ```{r ari8plot, echo = FALSE, eval = TRUE, fig.cap = "Costs incurred for treatment by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = ari8a:ari8f,
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(x = tabLong$indicators, 
+                             labels = c("Transportation",
+                                        "Registration",
+                                        "Medicine", 
+                                        "Laboratory fees",
+                                        "Provider fees", 
+                                        "Gifts"))
+
+tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
+tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
                      y= estimate)) +
@@ -2304,6 +2305,10 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
 ```
 
 #### Fever {#fever}
+
+Treatment-seeking for fever in Kayah state can be characterised by households in urban areas seeking treatment the most (85.2%) whilst those in urban and hard-to-reach areas seeking treatment slightly lesser (see Figure \@ref(fig:fever1plot)). When asked why treatment was not sought for fever, those from the urban areas were advised not to seek treatment and could not access the health facility whilst those in rural and hard-to-reach areas reported cost and not having a facility (see Figure \@ref(fig:fever2plot)). Comparing these reasons, those from the urban areas seem to not seek care by choice (chose not to) rather than by circumstance (no choice as there is no facility from which to seek treatment). Time to treatment is usually longer for those in hard-to-reach areas compared to those in rural and urban areas and those who are poor and poorest compared to the wealthy and wealthiest (see Table \@ref(tab:fever1table)).
+
+Those from urban and rural areas tended to see a private doctor whilst those from hard-to-reach areas predominantly went to their SRHC/midwife (see Figure \@ref(fig:fever5plot)). Costs incurred for treatment were majority for medications (see Table \@ref(tab:fever3table)).
 
 ```{r fever1table, echo = FALSE, eval = TRUE}
 tab <- recode_chealth(df = create_chealth(df = childHealth, x = hh, y = hhMembers)) %>%
@@ -2607,15 +2612,16 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
 
 ### Child nutrition {#cnutrition-resilts}
 
-#### Prevalence of childhood stunting {#stunting}
+#### Prevalence of childhood stunting/stuntedness {#stunting}
 
-<<<<<<< HEAD
 ```{r stunt1table, echo = FALSE, eval = TRUE, results = FALSE}
 tab <- recode_anthro(df = create_canthro(df = childAnthro, x = anthroDF)) %>%
   create_anthro_table(vars = c("haz", "global.haz", "moderate.haz", "severe.haz"))
 
 tab[  , 4:ncol(tab)] <- tab[  , 4:ncol(tab)] * 100
 ```
+
+Global childhood stunting/stuntedness in Kayah state goes as high as 48% in hard-to-reach areas and as low as 17.4% in urban areas. There is a geographical gradient in the childhood stunting/stuntedness indicator such that urban areas tend to have the lowest prevalence whilst the hard-to-reach areas had the highest. This trend is consistent for moderate stunting/stuntedness and severe stunting/stuntedness (see Table \@ref(tab:stunt2table)).
 
 ```{r stunt2table, echo = FALSE, eval = TRUE}
 knitr::kable(x = tab[tab$state == "Kayah", ],
@@ -2643,6 +2649,8 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 
 
 #### Prevalence of childhood underweight {#underweight}
+
+Global childhood stunting/stuntedness in Kayah state goes as high as 25% in hard-to-reach areas and as low as 14.5% in urban and rural areas. There is a geographical gradient in the childhood underweight indicator such that urban areas tend to have the lowest prevalence whilst the hard-to-reach areas had the highest. This trend is consistent for moderate underweight and severe underweight (see Table \@ref(tab:underweight2table)).
 
 ```{r underweight1table, echo = FALSE, eval = TRUE, results = FALSE}
 tab <- recode_anthro(df = create_canthro(df = childAnthro, x = anthroDF)) %>%
@@ -2685,6 +2693,9 @@ tab <- recode_anthro(df = create_canthro(df = childAnthro, x = anthroDF)) %>%
 tab[  , 4:ncol(tab)] <- tab[  , 4:ncol(tab)] * 100
 ```
 
+
+Global acute malnutrition by WHZ in Kayah state goes as high as 6% in rural areas and as low as 3.8% in urban and rural areas. There is a geographical gradient in the childhood acute malnutrition indicator such that urban areas tend to have the lowest prevalence whilst the hard-to-reach areas had the highest. This trend is consistent for moderate acute malnutrition and severe acute malnutrition (see Table \@ref(tab:whz2table)).
+
 ```{r whz2table, echo = FALSE, eval = TRUE}
 knitr::kable(x = tab[tab$state == "Kayah", ],
              caption = "Child wasting by weight-for-height z-score",
@@ -2718,6 +2729,7 @@ tab <- recode_anthro(df = create_canthro(df = childAnthro, x = anthroDF)) %>%
 tab[  , 4:ncol(tab)] <- tab[  , 4:ncol(tab)] * 100
 ```
 
+Global acute malnutrition by MUAC in Kayah state goes as high as 4.7% in hard-to-reach areas and as low as 2.5% in urban and rural areas. There is a geographical gradient in the childhood acute malnutrition indicator such that urban areas tend to have the lowest prevalence whilst the hard-to-reach areas had the highest. This trend is consistent for moderate acute malnutrition and severe acute malnutrition (see Table \@ref(tab:muac2table)).
 
 ```{r muac2table, echo = FALSE, eval = TRUE}
 knitr::kable(x = tab[tab$state == "Kayah", ],
@@ -2745,6 +2757,8 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 
 
 #### Infant and young child feeding {#iycf-results}
+
+Infant and young child feeding indicators show that most mothers initiated breastfeeding early when they gave birth to their children who is less than 24 months old. However, exclusivity of breastfeeding is not maintained hence the low levels of exclusive breastfeeding. Only up to 55% in rural areas and 50% in urban areas and 50% in wealthiest and wealthy households are children consuming the minimum meal frequency required with hard-to-reach areas having the lowest at 27.3% and the poorest having 26.1%. Minimum dietary diversity goes up to 54% in urban areas and 43.2% in rural areas but then dropping significantly in hard-to-reach areas to 14%. Only 5.9% of poorest households have their children consume minimally diverse diets. Given low minimum meal frequency and low minimum dietary diversity, children with minimum acceptable diets are also low with only up to 31% of those in urban areas, 24% in rural areas and less than 10% for hard-to-reach areas. Only 5.8% of poorest households feed their children with the minimum acceptable diet (see Table \@ref(fig:iycf1table) and Figure \@ref(fig:iycf1plot) and Figure \@ref(fig:iycf2plot)).
 
 ```{r iycf1table, echo = FALSE, eval = TRUE}
 tab <- recode_iycf(df = create_iycf(df = iycf, x = hh, y = hhMembers)) %>%
@@ -2818,6 +2832,14 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") 
 ### Maternal health {#mhealth-results}
 
 #### Family planning {#fplan-results}
+
+When asked about preferences of when to have next child, the range of responses from women and husbands was about 3.5 to 4 years with the lower end mostly being reported in hard-to-reach areas and in poor and poorest households (see Table \@ref(tab:fplan1table)).
+
+Current contraception use is highest in urban areas at 71.6% followed by rural areas at 59.1%. Only 31.3% of hard-to-reach women and only 27.3% of the poorest women use are using contraception now. Of all contraceptive devices and methods, the injectables are the most commonly used by women in all areas and in all wealth classes followed by pills (see Table \@ref(tab:fplan2table)).
+
+Majority of women using contraptives received family planning services from the government hospital and from the midwife with women from rural and urban areas and wealthiest and wealthy households tending to receive family planning services from the hospital whilst those from hard-to-reach areas receiving their services from the midwife (see Table \@ref(tab:fplan3table)).
+
+A large proportion of women in urban and rural areas and wealthiest and wealthy households have received information on family planning. either from the hospital or from a midwife (see Table \@ref(tab:fplan4table)). Majority of women regardless of location and regardless of wealth class know basic family planning knoweldge (see Table \@ref(tab:fplan4table)).
 
 ```{r fplan1table, echo = FALSE, eval = TRUE}
 tab <- recode_fplan(df = hh) %>%
@@ -2976,6 +2998,8 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 
 #### Antenatal care coverage {#ancCoverage}
 
+Only up to a third of women in urban areas have had at least one ANC visit with a skilled/trained health professional. Slightly lesser proportion of women in rural and hard-to-reach areas have had at least one ANC visit with a skilled/trained health professional. Across wealth classess, about a third of women have had at least one ANC visit with a skilled/trained health professional. This proportion doesn't improve with at least 4 ANC visits with any health professional or service provider. Incurring costs for ANC is dictated by location and by wealth with those in urban and rural areas most often having to pay for ANC-related costs whilst those in hard-to-reach areas rarely having to pay for costs. A similar pattern exist across wealth classes with wealthiest and wealthy women most often have to pay for ANC-related costs whilst poor and poorest women not as often with poorest women only incurring costs at about 4% of the times. However, with regard to amount of costs incurred, women in hard-to-reach areas pay on average more than those in urban or rural areas. This may indicate that women in hard-to-reach areas only consult when there is somehting seriously wrong with their pregnancy hence requiring more specialised and costly care. On the other hand, when assessed by wealth classes, mean costs incurred for ANC visits is highest for the wealthiest and for the poorest. This might indicate thate the wealthiest are spending over and above routine ANC care and services because they can afford it whilst the poorest only attend ANC when there is something seriously wrong with the pregnancy which necessitates much costly type of care.
+
 ```{r anc1table, echo = FALSE, eval = TRUE}
 tab <- recode_anc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past"), 
                   status = "past") %>%
@@ -3058,6 +3082,8 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") 
 
 #### Antenatal care counselling {#ancCounselling}
 
+Majority (93.5%) of women in rural areas received ANC counselling whilst only 79% and 72% of women from urban and hard-to-reach areas do attend. A third of women in hard-to-reach areas and 44% of poorest women restricted eating meat during their most recent pregnancy. On the other hand, 25% of the wealthiest women restricted eating fruits and fish and 37% restricted eating vegetables (see Table \@ref(tab:anc2table)). 
+
 ```{r anc2table, echo = FALSE, eval = TRUE}
 tab <- recode_anc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past"),
                   status = "past") %>%
@@ -3099,6 +3125,8 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 
 #### Antenatal care supplementation {#ancSupplementation}
 
+Most women in rural areas (98.8%) took vitamin B1 supplementation during their pregnancy whilst only 85.4% of women in urban areas and 74.6% of women in hard-t-reach areas took the supplement. Only 73.1 of the poorest women took the supplementat. Only 70% of women in hard-to-reach areas took IFA during their latest pregnancy whilst almost all of those from urban and rural areas took IFA. Only 68.8% of the poorest women took IFA tablets compared to almomst all of the wealthiest and wealthy women taking the IFA tablets. The number of days IFA tablet was taken was at least more than 100 days with length of consumption highest in urban areas and amonts wealthy and wealthiest women. Those in urban areas got their IFA supplements mainly from the government hospital while those from urral and hard-to-reach areas got theirs from the SRHC/RHC (see Table \@ref(tab:anc3table)).
+
 ```{r anc3table, echo = FALSE, eval = TRUE}
 tab <- recode_anc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past"),
                   status = "past") %>%
@@ -3138,6 +3166,8 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 ```
 
 #### Antenatal care testing {#ancTesting}
+
+Only 37.3% of women in urban areas and 35.3% in rural areas had tests done during their ANC whilst only 21.5% of women in hard-to-reach areas had tests done. The poor and poorest women had the least testing done at 17.6% and 22.4% respectively. Majority of the tests done is for HIV/AIDS in rural and urban areas and among wealthiest and wealthy women. STD testing was highest among hard-to-reach and poorest women.The SRHC was the predominant provider of ANC teseting services. About 40% and 54% of women from rural and urban areas incurred costs for ANC testing while only 7.5% of women from hard-to-reach areas had to pay for ANC testing. Women from poorest households also incurred the least costs for ANC testing compared to women in wealthiest and wealthy households.
 
 ```{r anc4table, echo = FALSE, eval = TRUE}
 tab <- recode_anc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past"),
@@ -3182,6 +3212,8 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 ```
 
 ### Birth/delivery {#birth}
+
+About 36 week gestational age was the average when women gave birth in Kayah state. Women in urban areas mostly gave birth in government hospitals while women from rural areas gave birth either at home or in government hospital. Almost all of women in hard-to-reach areas delivered at home. Women from poor and poorest households mostly delivered at home.
 
 ```{r gestAgetable, echo = FALSE, eval = TRUE}
 tab <- recode_birth(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
@@ -3638,6 +3670,8 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 
 ### Minimum dietary diversity for women
 
+Up to 90% of women achieved minimum dietary diversity of consuming 5 out of 10 food groups in the past day. This is true for all areas and wealth classess in Kayah state.
+
 ```{r mddw1table, echo = FALSE, eval = TRUE}
 tab <- recode_mddw(df = hh) %>%
   create_unweighted_table(vars = c("mddw"))
@@ -3666,6 +3700,10 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 
 ## Cohort study {#study2-results}
 
+For the results of the cohort study, the regression discontinuity was demonstrated through a regression plot of children's anthropometric indices and MUAC for those who were born a month before the start of recruitment for the MCCT programme (control programme) and those who were born a month after the start of the recruitment for the MCCT programme (intervention).
+
+An intention-to-treat analysis was applied with intervention cases were identified purely based on their eligibility for the programme. Further analysis of acutal receipt of benefits from MCCT should be included at endline. Following are the results.
+
 ### Child anthropometric indicators
 
 ```{r rd1, echo = FALSE, eval = TRUE, results = FALSE}
@@ -3673,6 +3711,8 @@ tab <- recode_anthro(df = create_canthro(df = childAnthro, x = anthroDF))
 
 tab <- tab[tab$sample_component == 2, ]
 ```
+
+Figure \@ref(fig:rd2), Figure \@ref(fig:rd3), Figure \@ref(fig:rd4) and Figure \@ref(fig:rd5) show regression plots of weight-for-age z-score, height-for-age z-score, weight-for-height z-score and MUAC for children in the control and the intervention groups. Control data is for those before 1 October on the x-axis (left-side of red line on the plot) and the intervention data is for those on and after 1 October on the x-axis (right-side of red line on the plot). In all these cases, no regression discontinuity can be appreciated that is both control and intervention cases are anthropometrically similar groups. It should be appreciated that this is about a year after intervention where it would have been possible that some discontinuity would have already been observed.
 
 ```{r rd2, echo = FALSE, eval = TRUE, fig.cap = "Weight-for-age z-score regression discontinuity", fig.width = 8, fig.height = 6, fig.align = "center", fig.pos = "H"}
 ggplot(data = tab[tab$geo_state == "MMR002", ],
@@ -3752,28 +3792,7 @@ ggplot(data = tab[tab$geo_state == "MMR002", ],
 
 \newpage
 
-# Annex 1: Study questionnaires {-}
-
-This goes here. What else?
-
-\newpage
-
-# Annex 2: Anthropometric standardisation results {-}
-
-Standardisation results here
-
-\newpage
-
-# Annex 3: Anthropometric data quality check {-}
-
-\newpage
-
 # References {-}
-
-
-
-
-
 
 
 
