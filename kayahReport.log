@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.7.4)  23 OCT 2019 21:36
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.7.4)  24 OCT 2019 04:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1218,11 +1218,11 @@ Requested font "msbm10" at 8.0pt
 Requested font "msbm7" at 6.0pt
  -> /usr/local/texlive/2019/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.
 tfm
-[2])
+)
 \tf@toc=\write4
 \openout4 = `kayahReport.toc'.
 
-(./kayahReport.lot [3])
+(./kayahReport.lot [2] [3])
 \tf@lot=\write5
 \openout5 = `kayahReport.lot'.
 
@@ -1625,7 +1625,7 @@ File: kayahReport_files/figure-latex/iycf2plot-1.pdf Graphic file (type pdf)
 <use kayahReport_files/figure-latex/iycf2plot-1.pdf>
 [81] [82] [83]
 LaTeX Font Info:    Font shape `TU/EBGaramond(0)/bx/n' will be
-(Font)              scaled to size 6.0pt on input line 2464.
+(Font)              scaled to size 6.0pt on input line 2466.
 Requested font "[EBGaramond-Bold.otf]/OT:script=latn;language=DFLT;+pnum;+onum;
 mapping=tex-text;" at 6.0pt
  -> /usr/local/texlive/2019/texmf-dist/fonts/opentype/public/ebgaramond/EBGaram
@@ -1634,19 +1634,19 @@ Requested font "[lmmono8-regular]:" at 6.0pt
  -> /usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmmono8-regular
 .otf
 LaTeX Font Info:    Font shape `TU/EBGaramond(0)/m/it' will be
-(Font)              scaled to size 6.0pt on input line 2469.
+(Font)              scaled to size 6.0pt on input line 2471.
 Requested font "[EBGaramond-Italic.otf]/OT:script=latn;language=DFLT;+pnum;+onu
 m;mapping=tex-text;" at 6.0pt
  -> /usr/local/texlive/2019/texmf-dist/fonts/opentype/public/ebgaramond/EBGaram
 ond-Italic.otf
 LaTeX Font Info:    Font shape `TU/EBGaramond(0)/bx/it' will be
-(Font)              scaled to size 6.0pt on input line 2469.
+(Font)              scaled to size 6.0pt on input line 2471.
 Requested font "[EBGaramond-BoldItalic.otf]/OT:script=latn;language=DFLT;+pnum;
 +onum;mapping=tex-text;" at 6.0pt
  -> /usr/local/texlive/2019/texmf-dist/fonts/opentype/public/ebgaramond/EBGaram
 ond-BoldItalic.otf
 
-Overfull \hbox (10.20216pt too wide) in paragraph at lines 2460--2489
+Overfull \hbox (10.20216pt too wide) in paragraph at lines 2462--2491
  [][] 
  []
 
@@ -1669,7 +1669,7 @@ File: kayahReport_files/figure-latex/fplan4plot-1.pdf Graphic file (type pdf)
 [87
 
 ]
-Overfull \hbox (30.37119pt too wide) in paragraph at lines 2568--2597
+Overfull \hbox (30.37119pt too wide) in paragraph at lines 2570--2599
  [][] 
  []
 
@@ -1691,18 +1691,20 @@ File: kayahReport_files/figure-latex/anc2plot-1.pdf Graphic file (type pdf)
 <use kayahReport_files/figure-latex/anc2plot-1.pdf>
 [92
 
+] [93
+
 ]
-Overfull \hbox (22.01015pt too wide) in paragraph at lines 2732--2761
+Overfull \hbox (22.01015pt too wide) in paragraph at lines 2769--2798
  [][] 
  []
 
-[93] [94] [95
+[94
 
-] [96
+] [95] [96
 
-] [97] [98
+] [97
 
-] [99
+] [98] [99
 
 ] [100
 
@@ -1716,45 +1718,47 @@ Overfull \hbox (22.01015pt too wide) in paragraph at lines 2732--2761
 
 ] [105
 
-
 ] [106
+
 
 ] [107
 
 ] [108
 
-] [109]
+] [109
+
+] [110]
 File: kayahReport_files/figure-latex/rd2-1.pdf Graphic file (type pdf)
 <use kayahReport_files/figure-latex/rd2-1.pdf>
 File: kayahReport_files/figure-latex/rd3-1.pdf Graphic file (type pdf)
 <use kayahReport_files/figure-latex/rd3-1.pdf>
-[110]
+[111]
 File: kayahReport_files/figure-latex/rd4-1.pdf Graphic file (type pdf)
 <use kayahReport_files/figure-latex/rd4-1.pdf>
-[111]
+[112]
 File: kayahReport_files/figure-latex/rd5-1.pdf Graphic file (type pdf)
 <use kayahReport_files/figure-latex/rd5-1.pdf>
-[112] [113] (./kayahReport.bbl [114])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3406.
-[115]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3406.
+[113] [114] (./kayahReport.bbl [115])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3468.
+[116]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3468.
 (./kayahReport.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3406.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3406.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3468.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 3468.
 
 Package rerunfilecheck Info: File `kayahReport.out' has not changed.
-(rerunfilecheck)             Checksum: 1EDB9ADD4F6214BEF7763B8505F610B8.
+(rerunfilecheck)             Checksum: C60D6385D2643B442E2ECE116A3DAD6F.
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 26728 strings out of 492916
- 501785 string characters out of 6133346
- 645684 words of memory out of 5000000
- 30371 multiletter control sequences out of 15000+600000
+ 26730 strings out of 492916
+ 501772 string characters out of 6133346
+ 645875 words of memory out of 5000000
+ 30373 multiletter control sequences out of 15000+600000
  561461 words of font info for 106 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 58i,17n,99p,1709b,457s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 58i,17n,99p,1677b,457s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on kayahReport.pdf (115 pages).
+Output written on kayahReport.pdf (116 pages).

@@ -633,7 +633,7 @@ Using data from respondents who quality for eligibility to the second component 
 
 ## Population-representative survey {#study1-results}
 
-### Poverty Probability Index {#ppi-results}
+### Poverty probability index {#ppi-results}
 
 ```{r ppiTable, echo = FALSE, eval = TRUE, fig.cap = "Poverty probability index by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ppiDF <- recode_ppi(df = hh)
@@ -650,7 +650,7 @@ ggplot(data = ppiDF[ppiDF$sample_component == 1 & ppiDF$geo_state == "Kayah", ],
   geom_boxplot(width = 0.5, outlier.size = 3,
                outlier.shape = 21, outlier.fill = "orange",
                outlier.colour = "orange", outlier.alpha = 0.7) +
-  geom_jitter(width = 0.05, shape = 19, size = 3, colour = "darkgreen", alpha = 0.3) +
+  geom_jitter(width = 0.05, shape = 19, size = 3, colour = "#247BA0", alpha = 0.3) +
   scale_y_continuous(limits = c(0, 100), breaks = seq(from = 0, to = 100, by = 20)) +
   labs(x = "", y = "Poverty probability (%)") +
   themeSettings
@@ -1559,7 +1559,8 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") 
   #scale_y_continuous(limits = c(0, 100)) +
   scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
   labs(x = "", y = "%") +
-  themeSettings
+  themeSettings +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 ```
 
 ```{r epi3table, echo = FALSE, eval = TRUE}
@@ -1693,7 +1694,8 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") 
   #facet_grid(indicators ~ .) +
   facet_wrap(indicators ~ ., ncol = 3) +
   labs(x = "", y = "%") +
-  themeSettings
+  themeSettings +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 ```
 
 #### Treatment-seeking behaviour {#ctreatment}
@@ -2975,6 +2977,8 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") 
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 ```
 
+\newpage
+
 ### Maternal health {#mhealth-results}
 
 #### Family planning {#fplan-results}
@@ -3195,7 +3199,7 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") 
   facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+  theme(axis.text.x = element_text(size = 10, angle = 90, vjust = 0.5, hjust = 1))
 ```
 
 ```{r fplan4tab, echo = FALSE, eval = TRUE}
@@ -3289,14 +3293,14 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") 
   facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+  theme(axis.text.x = element_text(size = 10, angle = 90, vjust = 0.5, hjust = 1))
 ```
 
 #### Antenatal care {#anc}
 
 ##### Antenatal care coverage {#ancCoverage}
 
-Only up to a third of women in urban areas have had at least one ANC visit with a skilled/trained health professional. Slightly lesser proportion of women in rural and hard-to-reach areas have had at least one ANC visit with a skilled/trained health professional. Across wealth classess, about a third of women have had at least one ANC visit with a skilled/trained health professional. This proportion doesn't improve with at least 4 ANC visits with any health professional or service provider. Incurring costs for ANC is dictated by location and by wealth with those in urban and rural areas most often having to pay for ANC-related costs whilst those in hard-to-reach areas rarely having to pay for costs. A similar pattern exist across wealth classes with wealthiest and wealthy women most often having to pay for ANC-related costs whilst poor and poorest women not as often with poorest women only incurring costs at about 4% of the times. However, with regard to amount of costs incurred, women in hard-to-reach areas pay on average more than those in urban or rural areas. This may indicate that women in hard-to-reach areas only consult when there is somehting seriously wrong with their pregnancy hence requiring more specialised and costly care. On the other hand, when assessed by wealth classes, mean costs incurred for ANC visits is highest for the wealthiest and for the poorest. This might indicate that the wealthiest are spending over and above routine ANC care and services because they can afford it whilst the poorest only attend ANC when there is something seriously wrong with the pregnancy which necessitates much costly type of care.
+Only up to a third of women in urban areas have had at least one ANC visit with a skilled/trained health professional. Slightly lesser proportion of women in rural and hard-to-reach areas have had at least one ANC visit with a skilled/trained health professional. Across wealth classess, about a third of women have had at least one ANC visit with a skilled/trained health professional. This proportion doesn't improve with at least 4 ANC visits with any health professional or service provider. Incurring costs for ANC is dictated by location and by wealth with those in urban and rural areas most often having to pay for ANC-related costs whilst those in hard-to-reach areas rarely having to pay for costs. A similar pattern exists across wealth classes with wealthiest and wealthy women most often having to pay for ANC-related costs whilst poor and poorest women not as often with poorest women only incurring costs at about 4% of the times. However, with regard to amount of costs incurred, women in hard-to-reach areas pay on average more than those in urban or rural areas with most of this cost incurred on transport and medicines (see Table \@ref(tab:anc1table)). This may indicate that women in hard-to-reach areas only consult when there is somehting seriously wrong with their pregnancy partly due to the high cost associated with transport when seeking care and this delayed care-seeking practice may lead to the pregnant woman requiring more specialised and costly care. On the other hand, when assessed by wealth classes (see Table \@ref(tab:anc1table)), mean costs incurred for ANC visits is highest for the wealthiest and for the poorest. This might indicate that the wealthiest are spending over and above routine ANC care and services because they can afford it whilst the poorest only attend ANC when there is something seriously wrong with the pregnancy which necessitates much costly type of care. This is supported by data on type of service provider attended for ANC (see Table \@ref(tab:anc1Table) and Figure \@ref(fig:anc2Plot)) showing wealthy and wealthiest women utilising specialist and doctor services for ANC whilst the poor and poorest women seeking ANC from midwives and ethnical health workers.
 
 ```{r anc1table, echo = FALSE, eval = TRUE}
 tab <- recode_anc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past"), 
@@ -3347,8 +3351,8 @@ tabLong <- tidyr::pivot_longer(data = tab,
 
 tabLong$indicators <- factor(x = tabLong$indicators,
                              levels = c("anc1", "anc4"),
-                             labels = c("At least one\nANC visit with\nskilled health worker",
-                                        "At least four\nANC visit with\nany service provider"))
+                             labels = c("At least one ANC visit with trained health worker",
+                                        "At least four ANC visits with any service provider"))
 
 tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
 tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
@@ -3378,6 +3382,100 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") 
   facet_wrap(indicators ~ ., ncol = 2) +
   labs(x = "", y = "%") +
   themeSettings
+```
+
+```{r anc1Table, echo = FALSE, eval = TRUE}
+tab <- recode_anc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past"), 
+                  status = "past") %>%
+  create_unweighted_table(vars = c("specialist", "doctor", "nurse", "ha", 
+                                   "pdoc", "lhv", "midwife", "amw", "tba", 
+                                   "chw", "ehw"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Antenatal care service providers",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "Specialist\n(\\%)",
+                                     "Doctor\n(\\%)",
+                                     "Nurse\n(\\%)",
+                                     "Health\nassistant\n(\\%)",
+                                     "Private\ndoctor\n(\\%)",
+                                     "Lady\nhealth\nvisitor\n(\\%)",
+                                     "Midwife\n(\\%)",
+                                     "Auxilliary\nmidwife\n(\\%)",
+                                     "Traditional\nbirth\nattendant\n(\\%)",
+                                     "Community\nhealth\nworker\n(\\%)",
+                                     "Ethnic\nhealth\nworkers\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 10) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE) %>%
+  landscape()
+```
+
+```{r anc1Plot, echo = FALSE, eval = TRUE, fig.cap = "Antenatal care service providers by location type", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = c(specialist, doctor, nurse, ha, 
+                                        pdoc, lhv, midwife, amw, tba, 
+                                        chw, ehw),
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(x = tabLong$indicators,
+                             levels = c("specialist", "doctor", "nurse", "ha", 
+                                        "pdoc", "lhv", "midwife", "amw", "tba", 
+                                        "chw", "ehw"),
+                             labels = c("Specialist",
+                                        "Doctor",
+                                        "Nurse",
+                                        "Health assistant",
+                                        "Private doctor",
+                                        "Lady health visitor",
+                                        "Midwife",
+                                        "Auxilliary midwife",
+                                        "Traditional birth attendant",
+                                        "Community health worker",
+                                        "Ethnic health worker"))
+
+tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
+tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+
+ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 3) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+```{r anc2Plot, echo = FALSE, eval = TRUE, fig.cap = "Antenatal care service providers by wealth quintiles", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 3) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 ```
 
 ##### Antenatal care counselling {#ancCounselling}
@@ -3972,9 +4070,31 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 
 ```{r mMuac1table, echo = FALSE, eval = TRUE}
 tab <- recode_maternal_anthro(df = motherAnthro, x = anthroDF, y = childAnthro) %>%
-  create_unweighted_table(vars = c("muac", "gam", "mam", "sam"))
-```
+  create_anthro_table(vars = c("muac", "gam", "mam", "sam"))
 
+tab[ , 4:ncol(tab)] <- tab[ , 4:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Maternal acute undernutrition",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "MUAC\n(cm)",
+                                     "GAM\n(\\%)",
+                                     "MAM\n(\\%)",
+                                     "SAM\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 12) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3), italic = TRUE)
+```
 
 #### Minimum dietary diversity for women {#mddw}
 
