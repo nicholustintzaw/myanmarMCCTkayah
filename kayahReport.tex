@@ -87,7 +87,7 @@
     \preauthor{}\postauthor{}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{11 October 2019}
+    \date{23 October 2019}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -160,6 +160,7 @@ IYCF & Infant and young child feeding\tabularnewline
 LCSI & Livelihoods-based coping strategies index\tabularnewline
 MAM & Gobal acute malnutrition\tabularnewline
 MCCT & Mother and Child Cash Transfer\tabularnewline
+MDD-W & Minimum dietary diversity for women\tabularnewline
 MMK & Myanmar Kyatt\tabularnewline
 MSWRR & Ministry of Social Welfare, Relief and Resettlement\tabularnewline
 MS-NPAN & Multi-Sector National Plan of Action for Nutrition\tabularnewline
@@ -167,13 +168,18 @@ MUAC & Middle upper arm circumference\tabularnewline
 NNC & National Nutrition Council\tabularnewline
 NSPSP & National Social Protection Strategic Plan\tabularnewline
 ODK & Open Data Kit\tabularnewline
+PLW & Pregnant or lactating women\tabularnewline
 PPI & Poverty probability index\tabularnewline
 RCT & Randomised controlled trial\tabularnewline
 RD & Regression discontinuity\tabularnewline
 SAM & Severe acute malnutrition\tabularnewline
 SBCC & Social Behavioural Change Communication\tabularnewline
 TEM & Technical error of measurement\tabularnewline
+UNICEF & United Nations Children's Fund\tabularnewline
 WASH & Water, sanitation and hygiene\tabularnewline
+WAZ & Weight-for-age z-score\tabularnewline
+WHO & World Health Organization\tabularnewline
+WHZ & Weight-for-height z-score\tabularnewline
 WFP & World Food Programme\tabularnewline
 \bottomrule
 \end{longtable}
@@ -326,7 +332,7 @@ Sample recruitment utilised a full list or registry of births one month before a
 \hypertarget{data-collection}{%
 \subsection{Data collection}\label{data-collection}}
 
-Data was collected using an electronic data entry system based on the \textbf{Open Data Kit (ODK)} standard that runs on the Android operating software (OS) platform for mobile devices. The study instrument was encoded into the electronic data entry system platform and was served out of a secure aggregate server hosted by ONA\footnote{See \url{https://ona.io}}. Each data collector was provided with a tablet running on Android OS that was configured with the ODK application that receives the electronic data form. All measurements and answers by respondents were then recorded on the tablets and transmitted to the remote server whenever there was a mobile and/or wireless internet signal. This data collection system was not reliant on internet connection as the data collection could be performed offline, with the completed e-questionnaires saved on the interviewers' tablets. An internet connection was needed only when finalized encoded forms were ready to submit to the remote server, and this submission was done at regular intervals and timed when there was available internet connection for the data collectors. The survey teams aimed to submit forms on a daily basis.
+Data was collected using an electronic data entry system based on the \textbf{Open Data Kit (ODK)} standard that runs on the Android operating software platform for mobile devices. The study instrument was encoded into the electronic data entry system platform and was served out of a secure aggregate server hosted by ONA\footnote{See \url{https://ona.io}}. Each data collector was provided with a tablet running on Android OS that was configured with the ODK application that receives the electronic data form. All measurements and answers by respondents were then recorded on the tablets and transmitted to the remote server whenever there was a mobile and/or wireless internet signal. This data collection system was not reliant on internet connection as the data collection could be performed offline, with the completed e-questionnaires saved on the interviewers' tablets. An internet connection was needed only when finalized encoded forms were ready to submit to the remote server, and this submission was done at regular intervals and timed when there was available internet connection for the data collectors. The survey teams aimed to submit forms on a daily basis.
 
 \hypertarget{questionnaire-design}{%
 \subsubsection{Questionnaire design:}\label{questionnaire-design}}
@@ -634,7 +640,7 @@ Acceptable\strut
 \hypertarget{fcsn}{%
 \paragraph{Food consumption score nutrition quality analysis}\label{fcsn}}
 
-In addition to the standard FCS, WFP has devices a set of nutritional adequacy indicators that assess the nutrition quality of the household diet using the data provided by a slightly modified FCS questionnaire that disaggregates some of the food groups into sub-food groups known to contain vitamin A, protein and heme-iron. This is called the Food Consumption Score Nutrition Quality Analysis or FCS-N \citep{WorldFoodProgramme:2015tn}. The FCS-N focuses on three nutrients - vitamin A, iron and protein - to assess the nutrition adequacy of a household's diet. The FCS-N was calcualted by first aggregating the individual food groups into nutrient-rich food groups shown in Table \ref{tab:fcs3}.
+In addition to the standard FCS, WFP has deviced a set of nutritional adequacy indicators that assess the nutrition quality of the household diet using the data provided by a slightly modified FCS questionnaire that disaggregates some of the food groups into sub-food groups known to contain vitamin A, protein and heme-iron. This is called the Food Consumption Score Nutrition Quality Analysis or FCS-N \citep{WorldFoodProgramme:2015tn}. The FCS-N focuses on three nutrients - vitamin A, iron and protein - to assess the nutrition adequacy of a household's diet. The FCS-N was calcualted by first aggregating the individual food groups into nutrient-rich food groups shown in Table \ref{tab:fcs3}.
 
 \begin{table}[H]
 
@@ -805,7 +811,7 @@ The Myanmar MCCT Programme evaluation assessed the following child nutrition ind
 
 \textbf{Childhood undernutrition}
 
-Respective childhood undernutrition indices for childhood stunting, childhood wasting and childhood underweight were assessed. The height-for-age z-scores (HAZ), weight-for-height z-scores (WAZ) and weight-for-age z-scores of each 6-59 month old child in the sample were calculated using the using the R package \textbf{zscorer}\footnote{See \url{https://nutriverse.io/zscorer} for details on how the z-scores are calculated} \citep{zscorer2019}. Once z-score values were calculated, implausible z-score values were flagged using the WHO Growth Standards flagging criteria \citep{WorldHealthOrganizationWHO2006}. This was facilitated through the \textbf{nutricheckr} R package\footnote{See \url{https://nutriverse.io/nutricheckr} for details on how the flagging criteria is applied} \citep{nutricheckr2019}. Further anthropometric data quality checks were performed using \textbf{nipnTK}\footnote{See \url{https://nutriverse.io/nipnTK} for details on how anthropometric data quality check is performed using the \textbf{nipnTK} R package} \citep{nipnTK2019} R package which is based on an anthropometric data quality check toolkit developed and produced by the \href{http://www.nipn-nutrition-platforms.org}{National Information Platforms for Nutrition (NIPN)} and funded by the European Union.
+Respective childhood undernutrition indices for childhood stunting, childhood wasting and childhood underweight were assessed. The height-for-age z-scores (HAZ), weight-for-height z-scores (WHZ) and weight-for-age z-scores (WAZ) of each 6-59 month old child in the sample were calculated using the using the R package \textbf{zscorer}\footnote{See \url{https://nutriverse.io/zscorer} for details on how the z-scores are calculated} \citep{zscorer2019}. Once z-score values were calculated, implausible z-score values were flagged using the WHO Growth Standards flagging criteria \citep{WorldHealthOrganizationWHO2006}. This was facilitated through the \textbf{nutricheckr} R package\footnote{See \url{https://nutriverse.io/nutricheckr} for details on how the flagging criteria is applied} \citep{nutricheckr2019}. Further anthropometric data quality checks were performed using \textbf{nipnTK}\footnote{See \url{https://nutriverse.io/nipnTK} for details on how anthropometric data quality check is performed using the \textbf{nipnTK} R package} \citep{nipnTK2019} R package which is based on an anthropometric data quality check toolkit developed and produced by the \href{http://www.nipn-nutrition-platforms.org}{National Information Platforms for Nutrition (NIPN)} and funded by the European Union.
 
 \textbf{Infant and young child feeding}
 
@@ -985,7 +991,7 @@ The poverty probabilities was primarily used to classify households into wealth 
 \end{tabular}
 \end{table}
 
-Table \ref{tab:fcs1table} presents FCS results by geographic location and by wealth quintiles. There is a clear geographic and wealth gradient with FCS as shown in Figure \ref{fig:fcs1plot} and Figure \ref{fig:fcs3plot}. Poor FCS is at 4.90463215258856\% in hard-to-reach areas whilst it is only 0\% and 0\% in urban and rural areas respectively. In the poor and poorest households, poor FCS is at 1.53061224489796\% and 6.34146341463415\% respectively compared to no households with poor FCS in medium, wealthy and wealthiest households.
+Table \ref{tab:fcs1table} presents FCS results by geographic location and by wealth quintiles. There is a clear geographic and wealth gradient with FCS as shown in Figure \ref{fig:fcs1plot} and Figure \ref{fig:fcs2plot}. Poor FCS is at 4.9\% in hard-to-reach areas whilst it is only 0\% and 0\% in urban and rural areas respectively. In the poor and poorest households, poor FCS is at 1.5\% and 6.3\% respectively compared to no households with poor FCS in medium, wealthy and wealthiest households.
 
 \newpage
 
@@ -1144,7 +1150,7 @@ Household consumption of vitamin A-, protein- and heme iron-rich foods indicate 
 \end{tabular}
 \end{table}
 
-Households in Kayah state are employing very few consumption-based coping strategies (see Table \ref{tab:ccsi1table}). Use of consumption-based coping strategies is higher in households in hard-to-reach areas (4) compared to households in urban and rural areas (3.6 and 4.8 respectively) as shown in Figure \ref{fig:ccsi1plot} and Figure \ref{fig:ccsi2plot}.
+Households in Kayah state are employing very few consumption-based coping strategies (see Table \ref{tab:ccsi1table}). Use of consumption-based coping strategies is higher in households in hard-to-reach areas (mean consumption-based CSI of 4) compared to households in urban and rural areas (mean consumption-based CSI of 3.6 and 4.8 respectively) as shown in Figure \ref{fig:ccsi1plot} and Figure \ref{fig:ccsi2plot}.
 
 \newpage
 
@@ -1169,7 +1175,7 @@ Households in Kayah state are employing very few consumption-based coping strate
 \hypertarget{lcsi-results}{%
 \paragraph{Livelihood-based coping strategies index}\label{lcsi-results}}
 
-The use of a few consumption-based coping strategies by households in Kayah state can be partly explained by close to 50\% of households being relatively food secuire in that they are not requiring longer-term livelihoods-based coping strategies. However, up to 40\% of households across Kayah state utilise stress type of livelihoods coping strategies in the longer term. There is not as clear a geographical or wealth gradient for livelihoods-based coping strategies. Houeholds in rural areas employ the most crisis and emergency type of livelihood coping strategies although households hard-to-reach areas use more emergency type of strategies (see Figure \ref{fig:lcsi1plot}). Poor and poorest households employ the most emergency type livelihoods coping strategies although households who are wealthy or medium have the highest combined usage of crisis and emergency type livelihoods strategies (see Figure \ref{fig:lcsi2plot}).
+The use of a few consumption-based coping strategies by households in Kayah state can be partly explained by close to 50\% of households in Kayah state being relatively food secure in that they are not requiring longer-term livelihoods-based coping strategies. However, up to 40\% of households across Kayah state utilise stress type of livelihoods coping strategies in the longer term. There is not as clear a geographical or wealth gradient for livelihoods-based coping strategies. Households in rural areas employ the most crisis and emergency type of livelihood coping strategies although households in hard-to-reach areas use more emergency type of strategies (see Figure \ref{fig:lcsi1plot}). Poor and poorest households employ the most emergency type livelihoods coping strategies although households who are wealthy or medium have the highest combined usage of crisis and emergency type livelihoods strategies (see Figure \ref{fig:lcsi2plot}).
 
 \begin{table}[H]
 
@@ -1292,7 +1298,7 @@ Majority of households accress Kayah state have low food insecurity (see Table \
 \hypertarget{water-results}{%
 \paragraph{Water services ladder}\label{water-results}}
 
-There is minimal seasonal variation in households' access to drinking water with majority of households able to get water from improved sources of drinking water whole year round (see \ref{tab:wash1table}). However, up to 17\% of households in hard-to-reach areas use surface water as their drinking water source (see Figure \ref{fig:wash1plot}). Interestingly, in urban areas, up to 5\% still access driking water from surface water. Figure \ref{fig:wash2ploy} show that the poorer the houshold gets, the higher the probability that the household is accessing drinking water from surface water.
+There is minimal seasonal variation in households' access to drinking water with majority of households able to get water from improved sources of drinking water whole year round (see \ref{tab:wash1table}). However, up to 17\% of households in hard-to-reach areas use surface water as their drinking water source (see Figure \ref{fig:wash1plot}). Interestingly, in urban areas, up to 5\% still access driking water from surface water. Figure \ref{fig:wash2plot} show that the poorer the houshold gets, the higher the probability that the household is accessing drinking water from surface water.
 
 \begin{table}[H]
 
@@ -1353,7 +1359,7 @@ There is minimal seasonal variation in households' access to drinking water with
 \hypertarget{sanitation-services-ladder}{%
 \paragraph{Sanitation services ladder}\label{sanitation-services-ladder}}
 
-Up to 50\% of households in Kayah state have at least a limited (improved toilet facility but shared with other households) or basic (improved sanitation facility and not shared with other households) sanitation facilities (see Table \ref{tab:san1table}). On the other hand, unimproved sanitation facilities and open defection are used by more households in hard-to-reach areas (see \ref{fig:san1plot}) and increasingly used as households get poorer (see Figure \ref{fig:san2plot}). Up to 16\% of wealthiest households and 36.6\% of wealthy households have unimproved sanitation facialities.
+Up to 50\% of households in Kayah state have at least a limited (improved toilet facility but shared with other households) or basic (improved sanitation facility and not shared with other households) sanitation facilities (see Table \ref{tab:san1table}). On the other hand, unimproved sanitation facilities and open defection are used by more households in hard-to-reach areas (see Figure \ref{fig:san1plot}) and increasingly used as households get poorer (see Figure \ref{fig:san2plot}). Up to 16\% of wealthiest households and 36.6\% of wealthy households have unimproved sanitation facialities.
 
 \begin{table}[H]
 
@@ -1474,13 +1480,13 @@ Access to basic (handwashing facilities with water and soap) handwashing facilit
 \hypertarget{epi-results}{%
 \paragraph{Immunisation coverage}\label{epi-results}}
 
-Immunisation coverage in Kayah state tells a story of good initial access to immunisation services with hight rates of BCG vaccination. However, utilisation of immunisation services (as proxied by children getting all required pentavalent vaccinations) begins to drop particularly in hard-to-reach areas and then full immunisation coverage drops significantly in all areas but more significantly in hard-to-reach areas (see Figure \ref{fig:epi1plot}).
+Immunisation coverage in Kayah state tells a story of a generally wide exposure to immunisation services with all children having had any immunisation in urban and rural area and up to 90\% in hard-to-reach areas then falters early and dramatically with immunisation access as proxied by BCG vaccination drastically drops to only as high as 20\% in urban areas and 18\% in rural and hard-to-reach areas. This drop in immunisation coverage continues with utilisation of immunisation services (as proxied by children getting all required pentavalent vaccinations) further drops particularly in hard-to-reach areas and then full immunisation coverage drops significantly in all areas but more profoundly in hard-to-reach areas (see Figure \ref{fig:epi1plot}).
 
-Per vaccination type coverage is significantly low across the whole of Kayah state (see Table \ref{tab:epi2table}) with households in hard-to-reach areas and poor and poorest households with the lowest per vaccine type coverage (see Figure \ref{fig:epi3plot} and Figure \ref{fig:epi4plot}).
+Per vaccination type coverage, as to be expected, is significantly low across the whole of Kayah state (see Table \ref{tab:epi2table}) with households in hard-to-reach areas and poor and poorest households with significantly lower per vaccine type coverage, except for BCG, compared to urban and rural areas and wealthy and wealthiest households (see Figure \ref{fig:epi3plot} and Figure \ref{fig:epi4plot}).
 
-Coverage of vitamin A supplementation, a service that is usually delivered together with immunisation, is relatively higher going up to about 70\% in urban and rural areas but much lower in hard-to-reach areas (see Figure \ref{fig:epi5plot}) and and lower in poor and poorest households (see Figure \ref{fig:epi6plot}). Deworming coverage is low at only up to 30\% in urban and rural areas and considerably lower in hard-to-reach areas (see Figure \ref{fig:epi5plot}) and poor and poorest households (see Figure \ref{fig:epi6plot}).
+Coverage of vitamin A supplementation, a service that is usually delivered together with immunisation, is relatively higher going up to about 70\% in urban and rural areas but much lower in hard-to-reach areas (see Figure \ref{fig:epi5plot}) and lower in poor and poorest households (see Figure \ref{fig:epi6plot}). Deworming coverage is low at only up to 30\% in urban and rural areas and considerably lower in hard-to-reach areas (see Figure \ref{fig:epi5plot}) and poor and poorest households (see Figure \ref{fig:epi6plot}).
 
-\begin{landscape}\begin{table}[H]
+\begin{table}[H]
 
 \caption{\label{tab:epi1table}Immunisation coverage}
 \centering
@@ -1513,7 +1519,6 @@ Coverage of vitamin A supplementation, a service that is usually delivered toget
 \bottomrule
 \end{tabular}
 \end{table}
-\end{landscape}
 
 \newpage
 
@@ -1643,7 +1648,7 @@ Coverage of vitamin A supplementation, a service that is usually delivered toget
 \hypertarget{illness}{%
 \subsubsection{Period prevalence of childhood illnesses}\label{illness}}
 
-Fever is the most self-reported illness in children 6-59 months old with 22\% of mothers reporting fever in their children in the past 2 weeks in urban areas and by 15\% of mothers in rural and hard-to-reach areas (see Figure \ref{fig:ill1plot}). The wealtheir households also report fever the most at 17.8\% for wealthiest and 22.6 for wealthy households compared to 13.6\% for poor and 15.3 for poorest households (see Figure \ref{fig:ill2plot}).
+Fever is the most self-reported illness in children 6-59 months old with 22\% of mothers reporting fever in their children in the past 2 weeks in urban areas and by 15\% of mothers in rural and hard-to-reach areas (see Figure \ref{fig:ill1plot}). The wealtheir households also report fever the most at 17.8\% for wealthiest and 22.6\% for wealthy households compared to 13.6\% for poor and 15.3\% for poorest households (see Figure \ref{fig:ill2plot}).
 
 Diarrhoea is the next most self-reported illness in children 6-59 months old with 16.6\% of mothers in rural areas and 15.6\% in hard-to-reach areas reporting diarrhoea in their children in the past 2 weeks (see Figure \ref{fig:ill1plot}. The poorer the household, the more mothers report dirrhoea in their children (see Figure \ref{fig:ill2plot}).
 
@@ -1711,7 +1716,7 @@ ARI is the least self-reported illness in children 6-59 months old with 2\% and 
 
 Treatment-seeking for diarrhoea in Kayah state can be characterised by households in rural areas seeking treatment the most (100\%) whilst those in urban and hard-to-reach areas seeking treatment significantly much less (see Figure \ref{fig:diarrhoea1plot}). When asked why treatment was not sought for diarrhoea, those from the urban areas were advised not to seek treatment whilst those in hard-to-reach areas reported not having a facility as the reason for not seeking treatment (see Figure \ref{fig:diarrhoea2plot}). Comparing these reasons, those from the urban areas seem to not seek care by choice (chose not to) rather than by circumstance (no choice as there is no facility from which to seek treatment). Time to treatment is usually longer for those in hard-to-reach areas compared to those in rural and urban areas and those who are poor and poorest compared to the wealthy and wealthiest (see Table \ref{tab:diarrhoea1table}).
 
-Those from urban areas tended to either self-medicate (bought drug from shop) or went to a private doctor whilst those from rural and hard-to-reach areas predominantly went to their SRHC/midwife (see Figure \ref{fig:diarrhoea5plot}). Costs incurred for treatment were all for medications (see Table \ref{tab:diarrhoea3table}).
+Those from urban areas tended to either self-medicate (bought drug from shop) or went to a private doctor whilst those from rural and hard-to-reach areas predominantly went to their SRHC/midwife (see Figure \ref{fig:diarrhoea6plot}). Costs incurred for treatment were all for medications (see Table \ref{tab:diarrhoea3table}).
 
 \begin{landscape}\begin{table}[H]
 
@@ -1872,9 +1877,9 @@ Those from urban areas tended to either self-medicate (bought drug from shop) or
 \hypertarget{ari}{%
 \paragraph{Acute respiratory infection}\label{ari}}
 
-Treatment-seeking for ARI in Kayah state can be characterised by households in rural areas seeking treatment the most (88.9\%) whilst those in urban and hard-to-reach areas seeking treatment less (see Figure \ref{fig:ari1plot}). When asked why treatment was not sought for ARI, those from the urban areas were advised not to seek treatment and could not access the health facility whilst those in hard-to-reach areas reported not having a facility and not having access to facility as the reasons for not seeking treatment (see Figure \ref{fig:ari2plot}). Comparing these reasons, those from the urban areas seem to not seek care by choice (chose not to) rather than by circumstance (no choice as there is no facility from which to seek treatment). Time to treatment is usually longer for those in hard-to-reach areas compared to those in rural and urban areas and those who are poor and poorest compared to the wealthy and wealthiest (see Table \ref{tab:ari1table}).
+Treatment-seeking for ARI in Kayah state can be characterised by households in rural areas seeking treatment the most (88.9\%) whilst those in urban and hard-to-reach areas seeking treatment less (see Figure \ref{fig:ari1plot}). When asked why treatment was not sought for ARI, those from the urban areas were mostly advised not to seek treatment and for some small proportion of urban households, they report not being able to access the health facility. On the other hand, those in hard-to-reach areas reported not having a facility and not having access to a facility as the reasons for not seeking treatment (see Figure \ref{fig:ari2plot}). Comparing these reasons, those from the urban areas seem to not seek care by choice (chose not to) for the most part but with a small proportion of urban households wanting to seek care but not having access to the facilities. For households in hard-to-reach areas, however, the choice to seek treatment is dictated by by circumstance (no choice as there is no facility from which to seek treatment or that existing facilities are inaccessible). Time to treatment is signficaintly longer for those in hard-to-reach areas compared to those in rural and urban areas and those who are poor and poorest compared to the wealthy and wealthiest (see Table \ref{tab:ari1table}).
 
-Those from urban areas tended to see a private doctor whilst those from rural and hard-to-reach areas predominantly went to their SRHC/midwife (see Figure \ref{fig:ari5plot}). Costs incurred for treatment were majority for medications (see Table \ref{tab:ari3table}).
+Those from urban areas tended to see a private doctor or the township hospital whilst those from rural and hard-to-reach areas predominantly went to their SRHC/midwife (see Figure \ref{fig:ari6plot}). Costs incurred for treatment were majority for medications (see Table \ref{tab:ari3table}).
 
 \begin{landscape}\begin{table}[H]
 
@@ -2035,9 +2040,7 @@ Those from urban areas tended to see a private doctor whilst those from rural an
 \hypertarget{fever}{%
 \paragraph{Fever}\label{fever}}
 
-Treatment-seeking for fever in Kayah state can be characterised by households in urban areas seeking treatment the most (85.2\%) whilst those in urban and hard-to-reach areas seeking treatment slightly lesser (see Figure \ref{fig:fever1plot}). When asked why treatment was not sought for fever, those from the urban areas were advised not to seek treatment and could not access the health facility whilst those in rural and hard-to-reach areas reported cost and not having a facility (see Figure \ref{fig:fever2plot}). Comparing these reasons, those from the urban areas seem to not seek care by choice (chose not to) rather than by circumstance (no choice as there is no facility from which to seek treatment). Time to treatment is usually longer for those in hard-to-reach areas compared to those in rural and urban areas and those who are poor and poorest compared to the wealthy and wealthiest (see Table \ref{tab:fever1table}).
-
-Those from urban and rural areas tended to see a private doctor whilst those from hard-to-reach areas predominantly went to their SRHC/midwife (see Figure \ref{fig:fever5plot}). Costs incurred for treatment were majority for medications (see Table \ref{tab:fever3table}).
+Treatment-seeking for fever in Kayah state can be characterised by households in urban areas seeking treatment the most (85.2\%) whilst those in rural and hard-to-reach areas seeking treatment slightly lesser (see Figure \ref{fig:fever1plot}). When asked why treatment was not sought for fever, those from the urban areas were advised not to seek treatment and could not access the health facility whilst those in rural and hard-to-reach areas reported not having a facility as the most common reason with a small proportion reporting cost as the issue (see Figure \ref{fig:fever2plot}). Comparing these reasons, some households from the urban areas seem to not seek care by choice (chose not to) but some want to seek care but cannot access facilities. For some rural and most hard-to-reach households, seeking care is more the default as there is no facility from which to seek treatment and some reporting prohibitive costs. Time to treatment is usually longer for those in hard-to-reach areas compared to those in rural and urban areas and those who are poor and poorest compared to the wealthy and wealthiest but a much lesser extent as compared to diarrhoea or ARI (see Table \ref{tab:fever1table}). This seem to point to households being more cautious about fever as compared to diarrhoea or ARI. Those from urban and rural areas tended to see a private doctor whilst those from hard-to-reach areas predominantly went to their SRHC/midwife (see Figure \ref{fig:fever6plot}). Costs incurred for treatment were majority for medications (see Table \ref{tab:fever3table}).
 
 \begin{landscape}\begin{table}[H]
 
@@ -2201,7 +2204,7 @@ Those from urban and rural areas tended to see a private doctor whilst those fro
 \hypertarget{stunting}{%
 \paragraph{Prevalence of childhood stunting/stuntedness}\label{stunting}}
 
-Global childhood stunting/stuntedness in Kayah state goes as high as 48\% in hard-to-reach areas and as low as 17.4\% in urban areas. There is a geographical gradient in the childhood stunting/stuntedness indicator such that urban areas tend to have the lowest prevalence whilst the hard-to-reach areas had the highest. This trend is consistent for moderate stunting/stuntedness and severe stunting/stuntedness (see Table \ref{tab:stunt2table}).
+Global childhood stunting/stuntedness in Kayah state goes as high as 48\% in hard-to-reach areas and as low as 17.4\% in urban areas. There is a geographical gradient in the childhood stunting/stuntedness indicator such that prevalence progressively and signficantly increases from urban to rural to hard-to-reach areas. This trend is consistent for moderate stunting/stuntedness and severe stunting/stuntedness (see Table \ref{tab:stunt2table} and Figure \ref{fig:stuntPlot}).
 
 \begin{table}[H]
 
@@ -2225,10 +2228,19 @@ Global childhood stunting/stuntedness in Kayah state goes as high as 48\% in har
 \end{tabular}
 \end{table}
 
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/stuntPlot-1} 
+
+}
+
+\caption{Prevalence of childhood stunting/stuntedness}\label{fig:stuntPlot}
+\end{figure}
+
 \hypertarget{underweight}{%
 \paragraph{Prevalence of childhood underweight}\label{underweight}}
 
-Global childhood stunting/stuntedness in Kayah state goes as high as 25\% in hard-to-reach areas and as low as 14.5\% in urban and rural areas. There is a geographical gradient in the childhood underweight indicator such that urban areas tend to have the lowest prevalence whilst the hard-to-reach areas had the highest. This trend is consistent for moderate underweight and severe underweight (see Table \ref{tab:underweight2table}).
+Global childhood underweight in Kayah state goes as high as 25\% in hard-to-reach areas and as low as 14.5\% in urban and rural areas. There is a geographical gradient in the childhood underweight indicator such that urban and rural areas tend to have the lowest prevalence of global childhood underweight whilst the hard-to-reach areas had significantly highest. Prevalence of moderate underweight is the main driver of this difference between urban/rural areas and hard-to-reach areas (see Table \ref{tab:underweight2table} and Figure \ref{fig:underweightPlot}).
 
 \begin{table}[H]
 
@@ -2252,10 +2264,19 @@ Global childhood stunting/stuntedness in Kayah state goes as high as 25\% in har
 \end{tabular}
 \end{table}
 
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/underweightPlot-1} 
+
+}
+
+\caption{Prevalence of childhood underweight}\label{fig:underweightPlot}
+\end{figure}
+
 \hypertarget{whz}{%
 \paragraph{Prevalence of childhood wasting by weight-for-height z-score}\label{whz}}
 
-Global acute malnutrition by WHZ in Kayah state goes as high as 6\% in rural areas and as low as 3.8\% in urban and rural areas. There is a geographical gradient in the childhood acute malnutrition indicator such that urban areas tend to have the lowest prevalence whilst the hard-to-reach areas had the highest. This trend is consistent for moderate acute malnutrition and severe acute malnutrition (see Table \ref{tab:whz2table}).
+Global wasting by WHZ in Kayah state goes as high as 6\% in rural areas and as low as 3.8\% in urban and hard-to-reach areas. There is no clear geographic gradient in childhood wasting by WHZ in that whilst rural areas had the highest global wasting by WHZ prevalence, urban and hard-to-reach areas have about the same. When prevalence of wasting by WHZ is broken down by moderate and severe, the rates for severe wasting by WHZ is the same for for urban, rural and hard-to-reach areas. The main driver of the difference in global wasting rural areas having significantly higher rates than urban and hard-to-reach areas (see Table \ref{tab:whz2table} and Figure \ref{fig:whzPlot}.
 
 \begin{table}[H]
 
@@ -2279,10 +2300,19 @@ Global acute malnutrition by WHZ in Kayah state goes as high as 6\% in rural are
 \end{tabular}
 \end{table}
 
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/whzPlot-1} 
+
+}
+
+\caption{Prevalence of childhood wasting by weight-for-height z-score}\label{fig:whzPlot}
+\end{figure}
+
 \hypertarget{muac}{%
 \paragraph{Prevalence of childhood wasting by MUAC}\label{muac}}
 
-Global acute malnutrition by MUAC in Kayah state goes as high as 4.7\% in hard-to-reach areas and as low as 2.5\% in urban and rural areas. There is a geographical gradient in the childhood acute malnutrition indicator such that urban areas tend to have the lowest prevalence whilst the hard-to-reach areas had the highest. This trend is consistent for moderate acute malnutrition and severe acute malnutrition (see Table \ref{tab:muac2table}).
+Global wasting by MUAC in Kayah state goes as high as 4.7\% in hard-to-reach areas and as low as 2.5\% in urban and rural areas. Moderate wasting by MUAC increases from urban to rural to hard-to-reach areas whilst severe wasting is about the same in urban and hard-to-reach areas and lowest in rural areas (see Table \ref{tab:muac2table} and Figure \ref{fig:muacPlot}).
 
 \begin{table}[H]
 
@@ -2305,6 +2335,17 @@ Global acute malnutrition by MUAC in Kayah state goes as high as 4.7\% in hard-t
 \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/muacPlot-1} 
+
+}
+
+\caption{Prevalence of childhood wasting by MUAC}\label{fig:muacPlot}
+\end{figure}
+
+Differences in wasting prevalence by WHZ and MUAC may be partly explained by the high levels of stunting particularly in rural and hard-to-reach areas. In a setting of prevalent low height-for-age, some children may be classified as having appropriate weight-for-height but with MUAC measurement indicating that they are wasted.
 
 \hypertarget{iycf-results}{%
 \paragraph{Infant and young child feeding}\label{iycf-results}}
@@ -2371,20 +2412,14 @@ Infant and young child feeding indicators show that most mothers initiated breas
 
 When asked about preferences of when to have next child, the range of responses from women and husbands was about 3.5 to 4 years with the lower end mostly being reported in hard-to-reach areas and in poor and poorest households (see Table \ref{tab:fplan1table}).
 
-Current contraception use is highest in urban areas at 71.6\% followed by rural areas at 59.1\%. Only 31.3\% of hard-to-reach women and only 27.3\% of the poorest women use are using contraception now. Of all contraceptive devices and methods, the injectables are the most commonly used by women in all areas and in all wealth classes followed by pills (see Table \ref{tab:fplan2table}).
-
-Majority of women using contraptives received family planning services from the government hospital and from the midwife with women from rural and urban areas and wealthiest and wealthy households tending to receive family planning services from the hospital whilst those from hard-to-reach areas receiving their services from the midwife (see Table \ref{tab:fplan3table}).
-
-A large proportion of women in urban and rural areas and wealthiest and wealthy households have received information on family planning. either from the hospital or from a midwife (see Table \ref{tab:fplan4table}). Majority of women regardless of location and regardless of wealth class know basic family planning knoweldge (see Table \ref{tab:fplan4table}).
-
 \begin{table}[H]
 
 \caption{\label{tab:fplan1table}Months to wait until next pregnancy}
 \centering
-\fontsize{12}{14}\selectfont
+\fontsize{10}{12}\selectfont
 \begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
 \toprule
- &  & \makecell[c]{Time\\to\\wait\\for\\next\\child\\(months)} & \makecell[c]{Time\\to\\wait\\for\\next\\child\\for\\currently\\pregnant\\(months)} & \makecell[c]{Time\\to\\wait\\for\\next\\child\\according\\to\\husband\\(months)}\\
+ &  & \makecell[c]{Time to wait\\for next child\\(months)} & \makecell[c]{Time to wait\\for next child\\for currently\\pregnant\\(months)} & \makecell[c]{Time to wait\\for next child\\according\\to husband\\(months)}\\
 \midrule
 \addlinespace[0.3em]
 \multicolumn{5}{l}{\textbf{Kayah}}\\
@@ -2410,6 +2445,12 @@ A large proportion of women in urban and rural areas and wealthiest and wealthy 
 \bottomrule
 \end{tabular}
 \end{table}
+
+Current contraception use is highest in urban areas at 71.6\% followed by rural areas at 59.1\%. Only 31.3\% of hard-to-reach women and only 27.3\% of the poorest women are using contraception now. Of all contraceptive devices and methods, the injectables are the most commonly used by women in all areas and in all wealth classes followed by pills (see Table \ref{tab:fplan2table}, Figure \ref{fig:fplan1plot} and Figure \ref{fig:fplan2plot}).
+
+Majority of women using contraceptives received family planning services from the government hospital and from the midwife with women from rural and urban areas and wealthiest and wealthy households tending to receive family planning services from the hospital whilst those from hard-to-reach areas and those from poor and poorest households receiving their services from the midwife (see Table \ref{tab:fplan3table}, Figure \ref{fig:fplan3plot} and Figure \ref{fig:fplan4plot}).
+
+A large proportion of women in urban and rural areas and wealthiest and wealthy households have received information on family planning either from the hospital or from a midwife (see Table \ref{tab:fplan4table}). Majority of women regardless of location and regardless of wealth class know basic family planning knoweldge (see Table \ref{tab:fplan4table}, Figure \ref{fig:fplan5plot} and Figure \ref{fig:fplan6plot}).
 
 \begin{landscape}\begin{table}[H]
 
@@ -2448,11 +2489,29 @@ A large proportion of women in urban and rural areas and wealthiest and wealthy 
 \end{table}
 \end{landscape}
 
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fplan1plot-1} 
+
+}
+
+\caption{Use of contraceptive methods by location type}\label{fig:fplan1plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fplan2plot-1} 
+
+}
+
+\caption{Use of contraceptive methods by wealth quintiles}\label{fig:fplan2plot}
+\end{figure}
+
 \begin{landscape}\begin{table}[H]
 
-\caption{\label{tab:fplan3table}Where contraception services received}
+\caption{\label{tab:fplan3table}Service provider for contraception methods/devices}
 \centering
-\fontsize{10}{12}\selectfont
+\fontsize{9}{11}\selectfont
 \begin{tabular}[t]{>{\bfseries}l>{\bfseries}l>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r>{\ttfamily}r}
 \toprule
  &  & \makecell[c]{Government\\hospital\\(\%)} & \makecell[c]{Government\\health\\centre\\(\%)} & \makecell[c]{Government\\village\\health\\worker\\(\%)} & \makecell[c]{UHC/MCH\\centre\\(\%)} & \makecell[c]{Private\\hospital\\(\%)} & \makecell[c]{Private\\doctor\\(\%)} & \makecell[c]{Pharmacy\\(\%)} & \makecell[c]{NGO\\(\%)} & \makecell[c]{EHO\\clinic\\(\%)} & \makecell[c]{Auxilliary\\midwife\\(\%)} & \makecell[c]{Midwife\\(\%)}\\
@@ -2482,6 +2541,24 @@ A large proportion of women in urban and rural areas and wealthiest and wealthy 
 \end{tabular}
 \end{table}
 \end{landscape}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fplan3plot-1} 
+
+}
+
+\caption{Service providers for contraception methods/devices by location type}\label{fig:fplan3plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fplan4plot-1} 
+
+}
+
+\caption{Service providers for contraception methods/devices by wealth quintiles}\label{fig:fplan4plot}
+\end{figure}
 
 \begin{landscape}\begin{table}[H]
 
@@ -2520,13 +2597,31 @@ A large proportion of women in urban and rural areas and wealthiest and wealthy 
 \end{table}
 \end{landscape}
 
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fplan5plot-1} 
+
+}
+
+\caption{Information provider for family planning/contraception by location type}\label{fig:fplan5plot}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{kayahReport_files/figure-latex/fplan6plot-1} 
+
+}
+
+\caption{Information provider for family planning/contraception by wealth quintiles}\label{fig:fplan6plot}
+\end{figure}
+
 \hypertarget{anc}{%
 \subsubsection{Antenatal care}\label{anc}}
 
 \hypertarget{ancCoverage}{%
 \paragraph{Antenatal care coverage}\label{ancCoverage}}
 
-Only up to a third of women in urban areas have had at least one ANC visit with a skilled/trained health professional. Slightly lesser proportion of women in rural and hard-to-reach areas have had at least one ANC visit with a skilled/trained health professional. Across wealth classess, about a third of women have had at least one ANC visit with a skilled/trained health professional. This proportion doesn't improve with at least 4 ANC visits with any health professional or service provider. Incurring costs for ANC is dictated by location and by wealth with those in urban and rural areas most often having to pay for ANC-related costs whilst those in hard-to-reach areas rarely having to pay for costs. A similar pattern exist across wealth classes with wealthiest and wealthy women most often have to pay for ANC-related costs whilst poor and poorest women not as often with poorest women only incurring costs at about 4\% of the times. However, with regard to amount of costs incurred, women in hard-to-reach areas pay on average more than those in urban or rural areas. This may indicate that women in hard-to-reach areas only consult when there is somehting seriously wrong with their pregnancy hence requiring more specialised and costly care. On the other hand, when assessed by wealth classes, mean costs incurred for ANC visits is highest for the wealthiest and for the poorest. This might indicate thate the wealthiest are spending over and above routine ANC care and services because they can afford it whilst the poorest only attend ANC when there is something seriously wrong with the pregnancy which necessitates much costly type of care.
+Only up to a third of women in urban areas have had at least one ANC visit with a skilled/trained health professional. Slightly lesser proportion of women in rural and hard-to-reach areas have had at least one ANC visit with a skilled/trained health professional. Across wealth classess, about a third of women have had at least one ANC visit with a skilled/trained health professional. This proportion doesn't improve with at least 4 ANC visits with any health professional or service provider. Incurring costs for ANC is dictated by location and by wealth with those in urban and rural areas most often having to pay for ANC-related costs whilst those in hard-to-reach areas rarely having to pay for costs. A similar pattern exist across wealth classes with wealthiest and wealthy women most often having to pay for ANC-related costs whilst poor and poorest women not as often with poorest women only incurring costs at about 4\% of the times. However, with regard to amount of costs incurred, women in hard-to-reach areas pay on average more than those in urban or rural areas. This may indicate that women in hard-to-reach areas only consult when there is somehting seriously wrong with their pregnancy hence requiring more specialised and costly care. On the other hand, when assessed by wealth classes, mean costs incurred for ANC visits is highest for the wealthiest and for the poorest. This might indicate that the wealthiest are spending over and above routine ANC care and services because they can afford it whilst the poorest only attend ANC when there is something seriously wrong with the pregnancy which necessitates much costly type of care.
 
 \begin{landscape}\begin{table}[H]
 
@@ -2588,7 +2683,7 @@ Only up to a third of women in urban areas have had at least one ANC visit with 
 
 Majority (93.5\%) of women in rural areas received ANC counselling whilst only 79\% and 72\% of women from urban and hard-to-reach areas do attend. A third of women in hard-to-reach areas and 44\% of poorest women restricted eating meat during their most recent pregnancy. On the other hand, 25\% of the wealthiest women restricted eating fruits and fish and 37\% restricted eating vegetables (see Table \ref{tab:anc2table}).
 
-\begin{landscape}\begin{table}[H]
+\begin{table}[H]
 
 \caption{\label{tab:anc2table}Antenatal care counselling}
 \centering
@@ -2623,14 +2718,13 @@ Majority (93.5\%) of women in rural areas received ANC counselling whilst only 7
 \bottomrule
 \end{tabular}
 \end{table}
-\end{landscape}
 
 \hypertarget{ancSupplementation}{%
 \paragraph{Antenatal care supplementation}\label{ancSupplementation}}
 
 Most women in rural areas (98.8\%) took vitamin B1 supplementation during their pregnancy whilst only 85.4\% of women in urban areas and 74.6\% of women in hard-t-reach areas took the supplement. Only 73.1 of the poorest women took the supplementat. Only 70\% of women in hard-to-reach areas took IFA during their latest pregnancy whilst almost all of those from urban and rural areas took IFA. Only 68.8\% of the poorest women took IFA tablets compared to almomst all of the wealthiest and wealthy women taking the IFA tablets. The number of days IFA tablet was taken was at least more than 100 days with length of consumption highest in urban areas and amonts wealthy and wealthiest women. Those in urban areas got their IFA supplements mainly from the government hospital while those from urral and hard-to-reach areas got theirs from the SRHC/RHC (see Table \ref{tab:anc3table}).
 
-\begin{landscape}\begin{table}[H]
+\begin{table}[H]
 
 \caption{\label{tab:anc3table}Antenatal care supplementation}
 \centering
@@ -2665,7 +2759,6 @@ Most women in rural areas (98.8\%) took vitamin B1 supplementation during their 
 \bottomrule
 \end{tabular}
 \end{table}
-\end{landscape}
 
 \hypertarget{ancTesting}{%
 \paragraph{Antenatal care testing}\label{ancTesting}}

@@ -14,4 +14,4 @@ bookdown::pdf_document2:
 #  toc_depth: 2
 #  toc: true
 #  number_sections: true
-#  fig_caption: true
+ # fig_caption: true
