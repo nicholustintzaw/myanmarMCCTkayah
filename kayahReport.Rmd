@@ -88,6 +88,8 @@ GAD | General Administration Department
 GAM | Global acute malnutrition
 HAZ | Height-for-age z-score
 HFES | Household food expenditure share
+HIV/AIDS | Human immunodeficiency virus / Acquired immune deficiency syndrome
+IFA | Iron-folic acid
 IYCF | Infant and young child feeding
 LCSI | Livelihoods-based coping strategies index
 MAM | Gobal acute malnutrition
@@ -104,8 +106,11 @@ PLW | Pregnant or lactating women
 PPI | Poverty probability index
 RCT | Randomised controlled trial
 RD | Regression discontinuity
+RHC | Rural health centre
 SAM | Severe acute malnutrition
 SBCC | Social Behavioural Change Communication
+SRHC | Sub-rural health centre
+STD | Sexually-transmitted disease
 TEM | Technical error of measurement
 UNICEF | United Nations Children's Fund
 WASH | Water, sanitation and hygiene
@@ -1704,7 +1709,7 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") 
 
 Treatment-seeking for diarrhoea in Kayah state can be characterised by households in rural areas seeking treatment the most (100%) whilst those in urban and hard-to-reach areas seeking treatment significantly much less (see Figure \@ref(fig:diarrhoea1plot)). When asked why treatment was not sought for diarrhoea, those from the urban areas were advised not to seek treatment whilst those in hard-to-reach areas reported not having a facility as the reason for not seeking treatment (see Figure \@ref(fig:diarrhoea2plot)). Comparing these reasons, those from the urban areas seem to not seek care by choice (chose not to) rather than by circumstance (no choice as there is no facility from which to seek treatment). Time to treatment is usually longer for those in hard-to-reach areas compared to those in rural and urban areas and those who are poor and poorest compared to the wealthy and wealthiest (see Table \@ref(tab:diarrhoea1table)).
 
-Those from urban areas tended to either self-medicate (bought drug from shop) or went to a private doctor whilst those from rural and hard-to-reach areas predominantly went to their SRHC/midwife (see Figure \@ref(fig:diarrhoea6plot)). Costs incurred for treatment were all for medications (see Table \@ref(tab:diarrhoea3table)).
+Those from urban areas tended to either self-medicate (bought drug from shop) or went to a private doctor whilst those from rural and hard-to-reach areas predominantly went to their sub-rural health centre (SRHC) or midwife (see Figure \@ref(fig:diarrhoea6plot)). Costs incurred for treatment were all for medications (see Table \@ref(tab:diarrhoea3table)).
 
 ```{r diarrhoea1table, echo = FALSE, eval = TRUE}
 tab <- recode_chealth(df = create_chealth(df = childHealth, x = hh, y = hhMembers)) %>%
@@ -3523,7 +3528,7 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 
 ##### Antenatal care supplementation {#ancSupplementation}
 
-Most women in rural areas (98.8%) took vitamin B1 supplementation during their pregnancy whilst only 85.4% of women in urban areas and 74.6% of women in hard-t-reach areas took the supplement. Only 73.1 of the poorest women took the supplementat. Only 70% of women in hard-to-reach areas took IFA during their latest pregnancy whilst almost all of those from urban and rural areas took IFA. Only 68.8% of the poorest women took IFA tablets compared to almomst all of the wealthiest and wealthy women taking the IFA tablets. The number of days IFA tablet was taken was at least more than 100 days with length of consumption highest in urban areas and amonts wealthy and wealthiest women. Those in urban areas got their IFA supplements mainly from the government hospital while those from urral and hard-to-reach areas got theirs from the SRHC/RHC (see Table \@ref(tab:anc3table)).
+Most women in rural areas (98.8%) took vitamin B1 supplementation during their pregnancy whilst only 85.4% of women in urban areas and 74.6% of women in hard-t-reach areas took the supplement. Only 73.1 of the poorest women took the supplement. Only 70% of women in hard-to-reach areas took IFA during their latest pregnancy whilst almost all of those from urban and rural areas took IFA. Only 68.8% of the poorest women took IFA tablets compared to almomst all of the wealthiest and wealthy women taking the IFA tablets. The number of days IFA tablet was taken was at least more than 100 days with length of consumption highest in urban areas and amonts wealthy and wealthiest women. Those in urban areas got their IFA supplements mainly from the government hospital while those from urral and hard-to-reach areas got theirs from the SRHC/RHC (see Table \@ref(tab:anc3table), Figure \@ref(fig:anc3Plot) and Figure \@ref(fig:anc4Plot)).
 
 ```{r anc3table, echo = FALSE, eval = TRUE}
 tab <- recode_anc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past"),
@@ -3563,9 +3568,49 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   #landscape()
 ```
 
+```{r anc3Plot, echo = FALSE, eval = TRUE, fig.cap = "Antenatal care supplementation by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = c(b1, ifa1),
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(x = tabLong$indicators,
+                             levels = c("b1", "ifa1"),
+                             labels = c("Vitamin B1 supplementation",
+                                        "Iron-folic acid supplementation"))
+
+tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
+tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+
+ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 2) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+```{r anc4Plot, echo = FALSE, eval = TRUE, fig.cap = "Antenatal care supplementation by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 2) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
 ##### Antenatal care testing {#ancTesting}
 
-Only 37.3% of women in urban areas and 35.3% in rural areas had tests done during their ANC whilst only 21.5% of women in hard-to-reach areas had tests done. The poor and poorest women had the least testing done at 17.6% and 22.4% respectively. Majority of the tests done is for HIV/AIDS in rural and urban areas and among wealthiest and wealthy women. STD testing was highest among hard-to-reach and poorest women.The SRHC was the predominant provider of ANC teseting services. About 40% and 54% of women from rural and urban areas incurred costs for ANC testing while only 7.5% of women from hard-to-reach areas had to pay for ANC testing. Women from poorest households also incurred the least costs for ANC testing compared to women in wealthiest and wealthy households.
+Only 37.3% of women in urban areas and 35.3% in rural areas had tests done during their ANC whilst only 21.5% of women in hard-to-reach areas had tests done. The poor and poorest women had the least testing done at 17.6% and 22.4% respectively. Majority of the tests done is to test for human immunodeficiency virus/ acquired immune deficiency syndrome (HIV/AIDS) in rural and urban areas and among wealthiest and wealthy women. Sexually-transmitted diseases (STD) testing was highest among hard-to-reach and poorest women.The SRHC was the predominant provider of ANC teseting services. About 40% and 54% of women from rural and urban areas incurred costs for ANC testing while only 7.5% of women from hard-to-reach areas had to pay for ANC testing. Women from poorest households also incurred the least costs for ANC testing compared to women in wealthiest and wealthy households.
 
 ```{r anc4table, echo = FALSE, eval = TRUE}
 tab <- recode_anc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past"),
@@ -3611,9 +3656,9 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 
 #### Birth/delivery {#birth}
 
-About 36 week gestational age was the average when women gave birth in Kayah state. Women in urban areas mostly gave birth in government hospitals while women from rural areas gave birth either at home or in government hospital. Almost all of women in hard-to-reach areas delivered at home. Women from poor and poorest households mostly delivered at home.
+About 36 weeks was the average gestational age when women gave birth in Kayah state (see Table \@ref(tab:gestAgeTable)) hence majority of children in Kayah are born full term.
 
-```{r gestAgetable, echo = FALSE, eval = TRUE}
+```{r gestAgeTable, echo = FALSE, eval = TRUE}
 tab <- recode_birth(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
   create_unweighted_table(vars = "gestage")
 
@@ -3627,7 +3672,7 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
              digits = 1,
              format = "latex") %>%
   kableExtra::kable_styling(latex_options = c("HOLD_position"),
-                            font_size = 12) %>%
+                            font_size = 10) %>%
   kableExtra::row_spec(row = 0, bold = TRUE) %>%
   kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
   kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
@@ -3635,6 +3680,8 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
                         italic = TRUE)
 ```
+
+Women in urban areas mostly gave birth in government hospitals while women from rural areas gave birth either at home or in government hospitals. Almost all of women in hard-to-reach areas delivered at home. Women from poor and poorest households mostly delivered at home (see Table \@ref(tab:birth1table), Figure \@ref(fig:birth1Plot) and Figure \@ref(fig:birth2Plot)).
 
 ```{r birth1table, echo = FALSE, eval = TRUE}
 tab <- recode_birth(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
@@ -3658,7 +3705,7 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
              digits = 1,
              format = "latex") %>%
   kableExtra::kable_styling(latex_options = c("HOLD_position"),
-                            font_size = 12) %>%
+                            font_size = 10) %>%
   kableExtra::row_spec(row = 0, bold = TRUE) %>%
   kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
   kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
@@ -3666,6 +3713,54 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
                         italic = TRUE)
 ```
+
+```{r birth1Plot, echo = FALSE, eval = TRUE, fig.cap = "Location for birth/delivery by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = birth1a:birth1f,
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(x = tabLong$indicators,
+                             levels = c("birth1a", "birth1b", "birth1c", 
+                                        "birth1d", "birth1e", "birth1f"),
+                             labels = c("Home",
+                                        "Government hospital",
+                                        "Private doctor/clinic",
+                                        "SHRC/RHC",
+                                        "Routine ANC location in village",
+                                        "EHO clinic"))
+
+tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
+tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+
+ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 3) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+```{r birth2Plot, echo = FALSE, eval = TRUE, fig.cap = "Location for birth/delivery by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 3) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
+
+Convenience, tradition and affordable cost were the main reasons for delivering at home for women in hard-to-reach areas. On the other hand, safety for mother and baby was the main reason for delivering in government hospitals for women in rural and urban areas (see Table \@ref(tab:birth2table) and Figure \@ref(fig:birth3Plot)). The same trend was noted in wealth classes in that the wealthier the mother, the more that safety of mothers and babies was considered for choice of birth/delivery location and the poorer the mother the more that convenience and tradition and cost were the reasons for cohice of birth/delivery location (see Figure \@ref(fig:birth4Plot)). 
 
 ```{r birth2table, echo = FALSE, eval = TRUE}
 tab <- recode_birth(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
@@ -3688,7 +3783,7 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
              digits = 1,
              format = "latex") %>%
   kableExtra::kable_styling(latex_options = c("HOLD_position"),
-                            font_size = 12) %>%
+                            font_size = 10) %>%
   kableExtra::row_spec(row = 0, bold = TRUE) %>%
   kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
   kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
@@ -3696,6 +3791,53 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
                         italic = TRUE)
 ```
+
+```{r birth3Plot, echo = FALSE, eval = TRUE, fig.cap = "Reasons for choice of birth/delivery location by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = birth2a:birth2e,
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(x = tabLong$indicators,
+                             levels = c("birth2a", "birth2b", "birth2c", 
+                                        "birth2d", "birth2e"),
+                             labels = c("Convenience",
+                                        "Tradition",
+                                        "Close distance",
+                                        "Safety for mother and baby",
+                                        "Affordable cost"))
+
+tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
+tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+
+ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 3) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+```{r birth4Plot, echo = FALSE, eval = TRUE, fig.cap = "Reasons for choice of birth/delivery location by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 3) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
+
+Births/deliveries were mostly assisted by doctors and midwives in urban and rural areas. On the other hand, traditional birth attendants and relatives were the ones that women in hard-to-reach areas rely on when they give birth/deliver. A  (see Table \@ref(tab:birth3table) and Figure \@ref(fig:birth5Plot)). Almost 15% of women in hard-to-reach areas gave birth/deliver on their own without any assistance. A similar trend by wealth was noted in that wealtheir women were mostly assisted by doctors and midwives while poorer women were mostly assisted by traditional birth attendants or relatives or delivered on their own (see Figure \@ref(fig:birth6Plot)).
 
 ```{r birth3table, echo = FALSE, eval = TRUE}
 tab <- recode_birth(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
@@ -3724,15 +3866,64 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
              digits = 1,
              format = "latex") %>%
   kableExtra::kable_styling(latex_options = c("HOLD_position"),
-                            font_size = 10) %>%
+                            font_size = 9) %>%
   kableExtra::row_spec(row = 0, bold = TRUE) %>%
   kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
   kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
   kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
   kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
-                        italic = TRUE) %>%
-  landscape()
+                        italic = TRUE) #%>%
+  #landscape()
 ```
+
+```{r birth5Plot, echo = FALSE, eval = TRUE, fig.cap = "Service provider for birth/delivery location by location type", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = birth3a:birth3i,
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(x = tabLong$indicators,
+                             levels = paste("birth3", letters[1:9], sep = ""),
+                             labels = c("Doctor",
+                                        "Nurse",
+                                        "Lady health visitor",
+                                        "Midwife",
+                                        "Auxilliary midwife",
+                                        "Traditional birth attendant",
+                                        "On my own",
+                                        "Relatives",
+                                        "EHO cadres"))
+
+tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
+tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+
+ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 3) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+```{r birth6Plot, echo = FALSE, eval = TRUE, fig.cap = "Service provider for birth/delivery location by wealth quintiles", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 3) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+Majority of children were born via normal delivery in rural and hard-to-reach areas whilst in urban areas, about half of deliveries were normal and half caesarian deliveries (see Table \@ref(tab:birth4table)). Almost half of wealthier women delivered via caesarian section.
 
 ```{r birth4table, echo = FALSE, eval = TRUE}
 tab <- recode_birth(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
@@ -3762,6 +3953,8 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
                         italic = TRUE)
 ```
+
+Costs for birth/delivery were incurred by at least half of the women surveyed with women in hard-to-reach areas having the lowest proportion of those incurring costs at 51% and almost all of women in urban and rural areas incurring costs. Most households who are wealthy incur costs when giving birth/delivery while only half of households that are poor incur costs. Urban and rural women and wealthy and wealthiest women incur the most costs when giving birth (see Table \@ref(tab:birth5table)).
 
 ```{r birth5table, echo = FALSE, eval = TRUE}
 tab <- recode_birth(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
@@ -3793,6 +3986,8 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 
 #### Postnatal care {#pnc}
 
+Coverage of postnatal care is above 50% of women in urban and rural areas but significantly lower in hard-to-reach areas at a little over a quarter of women (see Table \@ref(tab:pnc1table) and Figure \@ref(fig:pnc1Plot)). More women who are wealthier are covered by postnatal care services whilst much lesser proportion of women who are poor are provided with postnatal care (see Table \@ref(tab:pnc1table) and Figure \@ref(fig:pnc2Plot)).
+
 ```{r pnc1table, echo = FALSE, eval = TRUE}
 tab <- recode_pnc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
   create_unweighted_table(vars = c("pnc1", "pnc2", 
@@ -3821,18 +4016,105 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
              digits = 1,
              format = "latex") %>%
   kableExtra::kable_styling(latex_options = c("HOLD_position"),
-                            font_size = 10) %>%
+                            font_size = 8) %>%
   kableExtra::add_header_above(header = c(" " = 4, "Provider of postnatal care" = 8)) %>%
   kableExtra::row_spec(row = 0, bold = TRUE) %>%
   kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
   kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
   kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
   kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
-                        italic = TRUE) %>%
-  landscape()
+                        italic = TRUE) #%>%
+  #landscape()
 ```
 
-```{r pnc2table, echo = FALSE, eval = TRUE}
+```{r pnc1Plot, echo = FALSE, eval = TRUE, fig.cap = "Post-natal care coverage by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = pnc1,
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(x = tabLong$indicators,
+                             levels = "pnc1",
+                             labels = "Post-natal care coverage")
+
+tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
+tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+
+ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  #facet_wrap(indicators ~ ., ncol = 3) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+```{r pnc2Plot, echo = FALSE, eval = TRUE, fig.cap = "Post-natal care coverage by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  #facet_wrap(indicators ~ ., ncol = 3) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+Most women from urban areas received their postnatal care from doctors while most women from rural and hard-to-reach areas got postnatal care from midwives and auxilliary midwives (see Figure \@ref(fig:pnc3Plot)). Most women who are wealthy received posnatal care from doctors and most women who are poor received postnatal care from midwives or auxilliary midwives (see Figure \@ref(fig:pnc3Plot)).
+
+```{r pnc3Plot, echo = FALSE, eval = TRUE, fig.cap = "Post-natal care service provider by location type", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = pnc3a:pnc3h,
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(x = tabLong$indicators,
+                             levels = paste("pnc3", letters[1:8], sep = ""),
+                             labels = c("Doctor",
+                                        "Nurse",
+                                        "Lady health visitor",
+                                        "Midwife",
+                                        "Auxilliary midwife",
+                                        "Traditional birth attendant",
+                                        "Relatives",
+                                        "Ethnic health organisation"))
+
+tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
+tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+
+ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 2) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+```{r pnc4Plot, echo = FALSE, eval = TRUE, fig.cap = "Post-natal care service provider by wealth quintile", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 2) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+```{r pnc2table, echo = FALSE, eval = FALSE}
 tab <- recode_pnc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
   create_unweighted_table(vars = "pnc5")
 
@@ -3857,6 +4139,10 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
                         italic = TRUE)
 ```
+
+\newpage
+
+Very few women across location type and across wealth classes report incurring costs for post-natal care. If they did, the most common cost is for medicines (see Table \@ref(tab:pnc3table)).
 
 ```{r pnc3table, echo = FALSE, eval = TRUE}
 tab <- recode_pnc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
@@ -3883,18 +4169,20 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
              digits = 1,
              format = "latex") %>%
   kableExtra::kable_styling(latex_options = c("HOLD_position"),
-                            font_size = 10) %>%
+                            font_size = 9) %>%
   kableExtra::add_header_above(header = c(" " = 3, "Reason for costs" = 6)) %>%
   kableExtra::row_spec(row = 0, bold = TRUE) %>%
   kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
   kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
   kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
   kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
-                        italic = TRUE) %>%
-  landscape()
+                        italic = TRUE) #%>%
+  #landscape()
 ```
 
 #### Newborn care {#nbc}
+
+Almost all women in urban and rural areas received newborn care within 24 hours of delivery but very few women in hard-to-reach areas receive newborn care within 24 hours (see Table \@ref(tab:nbc1table) and Figure \@ref(fig:nbc1Plot)). These rates slighly improve when newborn care within 48 hours is considered. A greater proportion of women who are wealthy receive newborn care within 24 hours or within 48 hours while a much lesser proportion of women who are poor recieve this care (see Figure \@ref(fig:nbc2Plot)).
 
 ```{r nbc1table, echo = FALSE, eval = TRUE}
 tab <- recode_nbc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
@@ -3924,16 +4212,106 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
              digits = 1,
              format = "latex") %>%
   kableExtra::kable_styling(latex_options = c("HOLD_position"),
-                            font_size = 9) %>%
+                            font_size = 7) %>%
   kableExtra::add_header_above(header = c(" " = 4, "Provider of newborn care" = 7)) %>%
   kableExtra::row_spec(row = 0, bold = TRUE) %>%
   kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
   kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
   kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
   kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
-                        italic = TRUE) %>%
-  landscape()
+                        italic = TRUE) #%>%
+  #landscape()
 ```
+
+```{r nbc1Plot, echo = FALSE, eval = TRUE, fig.cap = "Newborn care coverage by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = nbc1:nbc2,
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(x = tabLong$indicators,
+                             levels = c("nbc1", "nbc2"),
+                             labels = c("Newborn care within 24 hours", 
+                                        "Newborn care within 48 hours"))
+
+tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
+tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+
+ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 2) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+```{r nbc2Plot, echo = FALSE, eval = TRUE, fig.cap = "Newborn care coverage by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 2) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+Women in urban areas receive newborn care mostly from doctors and women from rural areas receive newborn care either from doctors or midwives. Women from hard-to-reach areas predominantly receive newborn care from midwives, auxilliary midwives and traditional birth attendants (see Figure \@ref(fig:nbc3Plot) and Figure \@ref(fig:nbc4Plot)).
+
+```{r nbc3Plot, echo = FALSE, eval = TRUE, fig.cap = "Newborn care service provider by location type", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = nbc3a:nbc3h,
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(x = tabLong$indicators,
+                             levels = paste("nbc3", letters[1:8], sep = ""),
+                             labels = c("Doctor",
+                                        "Nurse",
+                                        "Lady health visitor",
+                                        "Midwife",
+                                        "Auxilliary midwife",
+                                        "Traditional birth attendant",
+                                        "Relatives",
+                                        "Ethnic health organisation"))
+
+tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
+tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+
+ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 2) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+```{r nbc4Plot, echo = FALSE, eval = TRUE, fig.cap = "Newborn care service provider by wealth quintiles", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 2) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+A relatively low proportion of newborn care received by most women incurred costs with much lesser women in hard-to-reach areas paying for newborn care (see Table \@ref(tab:nbc2table), Figure \@ref(fig:nbc5Plot) and Figure \@ref(fig:nbc6Plot)). Almost all of these costs are for medications.
 
 ```{r nbc2table, echo = FALSE, eval = TRUE}
 tab <- recode_nbc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
@@ -3973,6 +4351,55 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   landscape()
 ```
 
+```{r nbc5Plot, echo = FALSE, eval = TRUE, fig.cap = "Costs for newborn care by location type", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = nbc7a:nbc7f,
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(x = tabLong$indicators,
+                             levels = paste("nbc7", letters[1:6], sep = ""),
+                             labels = c("Transportation",
+                                        "Registration",
+                                        "Medicine",
+                                        "Laboratory fees",
+                                        "Provider fees",
+                                        "Gifts"))
+
+tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
+tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+
+ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 2) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+```{r nbc6Plot, echo = FALSE, eval = TRUE, fig.cap = "Costs for newborn care by wealth quintiles", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 2) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
+
+\newpage
+
+Majority of women interviewed fed their newborn children colostrum from their breastmilk (see Table \@ref(tab:nbc3table)).
+
 ```{r nbc3table, echo = FALSE, eval = TRUE}
 tab <- recode_nbc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
   create_unweighted_table(vars = "nbc9")
@@ -3984,7 +4411,7 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
              booktabs = TRUE,
              row.names = FALSE,
              col.names = linebreak(c("", "", 
-                                     "Fed\ncolostrum\nto\nnewboarn\n(\\%)"),
+                                     "Fed\ncolostrum\nto\nnewborn\n(\\%)"),
                                    align = "c"),
              escape = FALSE,
              digits = 1,
@@ -3998,6 +4425,8 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
                         italic = TRUE)
 ```
+
+Very few women across locations and wealth class are able to identify key dangers signs to watch out for in the newborn (see Figure \@ref(fig:nbc7Plot)). Jaundice is the most common danger signs identified by women mostly in urban and rural areas in among wealthier women. A great proportion of women cannot identify any danger sign and this proportion increases from urban to rural to hard-to-reach areas and from wealthiest to poorest households (see Figure \@ref(fig:nbc8Plot)).
 
 ```{r nbc4table, echo = FALSE, eval = TRUE}
 tab <- recode_nbc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
@@ -4015,7 +4444,7 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
                                      "Convulsion\n(\\%)",
                                      "High/low\ntemperature\n(\\%)",
                                      "Local\ninfection\n(\\%)",
-                                     "No\nless\nmovement\n(\\%)",
+                                     "No/\nless\nmovement\n(\\%)",
                                      "Fast/\ndifficulty\nbreathing\n(\\%)",
                                      "Yellow\nskin\n(\\%)",
                                      "Does\nnot\nknow\nany\ndanger\nsigns\n(\\%)"),
@@ -4031,9 +4460,59 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
   kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
   kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
-                        italic = TRUE) %>%
-  landscape()
+                        italic = TRUE) #%>%
+  #landscape()
 ```
+
+```{r nbc7Plot, echo = FALSE, eval = TRUE, fig.cap = "Knowledge of danger signs by location type", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = nbc10a:nbc11,
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(x = tabLong$indicators,
+                             levels = c(paste("nbc10", letters[1:7], sep = ""), "nbc11"),
+                             labels = c("Feeding less",
+                                        "Convulsion",
+                                        "High/low temperature",
+                                        "Local infection",
+                                        "No/less movement",
+                                        "Fast/difficulty breathing",
+                                        "Yellow skin",
+                                        "Does not know any danger signs"))
+
+tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
+tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+
+ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 2) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+```{r nbc8Plot, echo = FALSE, eval = TRUE, fig.cap = "Costs for newborn care by wealth quintiles", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 2) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+\newpage
+
+A high proportion of women practice inappropriate delivery wound care and umbilical cord stump care (see Table \@ref(tab:nbc5table)). This proportion increases from urban to rural to hard-to-reach women and from wealthiest to poorest women.
 
 ```{r nbc5table, echo = FALSE, eval = TRUE}
 tab <- recode_nbc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
@@ -4068,6 +4547,8 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 
 #### Maternal wasting {#mwasting}
 
+There is a relatively low prevalence of maternal wasting by MUAC in Kayah state with women in hard-to-reach areas having the highest proportion at close to 9% global wasting (see Table \@ref(tab:mMuac1table) and Figure \@ref(fig:mMuacPlot)). Moderate wasting by MUAC is about the same in urban and rural areas but significantly higher in hard-to-reach areas. Women in urban and hard-to-reach areas have about the same prevalence of severe wasting by MUAC while women in rural areas have less than half of this prevalence of severe wasting by MUAC.
+
 ```{r mMuac1table, echo = FALSE, eval = TRUE}
 tab <- recode_maternal_anthro(df = motherAnthro, x = anthroDF, y = childAnthro) %>%
   create_anthro_table(vars = c("muac", "gam", "mam", "sam"))
@@ -4080,9 +4561,9 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
              row.names = FALSE,
              col.names = linebreak(c("", "", 
                                      "MUAC\n(cm)",
-                                     "GAM\n(\\%)",
-                                     "MAM\n(\\%)",
-                                     "SAM\n(\\%)"),
+                                     "GAM\nMUAC\nless\nthan\n210 cm\n(\\%)",
+                                     "MAM\nMUAC\nless\nthan\n210 cm\nand greater\nthan\nor equal to\n185 cm\n(\\%)",
+                                     "SAM\nMUAC\nless\nthan\n185 cm\n(\\%)"),
                                    align = "c"),
              escape = FALSE,
              digits = 1,
@@ -4094,6 +4575,30 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
   kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
   kableExtra::pack_rows(index = c("Geographic" = 3), italic = TRUE)
+```
+
+```{r mMuacPlot, echo = FALSE, eval = TRUE, fig.cap = "Prevalence of maternal wasting by MUAC", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = mam:sam,
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(x = tabLong$indicators, 
+                             labels = c("Moderate wasting by MUAC", 
+                                        "Severe wasting by MUAC"))
+
+tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
+tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+
+ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate, fill = indicators)) +
+  geom_col(width = 0.5) +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 5) +
+  #facet_grid(. ~ strata) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  scale_fill_manual(values = c("yellow", "red")) +
+  labs(x = "", y = "%", fill = "") +
+  themeSettings
 ```
 
 #### Minimum dietary diversity for women {#mddw}
@@ -4111,13 +4616,13 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
              booktabs = TRUE,
              row.names = FALSE,
              col.names = linebreak(c("", "", 
-                                     "Minimum\ndietary\ndiversity\nfor\nwomen\n(\\%)"),
+                                     "Minimum dietary diversity for women\n(\\%)"),
                                    align = "c"),
              escape = FALSE,
              digits = 1,
              format = "latex") %>%
   kableExtra::kable_styling(latex_options = c("HOLD_position"),
-                            font_size = 12) %>%
+                            font_size = 10) %>%
   kableExtra::row_spec(row = 0, bold = TRUE) %>%
   kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
   kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
@@ -4126,11 +4631,13 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
                         italic = TRUE)
 ```
 
+\newpage
+
 ## Cohort study {#study2-results}
 
-For the results of the cohort study, the regression discontinuity was demonstrated through a regression plot of children's anthropometric indices and MUAC for those who were born a month before the start of recruitment for the MCCT programme (control programme) and those who were born a month after the start of the recruitment for the MCCT programme (intervention).
+For the results of the cohort study, the regression discontinuity was demonstrated through a regression plot of children's anthropometric indices and MUAC for those who were born a month before the start of recruitment for the MCCT programme (control programme) and those who were born a month after the start of the recruitment for the MCCT programme (intervention). The same analysis was applied to the MUAC of the mothers of these children.
 
-An intention-to-treat analysis was applied with intervention cases were identified purely based on their eligibility for the programme. Further analysis of acutal receipt of benefits from MCCT should be included at endline. Following are the results.
+An intention-to-treat analysis was applied with intervention cases identified purely based on their eligibility for the programme. Further analysis of acutal receipt of benefits from MCCT should be included at endline. Following are the results.
 
 ### Child anthropometric indicators
 
@@ -4138,85 +4645,243 @@ An intention-to-treat analysis was applied with intervention cases were identifi
 tab <- recode_anthro(df = create_canthro(df = childAnthro, x = anthroDF))
 
 tab <- tab[tab$sample_component == 2, ]
+
+tab <- tab[ , c("dob", "geo_state", "flag", "muac", "waz", "haz", "whz")]
+studyGroup <- ifelse(tab$dob %within% interval(start = lubridate::ymd("2018/09/01"),
+                                               end = lubridate::ymd("2018/09/30")), "Control", "Intervention")
+
+tab <- data.frame(studyGroup, tab)
+tab <- tab[!is.na(tab$studyGroup), ]
+
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = c(muac:whz),
+                               names_to = "indicators", values_to = "estimate")
 ```
 
-Figure \@ref(fig:rd2), Figure \@ref(fig:rd3), Figure \@ref(fig:rd4) and Figure \@ref(fig:rd5) show regression plots of weight-for-age z-score, height-for-age z-score, weight-for-height z-score and MUAC for children in the control and the intervention groups. Control data is for those before 1 October on the x-axis (left-side of red line on the plot) and the intervention data is for those on and after 1 October on the x-axis (right-side of red line on the plot). In all these cases, no regression discontinuity can be appreciated that is both control and intervention cases are anthropometrically similar groups. It should be appreciated that this is about a year after intervention where it would have been possible that some discontinuity would have already been observed.
+Figure \@ref(fig:rd2a), Figure \@ref(fig:rd3a), Figure \@ref(fig:rd4a) and Figure \@ref(fig:rd5a) show regression plots of weight-for-age z-score, height-for-age z-score, weight-for-height z-score and MUAC for children in the control and the intervention groups. Control data is for those before 1 October on the x-axis (left-side of red line on the plot) and the intervention data is for those on and after 1 October on the x-axis (right-side of red line on the plot). In all these cases, no statistically significant regression discontinuity can be appreciated; that is both control and intervention cases are anthropometrically similar groups though there are beginning signs of increases noted in the intervention group.
 
-```{r rd2, echo = FALSE, eval = TRUE, fig.cap = "Weight-for-age z-score regression discontinuity", fig.width = 8, fig.height = 6, fig.align = "center", fig.pos = "H"}
+```{r rd2, echo = FALSE, eval = FALSE, fig.cap = "Weight-for-age z-score regression discontinuity", fig.width = 8, fig.height = 6, fig.align = "center", fig.pos = "H"}
 ggplot(data = tab[tab$geo_state == "MMR002", ],
        mapping = aes(x = lubridate::ymd(dob), y = waz)) +
   geom_point(pch = 21, fill = "#247BA0", alpha = 0.5) +
-  geom_vline(xintercept = lubridate::ymd("2018-10-01"), colour = "darkred") +
+  geom_vline(xintercept = lubridate::ymd("2018-10-01"), 
+             colour = "darkred", linetype = "dashed",
+             size = 2) +
   geom_smooth(data = tab[tab$dob %within% 
                            interval(start = lubridate::ymd("2018/09/01"),
                                     end = lubridate::ymd("2018/09/30")), ],
+              method = "lm", fullrange = TRUE,
               linetype = "dashed", colour = "darkblue", 
               fill = "#247BA0", alpha = 0.3) +
   geom_smooth(data = tab[tab$dob %within% 
                            interval(start = lubridate::ymd("2018/10/01"),
                                     end = lubridate::ymd("2018/10/31")), ],
+              method = "lm", fullrange = TRUE,
               linetype = "dashed", colour = "darkgreen",
               fill = "#70C1B3", alpha = 0.3) +
+  scale_fill_manual(values = c("darkblue", "darkgreen")) + 
   labs(x = "", y = "Weight-for-age z-score (WAZ)") +
   themeSettings
 ```
 
-```{r rd3, echo = FALSE, eval = TRUE, fig.cap = "Height-for-age z-score regression discontinuity", fig.width = 8, fig.height = 6, fig.align = "center", fig.pos = "H"}
-ggplot(data = tab[tab$geo_state == "MMR002", ],
+```{r rd2a, echo = FALSE, eval = TRUE, fig.cap = "Weight-for-age z-score regression discontinuity", fig.width = 8, fig.height = 5, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[tabLong$geo_state == "MMR002" & tabLong$indicators == "waz", ],
+       mapping = aes(x = lubridate::ymd(dob), y = estimate, colour = studyGroup)) +
+  geom_point(alpha = 0.5) +
+  geom_vline(xintercept = lubridate::ymd("2018-10-01"), 
+             colour = "darkred", linetype = "dashed",
+             size = 2) +
+  geom_smooth(mapping = aes(fill = studyGroup), 
+              method = "lm", fullrange = TRUE, alpha = 0.3,
+              linetype = "dashed", size = 1) +
+  scale_colour_manual(values = c("darkblue", "darkgreen"), name = "Study Group") +
+  scale_fill_manual(values = c("darkblue", "darkgreen"), name = "Study Group") +
+  labs(x = "", y = "Weight-for-age z-score (WAZ)") +
+  themeSettings
+```
+
+
+```{r rd3, echo = FALSE, eval = FALSE, fig.cap = "Height-for-age z-score regression discontinuity", fig.width = 8, fig.height = 6, fig.align = "center", fig.pos = "H"}
+ggplot(data = tab[tab$geo_state == "MMR002" & tab$flag != 1, ],
        mapping = aes(x = lubridate::ymd(dob), y = haz)) +
   geom_point(pch = 21, fill = "#247BA0", alpha = 0.5) +
-  geom_vline(xintercept = lubridate::ymd("2018-10-01"), colour = "darkred") +
+  geom_vline(xintercept = lubridate::ymd("2018-10-01"), 
+             colour = "darkred", linetype = "dashed",
+             size = 2) +
   geom_smooth(data = tab[tab$dob %within% 
                            interval(start = lubridate::ymd("2018/09/01"),
                                     end = lubridate::ymd("2018/09/30")), ],
+              method = "lm", fullrange = TRUE,
               linetype = "dashed", colour = "darkblue", 
               fill = "#247BA0", alpha = 0.3) +
   geom_smooth(data = tab[tab$dob %within% 
                            interval(start = lubridate::ymd("2018/10/01"),
                                     end = lubridate::ymd("2018/10/31")), ],
+              method = "lm", fullrange = TRUE,
               linetype = "dashed", colour = "darkgreen",
               fill = "#70C1B3", alpha = 0.3) +
   labs(x = "", y = "Height-for-age z-score (HAZ)") +
   themeSettings
 ```
 
-```{r rd4, echo = FALSE, eval = TRUE, fig.cap = "Weight-for-height z-score regression discontinuity", fig.width = 8, fig.height = 6, fig.align = "center", fig.pos = "H"}
-ggplot(data = tab[tab$geo_state == "MMR002", ],
-       mapping = aes(x = lubridate::ymd(dob), y = whz)) +
-  geom_point(pch = 21, fill = "#247BA0", alpha = 0.5) +
-  geom_vline(xintercept = lubridate::ymd("2018-10-01"), colour = "darkred") +
-  geom_smooth(data = tab[tab$dob %within% 
-                           interval(start = lubridate::ymd("2018/09/01"),
-                                    end = lubridate::ymd("2018/09/30")), ],
-              linetype = "dashed", colour = "darkblue", 
-              fill = "#247BA0", alpha = 0.3) +
-  geom_smooth(data = tab[tab$dob %within% 
-                           interval(start = lubridate::ymd("2018/10/01"),
-                                    end = lubridate::ymd("2018/10/31")), ],
-              linetype = "dashed", colour = "darkgreen",
-              fill = "#70C1B3", alpha = 0.3) +
-  labs(x = "", y = "Weight-for-height z-score (HAZ)") +
+```{r rd3a, echo = FALSE, eval = TRUE, fig.cap = "Height-for-age z-score regression discontinuity", fig.width = 8, fig.height = 5, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[tabLong$geo_state == "MMR002" & tabLong$indicators == "haz" & tabLong$flag != 1, ],
+       mapping = aes(x = lubridate::ymd(dob), y = estimate, colour = studyGroup)) +
+  geom_point(alpha = 0.5) +
+  geom_vline(xintercept = lubridate::ymd("2018-10-01"), 
+             colour = "darkred", linetype = "dashed",
+             size = 2) +
+  geom_smooth(mapping = aes(fill = studyGroup), 
+              method = "lm", fullrange = TRUE, alpha = 0.3,
+              linetype = "dashed", size = 1) +
+  scale_colour_manual(values = c("darkblue", "darkgreen"), name = "Study Group") +
+  scale_fill_manual(values = c("darkblue", "darkgreen"), name = "Study Group") +
+  labs(x = "", y = "Height-for-age z-score (HAZ)") +
   themeSettings
 ```
 
-```{r rd5, echo = FALSE, eval = TRUE, fig.cap = "MUAC regression discontinuity", fig.width = 8, fig.height = 6, fig.align = "center", fig.pos = "H"}
+```{r rd4, echo = FALSE, eval = FALSE, fig.cap = "Weight-for-height z-score regression discontinuity", fig.width = 8, fig.height = 6, fig.align = "center", fig.pos = "H"}
 ggplot(data = tab[tab$geo_state == "MMR002", ],
-       mapping = aes(x = lubridate::ymd(dob), y = muac)) +
+       mapping = aes(x = lubridate::ymd(dob), y = whz)) +
   geom_point(pch = 21, fill = "#247BA0", alpha = 0.5) +
-  geom_vline(xintercept = lubridate::ymd("2018-10-01"), colour = "darkred") +
+  geom_vline(xintercept = lubridate::ymd("2018-10-01"), 
+             colour = "darkred", linetype = "dashed",
+             size = 2) +
   geom_smooth(data = tab[tab$dob %within% 
                            interval(start = lubridate::ymd("2018/09/01"),
                                     end = lubridate::ymd("2018/09/30")), ],
+              method = "lm", fullrange = TRUE,
               linetype = "dashed", colour = "darkblue", 
               fill = "#247BA0", alpha = 0.3) +
   geom_smooth(data = tab[tab$dob %within% 
                            interval(start = lubridate::ymd("2018/10/01"),
                                     end = lubridate::ymd("2018/10/31")), ],
+              method = "lm", fullrange = TRUE,
+              linetype = "dashed", colour = "darkgreen",
+              fill = "#70C1B3", alpha = 0.3) +
+  labs(x = "", y = "Weight-for-height z-score (WHZ)") +
+  themeSettings
+```
+
+```{r rd4a, echo = FALSE, eval = TRUE, fig.cap = "Weight-for-height z-score regression discontinuity", fig.width = 8, fig.height = 5, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[tabLong$geo_state == "MMR002" & tabLong$indicators == "whz", ],
+       mapping = aes(x = lubridate::ymd(dob), y = estimate, colour = studyGroup)) +
+  geom_point(alpha = 0.5) +
+  geom_vline(xintercept = lubridate::ymd("2018-10-01"), 
+             colour = "darkred", linetype = "dashed",
+             size = 2) +
+  geom_smooth(mapping = aes(fill = studyGroup), 
+              method = "lm", fullrange = TRUE, alpha = 0.3,
+              linetype = "dashed", size = 1) +
+  scale_colour_manual(values = c("darkblue", "darkgreen"), name = "Study Group") +
+  scale_fill_manual(values = c("darkblue", "darkgreen"), name = "Study Group") +
+  labs(x = "", y = "Weight-for-height z-score (WHZ)") +
+  themeSettings
+```
+
+```{r rd5, echo = FALSE, eval = FALSE, fig.cap = "MUAC regression discontinuity", fig.width = 8, fig.height = 6, fig.align = "center", fig.pos = "H"}
+ggplot(data = tab[tab$geo_state == "MMR002", ],
+       mapping = aes(x = lubridate::ymd(dob), y = muac)) +
+  geom_point(pch = 21, fill = "#247BA0", alpha = 0.5) +
+  geom_vline(xintercept = lubridate::ymd("2018-10-01"), 
+             colour = "darkred", linetype = "dashed",
+             size = 2) +
+  geom_smooth(data = tab[tab$dob %within% 
+                           interval(start = lubridate::ymd("2018/09/01"),
+                                    end = lubridate::ymd("2018/09/30")), ],
+              method = "lm", fullrange = TRUE,
+              linetype = "dashed", colour = "darkblue", 
+              fill = "#247BA0", alpha = 0.3) +
+  geom_smooth(data = tab[tab$dob %within% 
+                           interval(start = lubridate::ymd("2018/10/01"),
+                                    end = lubridate::ymd("2018/10/31")), ],
+              method = "lm", fullrange = TRUE,
               linetype = "dashed", colour = "darkgreen",
               fill = "#70C1B3", alpha = 0.3) +
   labs(x = "", y = "MUAC (cm)") +
   themeSettings
 ```
+
+```{r rd5a, echo = FALSE, eval = TRUE, fig.cap = "MUAC regression discontinuity", fig.width = 8, fig.height = 5, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[tabLong$geo_state == "MMR002" & tabLong$indicators == "muac", ],
+       mapping = aes(x = lubridate::ymd(dob), y = estimate, colour = studyGroup)) +
+  geom_point(alpha = 0.5) +
+  geom_vline(xintercept = lubridate::ymd("2018-10-01"), 
+             colour = "darkred", linetype = "dashed",
+             size = 2) +
+  geom_smooth(mapping = aes(fill = studyGroup), 
+              method = "lm", fullrange = TRUE, alpha = 0.3,
+              linetype = "dashed", size = 1) +
+  scale_colour_manual(values = c("darkblue", "darkgreen"), name = "Study Group") +
+  scale_fill_manual(values = c("darkblue", "darkgreen"), name = "Study Group") +
+  labs(x = "", y = "MUAC (cm)") +
+  themeSettings
+```
+
+\newpage
+
+### Maternal anthropometric indicators
+
+```{r rd6, echo = FALSE, eval = TRUE, results = FALSE}
+tab <- recode_maternal_anthro(df = motherAnthro, x = anthroDF, y = childAnthro)
+
+## Remove 0 values
+tab <- tab[tab$muac > 0, ]
+
+tab <- tab[tab$sample_component == 2, ]
+
+tab <- tab[ , c("dob", "geo_state", "muac")]
+studyGroup <- ifelse(tab$dob %within% interval(start = lubridate::ymd("2018/09/01"),
+                                               end = lubridate::ymd("2018/09/30")), "Control", "Intervention")
+
+tab <- data.frame(studyGroup, tab)
+tab <- tab[!is.na(tab$studyGroup), ]
+
+tabLong <- tidyr::pivot_longer(data = tab, 
+                               cols = muac,
+                               names_to = "indicators", values_to = "estimate")
+```
+
+For maternal wasting by MUAC, a similar pattern of beginning but non-significant discontinuity can be noted as shown in Figure \@ref(fig:rd7a).
+
+```{r rd7, echo = FALSE, eval = FALSE, fig.cap = "Maternal MUAC regression discontinuity", fig.width = 8, fig.height = 6, fig.align = "center", fig.pos = "H"}
+ggplot(data = tab[tab$geo_state == "MMR002", ],
+       mapping = aes(x = lubridate::ymd(dob), y = muac)) +
+  geom_point(pch = 21, fill = "#247BA0", alpha = 0.5) +
+  geom_vline(xintercept = lubridate::ymd("2018-10-01"),
+             colour = "darkred", linetype = "dashed", size = 2) +
+  geom_smooth(data = tab[tab$dob %within% 
+                           interval(start = lubridate::ymd("2018/09/01"),
+                                    end = lubridate::ymd("2018/09/30")), ],
+              method = "lm", fullrange = TRUE,
+              linetype = "dashed", colour = "darkblue", 
+              fill = "#247BA0", alpha = 0.3) +
+  geom_smooth(data = tab[tab$dob %within% 
+                           interval(start = lubridate::ymd("2018/10/01"),
+                                    end = lubridate::ymd("2018/10/31")), ],
+              method = "lm", fullrange = TRUE,
+              linetype = "dashed", colour = "darkgreen",
+              fill = "#70C1B3", alpha = 0.3) +
+  labs(x = "", y = "MUAC (cm)") +
+  themeSettings
+```
+
+```{r rd7a, echo = FALSE, eval = TRUE, fig.cap = "Maternal MUAC regression discontinuity", fig.width = 8, fig.height = 5, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[tabLong$geo_state == "MMR002" & tabLong$indicators == "muac", ],
+       mapping = aes(x = lubridate::ymd(dob), y = estimate, colour = studyGroup)) +
+  geom_point(alpha = 0.5) +
+  geom_vline(xintercept = lubridate::ymd("2018-10-01"), 
+             colour = "darkred", linetype = "dashed",
+             size = 2) +
+  geom_smooth(mapping = aes(fill = studyGroup), 
+              method = "lm", fullrange = TRUE, alpha = 0.3,
+              linetype = "dashed", size = 1) +
+  scale_colour_manual(values = c("darkblue", "darkgreen"), name = "Study Group") +
+  scale_fill_manual(values = c("darkblue", "darkgreen"), name = "Study Group") +
+  labs(x = "", y = "MUAC (cm)") +
+  themeSettings
+```
+
 
 \newpage
 
