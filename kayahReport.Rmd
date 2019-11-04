@@ -76,48 +76,81 @@ themeSettings <- theme_bw() +
 
 # Acronyms and abbreviations {-}
 
-Acronym | Definition     
-:--- | :---
-CPI | Community Partners International
-CSI | Coping strategies index
-CCSI | Consumption-based coping strategies index
-DSW | Department of Social Welfare
-FCS | Food consumption score
-FCS-N | Food consumption score - nutrition
-GAD | General Administration Department
-GAM | Global acute malnutrition
-HAZ | Height-for-age z-score
-HFES | Household food expenditure share
-HIV/AIDS | Human immunodeficiency virus / Acquired immune deficiency syndrome
-IFA | Iron-folic acid
-IYCF | Infant and young child feeding
-LCSI | Livelihoods-based coping strategies index
-MAM | Gobal acute malnutrition
-MCCT | Mother and Child Cash Transfer
-MDD-W | Minimum dietary diversity for women
-MMK | Myanmar Kyatt
-MSWRR | Ministry of Social Welfare, Relief and Resettlement
-MS-NPAN | Multi-Sector National Plan of Action for Nutrition
-MUAC | Middle upper arm circumference
-NNC | National Nutrition Council
-NSPSP | National Social Protection Strategic Plan
-ODK | Open Data Kit
-PLW | Pregnant or lactating women
-PPI | Poverty probability index
-RCT | Randomised controlled trial
-RD | Regression discontinuity
-RHC | Rural health centre
-SAM | Severe acute malnutrition
-SBCC | Social Behavioural Change Communication
-SRHC | Sub-rural health centre
-STD | Sexually-transmitted disease
-TEM | Technical error of measurement
-UNICEF | United Nations Children's Fund
-WASH | Water, sanitation and hygiene
-WAZ | Weight-for-age z-score
-WHO | World Health Organization
-WHZ | Weight-for-height z-score
-WFP | World Food Programme
+```{r acronym, echo = FALSE, eval = TRUE}
+x <- c("CPI", "CSI", "CCSI", "DSW", "FCS", "FCS-N", "GAD", "GAM", "HAZ", "HFES", "HIV/AIDS", "IFA", "IYCF", "LCSI", "MAM", "MCCT", "MDD-W", "MMK", "MSWRR", "MN-NPAN", "MUAC", "NNC", "NSPSP", "ODK", "PLW", "PPI", "RCT", "RD", "RHC", "SAM", "SBCC", "SRHC", "STD", "TEM", "UNICEF", "WASH", "WAZ", "WHO", "WHZ", "WFP")
+
+y <- c("Community Partners International",
+       "Coping strategies index",
+       "Consumption-based coping strategies index",
+       "Department of Social Welfare",
+       "Food consumption score",
+       "Food consumption score - nutrition",
+       "General Administration Department",
+       "Glocal Acute Malnutrition",
+       "Height-for-age z-score",
+       "Household food expenditure share",
+       "Human immunodeficiency virus/Acquired immune deficiency syndrome",
+       "Iron-folic acid",
+       "Infant and young child feeding",
+       "Livelihoods-based coping strategies index",
+       "Moderate acute malnutrition",
+       "Mother and child cash transfer",
+       "Minimum dietary diversity for women",
+       "Myanmar Kyatt",
+       "Ministry of Social Welfare, Relief and Resettlement",
+       "Multi-sector National Plan of Action for Nutrition",
+       "Midde upper arm circumference",
+       "National Nutrition Council",
+       "National Social Protection Strategic Plan",
+       "Open Data Kit",
+       "Pregnant or lactating women",
+       "Poverty probability index",
+       "Randomised controlled trial",
+       "Regression discontinuity",
+       "Rural health centre",
+       "Severe acute malnutrition",
+       "Social behavioural change communication",
+       "Sub-rural health centre",
+       "Sexually-transmitted disease",
+       "Technical error of measurement",
+       "United Nations Children's Fund",
+       "Water, sanitation and hygiene",
+       "Weight-for-age z-score",
+       "World Health Organization",
+       "Weight-for-height z-score",
+       "World Food Programme")
+
+xy <- data.frame(x, y)
+
+kable(x = xy,
+      caption = NULL,
+      booktabs = TRUE,
+      row.names = FALSE,
+      col.names = c("Acronym/Abbreviation", "Definition"),
+      escape = TRUE,
+      format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position", "striped")) %>%
+  kableExtra::column_spec(column = 2, width = "8cm") %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) 
+```
+
+\newpage
+
+# Exectuive summary {-}
+
+Since 2017, the Ministry of Social Welfare, Relief and Resettlement (MSWRR) started rolling out a Maternal and Child Cash Transfer (MCCT) program in specific states including Kayah State through the Department of Social Welfare, in line with the National Social Protection Strategic Plan (NSPSP) and the Multi-Sector National Plan of Action for Nutrition (MS-NPAN). The program aims to improve nutritional outcomes for all mothers and children during the first 1000 days of life by ensuring that pregnant women and mothers have improved practices on nutrition, infant, and young child feeding, and health-seeking behaviors. The program aims to provide universal coverage to social behavior change communication (SBCC) and a maternal and child cash transfer (MCCT) of 15,000 MMK per month for all pregnant women and mothers with children under 2 years of age. In Kayah State, recruitment into the programme started on the 1st of October 2018. From the 6th of August to the 20th of September 2019, a study that included a baseline population-based survey and a study cohort of mothers and children was initiated. The study aims to assess key household, child health and nutrition and maternal health and nutrition indicators to describe the existing situation in Kayah State and to assess the impact of the MCCT in acheiving its goals of reducing childhood undernutrition, specifically stunting, in Kayah State. This report presents the results of this study.
+
+The results of the population-based baseline survey in Kayah State indicate that child undernutrition specifically stunting/stuntedness and underweight is one of the highest in Myanmar with children in hard-to-reach areas (which also tend to be the poorest in the state) being the worst affected in the state. Results from child health and nutrition related indicators describes the situation in the state of poor infant and young child feeding and breastfeeding practices and low coverage and access to child health services such as immunisation as immediate factors that may explain the level of child undernutrition in the state. In addition, maternal health as proxied by services for mothers during pregnancy, on giving birth and post-pregnancy indicate mostly disparate results of relative better access among wealthy women and lesser access for poorer women. Overall, most mothers who access these maternal health services pay out-of-pocket hence exacerbating the wealth disparity in access to these services. Maternal undernutrition as proxied by maternal wasting by MUAC is, however, low with good dietary diversity of women.
+
+More distal factors such as food insecurity as proxied by food consumption, coping strategies, household food expenditure share are not at critical levels for the state on aggregate but wealth disparities with regard to these food security indicators support the idea that poverty is a distal driver of child undernutrition in the state. Water and sanitation and hygiene indicators, another distal factor impacting on child health and nutrition, though on aggregate are acceptable are much worse for poor households.
+
+Treatment-seeking for childhood illnesses in Kayin state is to mostly explained by wealth disparity though results seem to indicate a more complex mechanism of decisionmaking within households that the current results cannot completely explain.
+
+It is within this context that the MCCT program is embedded aiming to address primarily the distal factor of poverty and its correlates so that households can address immediate and intermediate factors of access to nutritious food and access to services which in turn can impact on the child undernutrition situation specifically stunting. However, the results of the population-based survey indicate that current coverage of the MCCT program in Kayin state is too low to possibly make an impact.
+
+The results from the cohort of intervention and control mother and children recruited for the evaluation component of the study seem to support this concern. Whilst there is beginning discontinuity noted between intervention and control groups after one year of intervention, the difference is not significant enough to be able to associate this effect on the MCCT program. This can be partly explained by a relatively short period of exposure to be able to make an impact on stunting/stuntedness. But it is also explained by the low coverage achieved by the program currently.
+
+Given this, it is critical that the MCCT program achieve high levels of coverage as an immediate point of action. Secondly, other factors that a cash transfer program will most likley not impact should be considered for other types of interventions. This includes efforts to improve water, sanitation and hygiene services particularly in hard-to-reach and in poor households. Social and behavioural change communication, a component of the current intervention, also has a role in impacting on diet-related practices specifically on infant and young child feeding and in addition it should include key messages on appropriate hygiene practices and treatment-seeking practices based on nuanced and contextualised understanding of existing practices and behaviours.
 
 \newpage
 
@@ -187,9 +220,9 @@ As described in the sampling frame above, a total of 25 villages per strata and 
 
 As part of a longitudinal, quasi-experimental evaluation design, the baseline survey included a cohort of mothers and their children selected through specific study eligibility criteria based on eligibility and receipt of the services and benefits of the MCCT program. Once recruited, this cohort was assessed on appropriate indicators related to nutrition, IYCF and health-seeking behaviours at baseline. This same cohort will then be assessed at endline on the same set of appropriate and relevant indicators to detect any difference between those receiving benefits from the MCCT from those who are not based on a regression discontinuity analytical approach (see Section \@ref(regression-discontinuity)).
 
-This component of the study provides a statistically robust comparison between those exposed to the MCCT program and those who are not hence detecting the possible impact that the programme has on a specific set of impact indicators.
+This component of the study provides a statistically robust comparison between those exposed to the MCCT program and those who are not hence detecting the possible impact that the program has on a specific set of impact indicators.
 
-Given the universal nature of the MCCT program and the need to create effective treatment and comparison groups to detect program impact, this study component used a similar regression discontinuity (RD) design as was developed and used for the MCCT evaluation in Chin State, but with distinct changes that address limitations of the latter [@MinistryofSocialWelfareReliefandResettlement2018]. This design was made possible by the fact that there is a specific cut-off point for programme eligibility. Ultimately, the programme (treatment) effect can be detected as a discontinuity in the regression line around this cut-off which in this case is a specific date that determines eligibility. The design is *quasi-experimental*, since treatment and comparison groups were not selected at random but based on predefined characteristics.
+Given the universal nature of the MCCT program and the need to create effective treatment and comparison groups to detect program impact, this study component used a similar regression discontinuity (RD) design as was developed and used for the MCCT evaluation in Chin State, but with distinct changes that address limitations of the latter [@MinistryofSocialWelfareReliefandResettlement2018]. This design was made possible by the fact that there is a specific cut-off point for program eligibility. Ultimately, the program (treatment) effect can be detected as a discontinuity in the regression line around this cut-off which in this case is a specific date that determines eligibility. The design is *quasi-experimental*, since treatment and comparison groups were not selected at random but based on predefined characteristics.
 
 #### Eligibility criteria {#eligibility}
 
@@ -222,7 +255,7 @@ The RD design effect was factored in for sample size calculations. This design e
 Given that the running variable for this study is the start date of registration in relation to pregnancy, it was expected that there would be various peaks in number of pregnancies at specific time points following a general seasonal pattern not necessarily related to the cut-off date. The distribution is therefore likely multi-modal. So an assumption of at least 5 design effect for this RD design was taken into account.
 
 Using prevalence of stunting as the index indicator for calculating sample size and using mean change in height-for-age z-score (HAZ) as the specific variable to use for assessing change, the same sample size calculation as in the survey was arrived at which was 137 for controls and 137 for intervention (total of 274) for each state.
-However, given the very narrow bandwidth of inclusion into the study used (one month before and after the programme start), it is likely that the universe population from which to select the cohort is quite small and that the total sample size of 274 is likely requiring an exhaustive sampling of all children born within the specified periods above. In this case, the inflation factor to account for design effect was not considered to be relevant given that an exhaustive sample will be drawn to begin with. Hence the 274 sample size for Kayah State was set as the target sample size.
+However, given the very narrow bandwidth of inclusion into the study used (one month before and after the program start), it is likely that the universe population from which to select the cohort is quite small and that the total sample size of 274 is likely requiring an exhaustive sampling of all children born within the specified periods above. In this case, the inflation factor to account for design effect was not considered to be relevant given that an exhaustive sample will be drawn to begin with. Hence the 274 sample size for Kayah State was set as the target sample size.
 
 #### Sample recruitment
 
@@ -297,6 +330,14 @@ The main motivation for using R was to achieve transparent and reproducible rese
 ### Indicator estimation {#indicator-estimation}
 
 Data was processed and recoded based on standard and established indicator definitions whenever available. For some indicators, modifications to standard definitions were made based on information requirements by stakekholders or study-specific definitions were established in order to achieve analysis requirements. Several recode functions were developed in R through the **myanmarMCCTdata** package for this purpose. The following indicator sets were assessed:
+
+#### MCCT program coverage
+
+Given that actual exposure to the intervention is a key factor to assessing impact of the MCCT program, coverage was deemed important to assess and estimate. Based on eligibility criteria for MCCT, households were assessed whether they qualified for inclusion in MCCT. Households were also asked whether they were in the MCCT and receiving its benefits. These data were then used to assess program coverage defined as:
+
+$$ \text{MCCT program coverage} ~ = ~ \frac{\text{Eligible households in MCCT program}}{\text{Total eligible households}} $$
+
+This indicator was only estimated for the population survey sample component of the study.
 
 #### Poverty probability index (PPI) {#ppi}
 
@@ -501,7 +542,7 @@ The child health indicators of the Myanmar MCCT Programme Evaluation include the
 
 **Immunisation coverage**
 
-Coverage of the expanded programme on immunisation (EPI) in Myanmar was based on the 2016 revised routine vaccination schedule when the pneumococcal and inactivated polio vaccine injection was introduced [@MoHMyanmar:2016wp] (see Table \@ref(tab:epi1)).
+Coverage of the expanded program on immunisation (EPI) in Myanmar was based on the 2016 revised routine vaccination schedule when the pneumococcal and inactivated polio vaccine injection was introduced [@MoHMyanmar:2016wp] (see Table \@ref(tab:epi1)).
 
 ```{r epi1, echo = FALSE, eval = TRUE}
 epiSchedule <- data.frame(c(rep("At birth", 2), rep("First Dose (2nd month)", 5), rep("Second dose (4th month)", 5), rep("Third dose (6th month)", 4), "Fourth dose (9th month)", "Fifth dose (18th Month)"),
@@ -518,6 +559,10 @@ knitr::kable(x = epiSchedule,
   kableExtra::row_spec(row = 0, bold = TRUE) %>%
   kableExtra::collapse_rows(columns = 1)
 ```
+
+Immunisation coverage indicators were calculated according to standard indicator definitions for children 12-23 months old [@WorldHealthOrganization:2005vp; @WorldHealthOrganization:1991uh; @HoshawWoodard:2001vm].
+
+In addition to the standard indicators, age-appropriate immunisation coverage indicators were calculated based on Myanmar's EPI schedule. This was done to be able to maximise the full sample size of children 0-59 months old and to assess whether children at various ages receive the appropriate vaccination as per Myanmar EPI schedule. This is similar to approaches used by other researchers to assess age-appropriate immunisation coverage [@Kidane:2004uy; @Tadesse:2009dm; @Odutola:2015bm' @Dombkowski:2004bt]
 
 **Period prevalence of childhood illnesses and treatment-seeking**
 
@@ -630,7 +675,7 @@ Indicator estimation was performed on the dataset for respondents for the popula
 
 ### Regression discontinuity {#regression-discontinuity}
 
-Using data from respondents who quality for eligibility to the second component of the study, outcome nutrition indicators for chlidren and mothers were plotted by date of birth of the index child to demonstrate whether a regression discontinuity on the indicators of interest were demonstrable between those who are not benefitting from the MCCT programme (on the basis of being born up to a month before the start of the programme) and those who are (born up to a month after start of the programme). Discontinuity was detected visually through the plot and statistically by testing any difference between the regression line of those in the control group to the regression line of those in the treatment group.
+Using data from respondents who quality for eligibility to the second component of the study, outcome nutrition indicators for chlidren and mothers were plotted by date of birth of the index child to demonstrate whether a regression discontinuity on the indicators of interest were demonstrable between those who are not benefitting from the MCCT program (on the basis of being born up to a month before the start of the program) and those who are (born up to a month after start of the program). Discontinuity was detected visually through the plot and statistically by testing any difference between the regression line of those in the control group to the regression line of those in the treatment group.
 
 \newpage
 
@@ -931,7 +976,7 @@ tab$state <- factor(tab$state, labels = c("Kayin", "Kayah"))
 
 ggplot(data = tab[tab$strata %in% c("Urban", "Rural", "Hard-to-reach") & tab$state == "Kayah", ], 
        mapping = aes(x = strata, y = bTotalWeighted)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = round(bTotalWeighted, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   #facet_grid(. ~ state) +
@@ -942,7 +987,7 @@ ggplot(data = tab[tab$strata %in% c("Urban", "Rural", "Hard-to-reach") & tab$sta
 ```{r ccsi2plot, echo = FALSE, eval = TRUE, fig.cap = "Consumption-based coping strategies index by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tab[!tab$strata %in% c("Urban", "Rural", "Hard-to-reach") & tab$state == "Kayah", ], 
        mapping = aes(x = strata, y = bTotalWeighted)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = round(bTotalWeighted, digits = 1)), 
             position = position_stack(vjust = 1), size = 5) +
   #facet_grid(. ~ state) +
@@ -1384,7 +1429,7 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") 
 
 #### Immunisation coverage {#epi-results}
 
-Immunisation coverage in Kayah state tells a story of a generally wide exposure to immunisation services with all children having had any immunisation in urban and rural area and up to 90% in hard-to-reach areas then falters early and dramatically with immunisation access as proxied by BCG vaccination drastically drops to only as high as 20% in urban areas and 18% in rural and hard-to-reach areas. This drop in immunisation coverage continues with utilisation of immunisation services (as proxied by children getting all required pentavalent vaccinations) further drops particularly in hard-to-reach areas and then full immunisation coverage drops significantly in all areas but more profoundly in hard-to-reach areas (see Figure \@ref(fig:epi1plot)).
+Immunisation coverage in Kayah state tells a story of a generally wide exposure to immunisation services with all children having had any immunisation in urban and rural areas and up to 90% in hard-to-reach areas then falters early and dramatically with immunisation access as proxied by BCG vaccination drastically drops to only as high as 20% in urban areas and 18% in rural and hard-to-reach areas. This drop in immunisation coverage continues with utilisation of immunisation services (as proxied by children getting all required pentavalent vaccinations) further drops particularly in hard-to-reach areas and then full immunisation coverage drops significantly in all areas but more profoundly in hard-to-reach areas (see Figure \@ref(fig:epi1plot)).
 
 Per vaccination type coverage, as to be expected, is significantly low across the whole of Kayah state (see Table \@ref(tab:epi2table)) with households in hard-to-reach areas and poor and poorest households with significantly lower per vaccine type coverage, except for BCG, compared to urban and rural areas and wealthy and wealthiest households (see Figure \@ref(fig:epi3plot) and Figure \@ref(fig:epi4plot)).
 
@@ -1443,7 +1488,7 @@ tabLong$state <- factor(tabLong$state, levels = c("Kayin", "Kayah"))
 
 ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   facet_grid(. ~ indicators) +
@@ -1457,7 +1502,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
 ```{r epi2plot, echo = FALSE, eval = TRUE, fig.cap = "Immunisation coverage by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   facet_grid(. ~ indicators) +
@@ -1542,7 +1587,7 @@ tabLong$state <- factor(tabLong$state, levels = c("Kayin", "Kayah"))
 
 ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -1556,13 +1601,115 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
 ```{r epi4plot, echo = FALSE, eval = TRUE, fig.cap = "Immunisation coverage per vaccine by wealth quintiles", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
   facet_wrap(. ~ indicators, ncol = 3) +
   #scale_y_continuous(limits = c(0, 100)) +
   scale_fill_manual(values = rev(brewer.pal(n = 4, "RdYlGn"))) +
+  labs(x = "", y = "%") +
+  themeSettings +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
+
+Age-appropriate immunisation coverage per vaccine and overall (see Table \@ref(tab:epi1aTable), Figure \@ref(fig:epi3aPlot) and \@ref(fig:epi4aPlot)) show similar rates and trends across location types and wealth classes as the standard immunisation coverage indicators. This would indicate that the low levels of immunisaiton is a long-standing issue rather than just a current phenomenon.
+
+```{r epi1aTable, echo = FALSE, eval = TRUE}
+tab <- recode_chealth(df = create_chealth(df = childHealth, x = hh, y = hhMembers)) %>%
+  create_unweighted_table(vars = c("ageBCG", "ageHepB", "agePenta1", "agePenta2", "agePenta3", 
+                                   "agePolio1", "agePolio2", "agePolio3", "agePolioInj", 
+                                   "ageMeasles1", "ageMeasles2", "ageRubella", "ageImm"))
+
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
+
+knitr::kable(x = tab[tab$state == "Kayah", ],
+             caption = "Age-appropriate immunisation coverage",
+             booktabs = TRUE,
+             row.names = FALSE,
+             col.names = linebreak(c("", "", 
+                                     "BCG\n(\\%)", 
+                                     "Hepatitis B\n(\\%)",
+                                     "Penta 1\n(\\%)",
+                                     "Penta 2\n(\\%)",
+                                     "Penta 3\n(\\%)",
+                                     "Polio 1\n(\\%)",
+                                     "Polio 2\n(\\%)",
+                                     "Polio 3\n(\\%)",
+                                     "IPV\n(\\%)",
+                                     "Measles 1\n(\\%)",
+                                     "Measles 2\n(\\%)",
+                                     "Rubella\n(\\%)",
+                                     "Age-\nappropriate\nimmunisation\n(\\%)"),
+                                   align = "c"),
+             escape = FALSE,
+             digits = 1,
+             format = "latex") %>%
+  kableExtra::kable_styling(latex_options = c("HOLD_position"),
+                            font_size = 10) %>%
+  kableExtra::row_spec(row = 0, bold = TRUE) %>%
+  kableExtra::column_spec(column = 0:ncol(tab), monospace = TRUE) %>%
+  kableExtra::column_spec(column = 1:2, bold = TRUE) %>%
+  kableExtra::collapse_rows(columns = 1:2, row_group_label_position = "stack") %>%
+  kableExtra::pack_rows(index = c("Geographic" = 3, "Wealth" = 5),
+                        italic = TRUE) %>%
+  landscape()
+```
+
+```{r epi3aPlot, echo = FALSE, eval = TRUE, fig.cap = "Age-appropriate immunisation coverage per vaccine by location type", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
+tabLong <- tidyr::pivot_longer(data = tab,
+                               cols = c("ageBCG", "ageHepB", 
+                                        "agePenta1", "agePenta2", "agePenta3", 
+                                        "agePolio1", "agePolio2", "agePolio3", "agePolioInj", 
+                                        "ageMeasles1", "ageMeasles2", "ageRubella", 
+                                        "ageImm"),
+                               names_to = "indicators", values_to = "estimate")
+
+tabLong$indicators <- factor(tabLong$indicators,
+                             levels = c("ageBCG", "ageHepB", 
+                                        "agePenta1", "agePenta2", "agePenta3", 
+                                        "agePolio1", "agePolio2", "agePolio3", "agePolioInj", 
+                                        "ageMeasles1", "ageMeasles2", "ageRubella", 
+                                        "ageImm"),
+                             labels = c("BCG", 
+                                        "Hepatitis B", 
+                                        "Penta 1",
+                                        "Penta 2",
+                                        "Penta 3",
+                                        "OPV 1",
+                                        "OPV 2",
+                                        "OPV 3",
+                                        "IPV",
+                                        "Measles 1",
+                                        "Measles 2",
+                                        "Rubella",
+                                        "Age-appropriate immunisation"))
+tabLong$strata <- factor(tabLong$strata, 
+                         levels = c("Urban", "Rural", "Hard-to-reach", 
+                                    "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
+tabLong$state <- factor(tabLong$state, levels = c("Kayin", "Kayah"))
+
+ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 3) +
+  #scale_y_continuous(limits = c(0, 100)) +
+  labs(x = "", y = "%") +
+  themeSettings
+```
+
+```{r epi4aPlot, echo = FALSE, eval = TRUE, fig.cap = "Age-appropriate immunisation coverage per vaccine by wealth quintiles", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
+       aes(x = strata, y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
+  geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 0.5), size = 3) +
+  #facet_grid(indicators ~ .) +
+  facet_wrap(indicators ~ ., ncol = 3) +
+  #scale_y_continuous(limits = c(0, 100)) +
   labs(x = "", y = "%") +
   themeSettings +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
@@ -1610,7 +1757,7 @@ tabLong$state <- factor(tabLong$state, levels = c("Kayin", "Kayah"))
 
 ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -1624,7 +1771,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
 ```{r epi6plot, echo = FALSE, eval = TRUE, fig.cap = "Immunisation-associated services coverage by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -1681,7 +1828,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 5) +
   #facet_grid(indicators ~ .) +
@@ -1693,7 +1840,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
 ```{r ill2plot, echo = FALSE, eval = TRUE, fig.cap = "Period prevalence of childhood illnesses by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 5) +
   #facet_grid(indicators ~ .) +
@@ -1754,7 +1901,10 @@ tabLong <- tidyr::pivot_longer(data = tab,
                                cols = dia2:dia3h,
                                names_to = "indicators", values_to = "estimate")
 
-tabLong$indicators <- factor(x = tabLong$indicators, 
+tabLong$indicators <- factor(x = tabLong$indicators,
+                             levels = c("dia2", "dia4", "dia3a", "dia3b", 
+                                        "dia3c", "dia3d", "dia3f", "dia3g", 
+                                        "dia3h"),
                              labels = c("Sought treatment", 
                                         "Time to treatment", "No facility", 
                                         "Facility inaccessible", "Expensive", 
@@ -1765,7 +1915,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$indicators == "Sought treatment" & tabLong$state == "Kayah", ],
        mapping = aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 5) +
   #facet_grid(. ~ state) +
@@ -1776,7 +1926,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
 ```{r diarrhoea2plot, echo = FALSE, eval = TRUE, fig.cap = "Treatment-seeking for diarrhoea by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$indicators == "Sought treatment" & tabLong$state == "Kayah", ],
        mapping = aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 5) +
   #facet_grid(. ~ state) +
@@ -1784,15 +1934,15 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") 
   themeSettings
 ```
 
-```{r diarrhoea3plot, echo = FALSE, eval = FALSE, fig.cap = "Reasons for not seeking treatment by location type in Kayin state", fig.width = 14, fig.height = 8, fig.align = "center", fig.pos = "H"}
-ggplot(data = tabLong[tabLong$state == "Kayin" & 
+```{r diarrhoea3plot, echo = FALSE, eval = TRUE, fig.cap = "Reasons for not seeking treatment by location type", fig.width = 14, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[tabLong$state == "Kayah" & 
                         tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & 
                         !tabLong$indicators %in% c("Sought treatment", "Time to treatment"), ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata), 
                      y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
-            position = position_stack(vjust = 1), size = 5) +
+            position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
   facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
@@ -1800,13 +1950,13 @@ ggplot(data = tabLong[tabLong$state == "Kayin" &
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 ```
 
-```{r diarrhoea4plot, echo = FALSE, eval = TRUE, fig.cap = "Reasons for not seeking treatment by location type", fig.width = 14, fig.height = 8, fig.align = "center", fig.pos = "H"}
+```{r diarrhoea4plot, echo = FALSE, eval = TRUE, fig.cap = "Reasons for not seeking treatment by weath quintiles", fig.width = 14, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[tabLong$state == "Kayah" & 
-                        tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & 
+                        !tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & 
                         !tabLong$indicators %in% c("Sought treatment", "Time to treatment"), ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata), 
                      y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
@@ -1859,48 +2009,16 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   landscape()
 ```
 
-```{r diarrhoea5plot, echo = FALSE, eval = FALSE, fig.cap = "Where/who treatment is sought from by location type in Kayin state", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+```{r diarrhoea5plot, echo = FALSE, eval = TRUE, fig.cap = "Where/who treatment is sought from by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tabLong <- tidyr::pivot_longer(data = tab, 
                                cols = dia5a:dia5m,
                                names_to = "indicators", values_to = "estimate")
 
-tabLong$indicators <- factor(x = tabLong$indicators, 
-                             labels = c("Township hospital",
-                                        "Station hospital",
-                                        "RHC/health assistant", 
-                                        "SRHC/midwife",
-                                        "Private clinic/doctor", 
-                                        "Community health worker", 
-                                        "Traditional healer", 
-                                        "Untrained health worker",
-                                        "Drug from shop",
-                                        "EHO clinic/volunteer",
-                                        "Family member",
-                                        "NGOs/clinic",
-                                        "Auxilliary midwife"))
-
-tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
-tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
-
-ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayin", ],
-       mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
-                     y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
-  geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
-            position = position_stack(vjust = 1), size = 5) +
-  scale_x_reordered() +
-  facet_grid(. ~ strata, scales = "free_x") +
-  labs(x = "", y = "%") +
-  themeSettings +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
-```
-
-```{r diarrhoea6plot, echo = FALSE, eval = TRUE, fig.cap = "Where/who treatment is sought from by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
-tabLong <- tidyr::pivot_longer(data = tab, 
-                               cols = dia5a:dia5m,
-                               names_to = "indicators", values_to = "estimate")
-
-tabLong$indicators <- factor(x = tabLong$indicators, 
+tabLong$indicators <- factor(x = tabLong$indicators,
+                             levels = c("dia5a", "dia5b", "dia5c", "dia5d", 
+                                        "dia5e", "dia5f", "dia5g", "dia5h", 
+                                        "dia5i", "dia5j", "dia5k", "dia5l", 
+                                        "dia5m"),
                              labels = c("Township hospital",
                                         "Station hospital",
                                         "RHC/health assistant", 
@@ -1921,7 +2039,21 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
                      y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
+  geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 1), size = 3) +
+  scale_x_reordered() +
+  facet_grid(. ~ strata, scales = "free_x") +
+  labs(x = "", y = "%") +
+  themeSettings +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
+
+```{r diarrhoea6plot, echo = FALSE, eval = TRUE, fig.cap = "Where/who treatment is sought from by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
+       mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
+                     y= estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
@@ -1968,41 +2100,14 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   landscape()
 ```
 
-```{r diarrhoea7plot, echo = FALSE, eval = FALSE, fig.cap = "Costs incurred for treatment in Kayin state", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+```{r diarrhoea7plot, echo = FALSE, eval = TRUE, fig.cap = "Costs incurred for treatment by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tabLong <- tidyr::pivot_longer(data = tab, 
                                cols = dia8a:dia8f,
                                names_to = "indicators", values_to = "estimate")
 
-tabLong$indicators <- factor(x = tabLong$indicators, 
-                             labels = c("Transportation",
-                                        "Registration",
-                                        "Medicine", 
-                                        "Laboratory fees",
-                                        "Provider fees", 
-                                        "Gifts"))
-
-tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
-tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
-
-ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayin", ],
-       mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
-                     y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
-  geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
-            position = position_stack(vjust = 1), size = 5) +
-  scale_x_reordered() +
-  facet_grid(. ~ strata, scales = "free_x") +
-  labs(x = "", y = "%") +
-  themeSettings +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
-```
-
-```{r diarrhoea8plot, echo = FALSE, eval = TRUE, fig.cap = "Costs incurred for treatment", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
-tabLong <- tidyr::pivot_longer(data = tab, 
-                               cols = dia8a:dia8f,
-                               names_to = "indicators", values_to = "estimate")
-
-tabLong$indicators <- factor(x = tabLong$indicators, 
+tabLong$indicators <- factor(x = tabLong$indicators,
+                             levels = c("dia8a", "dia8b", "dia8c", "dia8d",
+                                        "dia8f", "dia9"),
                              labels = c("Transportation",
                                         "Registration",
                                         "Medicine", 
@@ -2016,7 +2121,21 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
                      y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
+  geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 1), size = 3) +
+  scale_x_reordered() +
+  facet_grid(. ~ strata, scales = "free_x") +
+  labs(x = "", y = "%") +
+  themeSettings +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
+
+```{r diarrhoea8plot, echo = FALSE, eval = TRUE, fig.cap = "Costs incurred for treatment by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
+       mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
+                     y= estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
@@ -2086,7 +2205,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$indicators == "Sought treatment" & tabLong$state == "Kayah", ],
        mapping = aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 5) +
   #facet_grid(. ~ state) +
@@ -2097,7 +2216,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
 ```{r ari2plot, echo = FALSE, eval = TRUE, fig.cap = "Treatment-seeking for acute respiratory infection by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$indicators == "Sought treatment" & tabLong$state == "Kayah", ],
        mapping = aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 5) +
   #facet_grid(. ~ state) +
@@ -2105,15 +2224,15 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") 
   themeSettings
 ```
 
-```{r ari3plot, echo = FALSE, eval = FALSE, fig.cap = "Reasons for not seeking treatment by location type in Kayin state", fig.width = 14, fig.height = 8, fig.align = "center", fig.pos = "H"}
-ggplot(data = tabLong[tabLong$state == "Kayin" & 
+```{r ari3plot, echo = FALSE, eval = TRUE, fig.cap = "Reasons for not seeking treatment by location type", fig.width = 14, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[tabLong$state == "Kayah" & 
                         tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & 
                         !tabLong$indicators %in% c("Sought treatment", "Time to treatment"), ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata), 
                      y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
-            position = position_stack(vjust = 1), size = 5) +
+            position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
   facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
@@ -2121,13 +2240,13 @@ ggplot(data = tabLong[tabLong$state == "Kayin" &
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 ```
 
-```{r ari4plot, echo = FALSE, eval = TRUE, fig.cap = "Reasons for not seeking treatment by location type", fig.width = 14, fig.height = 8, fig.align = "center", fig.pos = "H"}
+```{r ari4plot, echo = FALSE, eval = TRUE, fig.cap = "Reasons for not seeking treatment by wealth quintiles", fig.width = 14, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[tabLong$state == "Kayah" & 
                         tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & 
                         !tabLong$indicators %in% c("Sought treatment", "Time to treatment"), ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata), 
                      y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
@@ -2180,43 +2299,7 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   landscape()
 ```
 
-```{r ari5plot, echo = FALSE, eval = FALSE, fig.cap = "Where/who treatment is sought from by location type in Kayin state", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
-tabLong <- tidyr::pivot_longer(data = tab, 
-                               cols = ari5a:ari5m,
-                               names_to = "indicators", values_to = "estimate")
-
-tabLong$indicators <- factor(x = tabLong$indicators, 
-                             labels = c("Township hospital",
-                                        "Station hospital",
-                                        "RHC/health assistant", 
-                                        "SRHC/midwife",
-                                        "Private clinic/doctor", 
-                                        "Community health worker", 
-                                        "Traditional healer", 
-                                        "Untrained health worker",
-                                        "Drug from shop",
-                                        "EHO clinic/volunteer",
-                                        "Family member",
-                                        "NGOs/clinic",
-                                        "Auxilliary midwife"))
-
-tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
-tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
-
-ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayin", ],
-       mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
-                     y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
-  geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
-            position = position_stack(vjust = 1), size = 5) +
-  scale_x_reordered() +
-  facet_grid(. ~ strata, scales = "free_x") +
-  labs(x = "", y = "%") +
-  themeSettings +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
-```
-
-```{r ari6plot, echo = FALSE, eval = TRUE, fig.cap = "Where/who treatment is sought from by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+```{r ari5plot, echo = FALSE, eval = TRUE, fig.cap = "Where/who treatment is sought from by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tabLong <- tidyr::pivot_longer(data = tab, 
                                cols = ari5a:ari5m,
                                names_to = "indicators", values_to = "estimate")
@@ -2242,7 +2325,21 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
                      y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
+  geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 1), size = 3) +
+  scale_x_reordered() +
+  facet_grid(. ~ strata, scales = "free_x") +
+  labs(x = "", y = "%") +
+  themeSettings +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
+
+```{r ari6plot, echo = FALSE, eval = TRUE, fig.cap = "Where/who treatment is sought from by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
+       mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
+                     y= estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
@@ -2289,36 +2386,7 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   landscape()
 ```
 
-```{r ari7plot, echo = FALSE, eval = FALSE, fig.cap = "Costs incurred for treatment in Kayin state", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
-tabLong <- tidyr::pivot_longer(data = tab, 
-                               cols = ari8a:ari8f,
-                               names_to = "indicators", values_to = "estimate")
-
-tabLong$indicators <- factor(x = tabLong$indicators, 
-                             labels = c("Transportation",
-                                        "Registration",
-                                        "Medicine", 
-                                        "Laboratory fees",
-                                        "Provider fees", 
-                                        "Gifts"))
-
-tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
-tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
-
-ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayin", ],
-       mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
-                     y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
-  geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
-            position = position_stack(vjust = 1), size = 5) +
-  scale_x_reordered() +
-  facet_grid(. ~ strata, scales = "free_x") +
-  labs(x = "", y = "%") +
-  themeSettings +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
-```
-
-```{r ari8plot, echo = FALSE, eval = TRUE, fig.cap = "Costs incurred for treatment by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+```{r ari7plot, echo = FALSE, eval = TRUE, fig.cap = "Costs incurred for treatment by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tabLong <- tidyr::pivot_longer(data = tab, 
                                cols = ari8a:ari8f,
                                names_to = "indicators", values_to = "estimate")
@@ -2337,7 +2405,21 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
                      y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
+  geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 1), size = 3) +
+  scale_x_reordered() +
+  facet_grid(. ~ strata, scales = "free_x") +
+  labs(x = "", y = "%") +
+  themeSettings +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
+
+```{r ari8plot, echo = FALSE, eval = TRUE, fig.cap = "Costs incurred for treatment by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
+       mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
+                     y= estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
@@ -2405,7 +2487,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$indicators == "Sought treatment" & tabLong$state == "Kayah", ],
        mapping = aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 5) +
   #facet_grid(. ~ state) +
@@ -2416,7 +2498,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
 ```{r fever2plot, echo = FALSE, eval = TRUE, fig.cap = "Treatment-seeking for fever by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$indicators == "Sought treatment" & tabLong$state == "Kayah", ],
        mapping = aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 5) +
   #facet_grid(. ~ state) +
@@ -2424,15 +2506,15 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") 
   themeSettings
 ```
 
-```{r fever3plot, echo = FALSE, eval = FALSE, fig.cap = "Reasons for not seeking treatment by location type in Kayin state", fig.width = 14, fig.height = 8, fig.align = "center", fig.pos = "H"}
-ggplot(data = tabLong[tabLong$state == "Kayin" & 
+```{r fever3plot, echo = FALSE, eval = TRUE, fig.cap = "Reasons for not seeking treatment by location type", fig.width = 14, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[tabLong$state == "Kayah" & 
                         tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & 
                         !tabLong$indicators %in% c("Sought treatment", "Time to treatment"), ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata), 
                      y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
-            position = position_stack(vjust = 1), size = 5) +
+            position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
   facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
@@ -2440,13 +2522,13 @@ ggplot(data = tabLong[tabLong$state == "Kayin" &
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 ```
 
-```{r fever4plot, echo = FALSE, eval = TRUE, fig.cap = "Reasons for not seeking treatment by location type", fig.width = 14, fig.height = 8, fig.align = "center", fig.pos = "H"}
+```{r fever4plot, echo = FALSE, eval = TRUE, fig.cap = "Reasons for not seeking treatment by wealth quintiles", fig.width = 14, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[tabLong$state == "Kayah" & 
-                        tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & 
+                        !tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & 
                         !tabLong$indicators %in% c("Sought treatment", "Time to treatment"), ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata), 
                      y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
@@ -2499,43 +2581,7 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   landscape()
 ```
 
-```{r fever5plot, echo = FALSE, eval = FALSE, fig.cap = "Where/who treatment is sought from by location type in Kayin state", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
-tabLong <- tidyr::pivot_longer(data = tab, 
-                               cols = fev5a:fev5m,
-                               names_to = "indicators", values_to = "estimate")
-
-tabLong$indicators <- factor(x = tabLong$indicators, 
-                             labels = c("Township hospital",
-                                        "Station hospital",
-                                        "RHC/health assistant", 
-                                        "SRHC/midwife",
-                                        "Private clinic/doctor", 
-                                        "Community health worker", 
-                                        "Traditional healer", 
-                                        "Untrained health worker",
-                                        "Drug from shop",
-                                        "EHO clinic/volunteer",
-                                        "Family member",
-                                        "NGOs/clinic",
-                                        "Auxilliary midwife"))
-
-tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
-tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
-
-ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayin", ],
-       mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
-                     y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
-  geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
-            position = position_stack(vjust = 1), size = 5) +
-  scale_x_reordered() +
-  facet_grid(. ~ strata, scales = "free_x") +
-  labs(x = "", y = "%") +
-  themeSettings +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
-```
-
-```{r fever6plot, echo = FALSE, eval = TRUE, fig.cap = "Where/who treatment is sought from by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+```{r fever5plot, echo = FALSE, eval = TRUE, fig.cap = "Where/who treatment is sought from by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tabLong <- tidyr::pivot_longer(data = tab, 
                                cols = fev5a:fev5m,
                                names_to = "indicators", values_to = "estimate")
@@ -2561,7 +2607,21 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
                      y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
+  geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 1), size = 3) +
+  scale_x_reordered() +
+  facet_grid(. ~ strata, scales = "free_x") +
+  labs(x = "", y = "%") +
+  themeSettings +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
+
+```{r fever6plot, echo = FALSE, eval = TRUE, fig.cap = "Where/who treatment is sought from by wealth quintile", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
+       mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
+                     y = estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
@@ -2608,36 +2668,7 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
   landscape()
 ```
 
-```{r fever7plot, echo = FALSE, eval = FALSE, fig.cap = "Costs incurred for treatment in Kayin state", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
-tabLong <- tidyr::pivot_longer(data = tab, 
-                               cols = fev8a:fev8f,
-                               names_to = "indicators", values_to = "estimate")
-
-tabLong$indicators <- factor(x = tabLong$indicators, 
-                             labels = c("Transportation",
-                                        "Registration",
-                                        "Medicine", 
-                                        "Laboratory fees",
-                                        "Provider fees", 
-                                        "Gifts"))
-
-tabLong$state <- factor(x = tabLong$state, levels = c("Kayin", "Kayah"))
-tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-to-reach", "Wealthiest", "Wealthy", "Medium", "Poor", "Poorest"))
-
-ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayin", ],
-       mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
-                     y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
-  geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
-            position = position_stack(vjust = 1), size = 5) +
-  scale_x_reordered() +
-  facet_grid(. ~ strata, scales = "free_x") +
-  labs(x = "", y = "%") +
-  themeSettings +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
-```
-
-```{r fever8plot, echo = FALSE, eval = TRUE, fig.cap = "Costs incurred for treatment in Kayah state", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+```{r fever7plot, echo = FALSE, eval = TRUE, fig.cap = "Costs incurred for treatment by location type", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 tabLong <- tidyr::pivot_longer(data = tab, 
                                cols = fev8a:fev8f,
                                names_to = "indicators", values_to = "estimate")
@@ -2656,7 +2687,21 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
                      y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
+  geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
+            position = position_stack(vjust = 1), size = 3) +
+  scale_x_reordered() +
+  facet_grid(. ~ strata, scales = "free_x") +
+  labs(x = "", y = "%") +
+  themeSettings +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+```
+
+```{r fever8plot, echo = FALSE, eval = TRUE, fig.cap = "Costs incurred for treatment by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
+ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
+       mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
+                     y= estimate)) +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
@@ -2959,7 +3004,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = strata,
                      y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 5) +
   #facet_grid(indicators ~ .) +
@@ -2972,7 +3017,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
 ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = strata,
                      y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 5) +
   #facet_grid(indicators ~ .) +
@@ -3095,7 +3140,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
                      y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
@@ -3109,14 +3154,14 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
 ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
                      y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
   facet_grid(. ~ strata, scales = "free_x") +
   labs(x = "", y = "%") +
   themeSettings +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
+  theme(axis.text.x = element_text(size = 10, angle = 90, vjust = 0.5, hjust = 1))
 ```
 
 ```{r fplan3table, echo = FALSE, eval = TRUE}
@@ -3183,7 +3228,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
                      y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
@@ -3197,7 +3242,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
 ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
                      y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
@@ -3277,7 +3322,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
                      y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
@@ -3291,7 +3336,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") &
 ggplot(data = tabLong[!tabLong$strata %in% c("Urban", "Rural", "Hard-to-reach") & tabLong$state == "Kayah", ],
        mapping = aes(x = reorder_within(x = indicators, by = -estimate, within = strata),
                      y= estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 1), size = 3) +
   scale_x_reordered() +
@@ -3364,7 +3409,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -3378,7 +3423,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
 ```{r anc2plot, echo = FALSE, eval = TRUE, fig.cap = "Antenatal care coverage by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #scale_y_continuous(limits = c(0, 100)) +
@@ -3457,7 +3502,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -3471,7 +3516,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
 ```{r anc2Plot, echo = FALSE, eval = TRUE, fig.cap = "Antenatal care service providers by wealth quintiles", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -3528,7 +3573,7 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 
 ##### Antenatal care supplementation {#ancSupplementation}
 
-Most women in rural areas (98.8%) took vitamin B1 supplementation during their pregnancy whilst only 85.4% of women in urban areas and 74.6% of women in hard-t-reach areas took the supplement. Only 73.1 of the poorest women took the supplement. Only 70% of women in hard-to-reach areas took IFA during their latest pregnancy whilst almost all of those from urban and rural areas took IFA. Only 68.8% of the poorest women took IFA tablets compared to almomst all of the wealthiest and wealthy women taking the IFA tablets. The number of days IFA tablet was taken was at least more than 100 days with length of consumption highest in urban areas and amonts wealthy and wealthiest women. Those in urban areas got their IFA supplements mainly from the government hospital while those from urral and hard-to-reach areas got theirs from the SRHC/RHC (see Table \@ref(tab:anc3table), Figure \@ref(fig:anc3Plot) and Figure \@ref(fig:anc4Plot)).
+Most women in rural areas (98.8%) took vitamin B1 supplementation during their pregnancy whilst only 85.4% of women in urban areas and 74.6% of women in hard-to-reach areas took the supplement. Only 73.1 of the poorest women took the supplement. Only 70% of women in hard-to-reach areas took IFA during their latest pregnancy whilst almost all of those from urban and rural areas took IFA. Only 68.8% of the poorest women took IFA tablets compared to almomst all of the wealthiest and wealthy women taking the IFA tablets. The number of days IFA tablet was taken was at least more than 100 days with length of consumption highest in urban areas and amonts wealthy and wealthiest women. Those in urban areas got their IFA supplements mainly from the government hospital while those from rural and hard-to-reach areas got theirs from the SRHC/RHC (see Table \@ref(tab:anc3table), Figure \@ref(fig:anc3Plot) and Figure \@ref(fig:anc4Plot)).
 
 ```{r anc3table, echo = FALSE, eval = TRUE}
 tab <- recode_anc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past"),
@@ -3583,7 +3628,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -3597,7 +3642,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
 ```{r anc4Plot, echo = FALSE, eval = TRUE, fig.cap = "Antenatal care supplementation by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -3734,7 +3779,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -3748,7 +3793,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
 ```{r birth2Plot, echo = FALSE, eval = TRUE, fig.cap = "Location for birth/delivery by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -3811,7 +3856,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -3825,7 +3870,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
 ```{r birth4Plot, echo = FALSE, eval = TRUE, fig.cap = "Reasons for choice of birth/delivery location by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -3837,7 +3882,7 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") 
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 ```
 
-Births/deliveries were mostly assisted by doctors and midwives in urban and rural areas. On the other hand, traditional birth attendants and relatives were the ones that women in hard-to-reach areas rely on when they give birth/deliver. A  (see Table \@ref(tab:birth3table) and Figure \@ref(fig:birth5Plot)). Almost 15% of women in hard-to-reach areas gave birth/deliver on their own without any assistance. A similar trend by wealth was noted in that wealtheir women were mostly assisted by doctors and midwives while poorer women were mostly assisted by traditional birth attendants or relatives or delivered on their own (see Figure \@ref(fig:birth6Plot)).
+Births/deliveries were mostly assisted by doctors and midwives in urban and rural areas. On the other hand, traditional birth attendants and relatives were the ones that women in hard-to-reach areas rely on when they give birth/deliver (see Table \@ref(tab:birth3table) and Figure \@ref(fig:birth5Plot)). Almost 15% of women in hard-to-reach areas gave birth/deliver on their own without any assistance. A similar trend by wealth was noted in that wealtheir women were mostly assisted by doctors and midwives while poorer women were mostly assisted by traditional birth attendants or relatives or delivered on their own (see Figure \@ref(fig:birth6Plot)).
 
 ```{r birth3table, echo = FALSE, eval = TRUE}
 tab <- recode_birth(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
@@ -3898,7 +3943,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -3912,7 +3957,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
 ```{r birth6Plot, echo = FALSE, eval = TRUE, fig.cap = "Service provider for birth/delivery location by wealth quintiles", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -3923,7 +3968,7 @@ ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") 
   themeSettings
 ```
 
-Majority of children were born via normal delivery in rural and hard-to-reach areas whilst in urban areas, about half of deliveries were normal and half caesarian deliveries (see Table \@ref(tab:birth4table)). Almost half of wealthier women delivered via caesarian section.
+Majority of children were born via normal delivery in rural and hard-to-reach areas whilst in urban areas, about half of deliveries were normal and half were caesarian deliveries (see Table \@ref(tab:birth4table)). Almost half of wealthier women delivered via caesarian section.
 
 ```{r birth4table, echo = FALSE, eval = TRUE}
 tab <- recode_birth(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
@@ -4041,7 +4086,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -4055,7 +4100,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
 ```{r pnc2Plot, echo = FALSE, eval = TRUE, fig.cap = "Post-natal care coverage by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -4089,7 +4134,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -4103,7 +4148,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
 ```{r pnc4Plot, echo = FALSE, eval = TRUE, fig.cap = "Post-natal care service provider by wealth quintile", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -4142,7 +4187,7 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 
 \newpage
 
-Very few women across location type and across wealth classes report incurring costs for post-natal care. If they did, the most common cost is for medicines (see Table \@ref(tab:pnc3table)).
+Up to 40% of women in rural areas incur costs for post-natal care followed by women from hard-to-reach areas at 32%. Women in urban areas incurred costs the least at 21%. The most common cost is for medicines (see Table \@ref(tab:pnc3table)).
 
 ```{r pnc3table, echo = FALSE, eval = TRUE}
 tab <- recode_pnc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "past")) %>%
@@ -4150,7 +4195,7 @@ tab <- recode_pnc(df = create_anc(df = anc2, x = hh, y = hhMembers, status = "pa
                                    "pnc7a", "pnc7b", "pnc7c", 
                                    "pnc7d", "pnc7e", "pnc7f"))
 
-tab[ , 5:ncol(tab)] <- tab[ , 5:ncol(tab)] * 100
+tab[ , 3:ncol(tab)] <- tab[ , 3:ncol(tab)] * 100
 
 knitr::kable(x = tab[tab$state == "Kayah", ],
              caption = "Costs of postnatal care",
@@ -4238,7 +4283,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -4252,7 +4297,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
 ```{r nbc2Plot, echo = FALSE, eval = TRUE, fig.cap = "Newborn care coverage by wealth quintiles", fig.width = 12, fig.height = 8, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -4286,7 +4331,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -4300,7 +4345,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
 ```{r nbc4Plot, echo = FALSE, eval = TRUE, fig.cap = "Newborn care service provider by wealth quintiles", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -4370,7 +4415,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -4384,7 +4429,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
 ```{r nbc6Plot, echo = FALSE, eval = TRUE, fig.cap = "Costs for newborn care by wealth quintiles", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -4485,7 +4530,7 @@ tabLong$strata <- factor(x = tabLong$strata, levels = c("Urban", "Rural", "Hard-
 
 ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -4499,7 +4544,7 @@ ggplot(data = tabLong[tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") &
 ```{r nbc8Plot, echo = FALSE, eval = TRUE, fig.cap = "Costs for newborn care by wealth quintiles", fig.width = 12, fig.height = 15, fig.align = "center", fig.pos = "H"}
 ggplot(data = tabLong[!tabLong$strata %in% c("Rural", "Urban", "Hard-to-reach") & tabLong$state == "Kayah", ], 
        aes(x = strata, y = estimate)) +
-  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0") +
+  geom_col(width = 0.5, colour = "#70C1B3", fill = "#247BA0", alpha = 0.7) +
   geom_text(aes(group = indicators, label = paste(round(estimate, digits = 1), "%", sep = "")), 
             position = position_stack(vjust = 0.5), size = 3) +
   #facet_grid(indicators ~ .) +
@@ -4635,9 +4680,9 @@ knitr::kable(x = tab[tab$state == "Kayah", ],
 
 ## Cohort study {#study2-results}
 
-For the results of the cohort study, the regression discontinuity was demonstrated through a regression plot of children's anthropometric indices and MUAC for those who were born a month before the start of recruitment for the MCCT programme (control programme) and those who were born a month after the start of the recruitment for the MCCT programme (intervention). The same analysis was applied to the MUAC of the mothers of these children.
+For the results of the cohort study, the regression discontinuity was demonstrated through a regression plot of children's anthropometric indices and MUAC for those who were born a month before the start of recruitment for the MCCT program (control program) and those who were born a month after the start of the recruitment for the MCCT program (intervention). The same analysis was applied to the MUAC of the mothers of these children.
 
-An intention-to-treat analysis was applied with intervention cases identified purely based on their eligibility for the programme. Further analysis of acutal receipt of benefits from MCCT should be included at endline. Following are the results.
+An intention-to-treat analysis was applied with intervention cases identified purely based on their eligibility for the program. Further analysis of acutal receipt of benefits from MCCT should be included at endline. Following are the results.
 
 ### Child anthropometric indicators
 
@@ -4818,8 +4863,6 @@ ggplot(data = tabLong[tabLong$geo_state == "MMR002" & tabLong$indicators == "mua
   themeSettings
 ```
 
-\newpage
-
 ### Maternal anthropometric indicators
 
 ```{r rd6, echo = FALSE, eval = TRUE, results = FALSE}
@@ -4882,11 +4925,25 @@ ggplot(data = tabLong[tabLong$geo_state == "MMR002" & tabLong$indicators == "mua
   themeSettings
 ```
 
+\newpage
+
+# Discussion and Recommendations
+
+The results of the population-based baseline survey in Kayah State indicate that child undernutrition specifically stunting/stuntedness and underweight is one of the highest in Myanmar with children in hard-to-reach areas (which also tend to be the poorest in the state) being the worst affected in the state. Results from child health and nutrition related indicators describes the situation in the state of poor infant and young child feeding and breastfeeding practices and low coverage and access to child health services such as immunisation as immediate factors that may explain the level of child undernutrition in the state. In addition, maternal health as proxied by services for mothers during pregnancy, on giving birth and post-pregnancy indicate mostly disparate results of relative better access among wealthy women and lesser access for poorer women. Overall, most mothers who access these maternal health services pay out-of-pocket hence exacerbating the wealth disparity in access to these services. Maternal undernutrition as proxied by maternal wasting by MUAC is, however, low with good dietary diversity of women.
+
+More distal factors such as food insecurity as proxied by food consumption, coping strategies, household food expenditure share are not at critical levels for the state on aggregate but wealth disparities with regard to these food security indicators support the idea that poverty is a distal driver of child undernutrition in the state. Water and sanitation and hygiene indicators, another distal factor impacting on child health and nutrition, though on aggregate are acceptable are much worse for poor households.
+
+Treatment-seeking for childhood illnesses in Kayin state is to mostly explained by wealth disparity though results seem to indicate a more complex mechanism of decisionmaking within households that the current results cannot completely explain.
+
+It is within this context that the MCCT program is embedded aiming to address primarily the distal factor of poverty and its correlates so that households can address immediate and intermediate factors of access to nutritious food and access to services which in turn can impact on the child undernutrition situation specifically stunting. However, the results of the population-based survey indicate that current coverage of the MCCT program in Kayin state is too low to possibly make an impact.
+
+The results from the cohort of intervention and control mother and children recruited for the evaluation component of the study seem to support this concern. Whilst there is beginning discontinuity noted between intervention and control groups after one year of intervention, the difference is not significant enough to be able to associate this effect on the MCCT program. This can be partly explained by a relatively short period of exposure to be able to make an impact on stunting/stuntedness. But it is also explained by the low coverage achieved by the program currently.
+
+Given this, it is critical that the MCCT program achieve high levels of coverage as an immediate point of action. Secondly, other factors that a cash transfer program will most likley not impact should be considered for other types of interventions. This includes efforts to improve water, sanitation and hygiene services particularly in hard-to-reach and in poor households. Social and behavioural change communication, a component of the current intervention, also has a role in impacting on diet-related practices specifically on infant and young child feeding and in addition it should include key messages on appropriate hygiene practices and treatment-seeking practices based on nuanced and contextualised understanding of existing practices and behaviours.
 
 \newpage
 
 # References {-}
-
 
 
 [^1]: Based on the earlier Chin assessment and based on feedback from various stakeholders.
