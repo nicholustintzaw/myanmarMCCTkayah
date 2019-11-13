@@ -76,6 +76,7 @@ themeSettings <- theme_bw() +
 
 # Acknowledgements
 
+* test 
 We are indebted to all the data collection teams who made this assessment possible, including data collectors, supervisors, and management teams from Karen Department of Health and Welfare who provided cooperation, support and dedication to reaching communities in the most difficult to reach areas. We are thankful for all the study participants - the households, mothers and children - who participated in the study for their time and patience in providing information needed for this study. Without them, this study would not have been possible.
 
 \newpage
